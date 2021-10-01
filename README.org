@@ -1,0 +1,2 @@
+* Challenges
+  Random assortment of different code challenges or puzzles in different languages.
