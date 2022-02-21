@@ -1,3 +1,4 @@
+(* https://www.codewars.com/kata/52bc74d4ac05d0945d00054e *)
 
 let char_counts (chars : char list) : (char * int) list =
   List.fold_left (fun acc char ->
