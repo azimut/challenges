@@ -1,18 +1,8 @@
 (* https://www.codewars.com/kata/55ab4f980f2d576c070000f4/train/ocaml *)
 
-(*
-1 2 3 4 5 6 7 8
-2 3 4 5 6 7 8 9
-
-1 2 3 4 5 6 7 8
-3 4 5 6 7 8 9 10
-*)
-
-(* :string *)
-
 let cellValue row col = Float.of_int row /. Float.of_int (row + col)
 
-let game (n : int) =
+let game (n : int) : string =
   let sum = ref 0. in
   for col = 1 to n do
     for row = 1 to n do
@@ -44,7 +34,11 @@ module Tests = struct
       >::: [
              ( "Basic tests" >:: fun _ ->
                testing 1808 "[1634432]";
-               testing 5014 "[12570098]" );
+               testing 5014 "[12570098]";
+               (* Took from after *)
+               testing 0 "[0]";
+               testing 1 "[1,2]";
+               testing 101 "[10201,2]" );
            ];
     ]
 end
