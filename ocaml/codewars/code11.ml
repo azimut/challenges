@@ -10,14 +10,16 @@
 
 (* :string *)
 
-let makeRow (nRow : int) (width : int) =
-  List.init width (fun i -> (i + 1, i + nRow))
+let cellValue row col = Float.of_int row /. Float.of_int (row + col)
 
 let game (n : int) =
-  List.init n (fun r -> makeRow (r + 2) (n + 1))
-  |> List.concat
-  |> List.map (fun (n, d) -> Float.of_int n /. Float.of_int d)
-  |> List.fold_left ( +. ) 0.
+  let sum = ref 1.0 in
+  for col = 1 to n do
+    for row = 1 to n do
+      sum := !sum +. cellValue row col
+    done
+  done;
+  !sum
 
 module Tests = struct
   open OUnit
