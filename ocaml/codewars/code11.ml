@@ -13,13 +13,13 @@
 let cellValue row col = Float.of_int row /. Float.of_int (row + col)
 
 let game (n : int) =
-  let sum = ref 1.0 in
+  let sum = ref 0. in
   for col = 1 to n do
     for row = 1 to n do
       sum := !sum +. cellValue row col
     done
   done;
-  !sum
+  Printf.sprintf "[%d]" @@ int_of_float @@ BatFloat.round !sum
 
 module Tests = struct
   open OUnit
