@@ -23,7 +23,6 @@ let oper f s = f s
 
 module Tests = struct
   open OUnit
-  open Printf
   let testrot(s: string) (expectedOutput: string) =
     let act = oper rot s in
     print_string "input ";
@@ -63,3 +62,4 @@ module Tests = struct
         ]
     ]
 end
+let _ = List.map OUnit.run_test_tt_main Tests.suite

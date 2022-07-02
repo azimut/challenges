@@ -17,7 +17,6 @@ let accum (s:string): string =
 
 module Tests = struct
   open OUnit
-  open Printf
   let testAccum(s: string) (expectedOutput: string) =
     let act = accum s in
     print_string "input: ";
@@ -36,3 +35,4 @@ module Tests = struct
         ]
     ]
 end
+let _ = List.map OUnit.run_test_tt_main Tests.suite

@@ -8,23 +8,23 @@
    b        = (sum(n) - a) / (a + 1)
    Output: "(a,b) (b,a)" *)
 
-let remov_nb (n: int): string =
-  let sum = n * (n+1) / 2 in
-  BatEnum.(--) 1 n
-  |> BatEnum.fold (fun acc a ->
-         let b = (sum - a) / (a + 1) in
-         if (sum - a) mod (a + 1) = 0 && b <= a
-         then (b,a)::acc
-         else acc) []
-  |> (fun l -> l @ (l |> List.rev |> List.map (fun (a,b) -> (b,a))))
-  |> List.fold_left (fun s (a,b) -> s^Printf.sprintf "(%d, %d)" a b) ""
+(* let remov_nb (n: int): string = *)
+(*   let sum = n * (n+1) / 2 in *)
+(*   BatEnum.(--) 1 n *)
+(*   |> BatEnum.fold (fun acc a -> *)
+(*          let b = (sum - a) / (a + 1) in *)
+(*          if (sum - a) mod (a + 1) = 0 && b <= a *)
+(*          then (b,a)::acc *)
+(*          else acc) [] *)
+(*   |> (fun l -> l @ (l |> List.rev |> List.map (fun (a,b) -> (b,a)))) *)
+(*   |> List.fold_left (fun s (a,b) -> s^Printf.sprintf "(%d, %d)" a b) "" *)
 
 (* Timeout Version *)
-let remov_nb (n: int): string =
-  let sum = n * (n+1) / 2 in
-  BatEnum.(cartesian_product (1 -- n) (1 -- n))
-  |> BatEnum.filter (fun (a,b) -> (a*b)=sum-a-b)
-  |> BatEnum.fold (fun s (a,b) -> s ^ Printf.sprintf "(%d, %d)" b a) ""
+(* let remov_nb (n: int): string = *)
+(*   let sum = n * (n+1) / 2 in *)
+(*   BatEnum.(cartesian_product (1 -- n) (1 -- n)) *)
+(*   |> BatEnum.filter (fun (a,b) -> (a*b)=sum-a-b) *)
+(*   |> BatEnum.fold (fun s (a,b) -> s ^ Printf.sprintf "(%d, %d)" b a) "" *)
 
 (* Stack Overflow Version *)
 let remov_nb (n: int): string =
@@ -36,7 +36,6 @@ let remov_nb (n: int): string =
 
 module Tests = struct
   open OUnit
-  open Printf
   let testing(n: int) (expectedOutput: string) =
     let act = remov_nb n in
     print_string "input ";
@@ -57,3 +56,4 @@ module Tests = struct
         ]
     ]
 end
+let _ = List.map OUnit.run_test_tt_main Tests.suite

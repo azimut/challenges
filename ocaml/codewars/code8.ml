@@ -33,3 +33,4 @@ module Tests = struct
         ]
     ]
 end
+let _ = List.map OUnit.run_test_tt_main Tests.suite

@@ -1,0 +1,15 @@
+(executable (name code1) (modules code1) (libraries oUnit))
+
+(executable (name code3) (modules code3) (libraries oUnit))
+(executable (name code4) (modules code4) (libraries oUnit))
+(executable (name code5) (modules code5) (libraries oUnit))
+(executable (name code6) (modules code6) (libraries oUnit))
+(executable (name code7) (modules code7) (libraries oUnit))
+(executable (name code8) (modules code8) (libraries oUnit))
+(executable (name code9) (modules code9) (libraries oUnit batteries))
+
+(env
+ ; (dev
+ ;  (flags (:standard -w @A-4-33-40-41-42-43-34-44-70)))
+ (release
+  (ocamlopt_flags (:standard -O3))))
