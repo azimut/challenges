@@ -8,33 +8,35 @@
 (* let foo n = *)
 (*   (n - 1) mod 9 + 1 *)
 
-let digits (n: int): int list =
+let digits (n : int) : int list =
   let rec loop n acc =
-    if n = 0 then acc
-    else loop (n/10) (n mod 10 :: acc)
+    if n = 0 then acc else loop (n / 10) ((n mod 10) :: acc)
   in
   loop n []
 
-let rec digital_root (n : int): int =
+let rec digital_root (n : int) : int =
   match n > 9 with
-  | true  -> digital_root (digits n |> List.fold_left (+) 0)
+  | true -> digital_root (digits n |> List.fold_left ( + ) 0)
   | false -> n
 
 module Tests = struct
   open OUnit
+
   let suite =
     let test_with input expected =
       let format_input = Printf.sprintf "n = %d" in
-      assert_equal expected (digital_root input) ~msg:(format_input input) ~printer:string_of_int
-    in [
-        "Fixed tests" >:: (fun _ ->
-          test_with 16 7;
-          test_with 195 6;
-          test_with 992 2;
-          test_with 999999999 9;
-          test_with 167346 9;
-          test_with 0 0;
-        );
-      ]
+      assert_equal expected (digital_root input) ~msg:(format_input input)
+        ~printer:string_of_int
+    in
+    [
+      ( "Fixed tests" >:: fun _ ->
+        test_with 16 7;
+        test_with 195 6;
+        test_with 992 2;
+        test_with 999999999 9;
+        test_with 167346 9;
+        test_with 0 0 );
+    ]
 end
+
 let _ = List.map OUnit.run_test_tt_main Tests.suite

@@ -27,33 +27,40 @@
 (*   |> BatEnum.fold (fun s (a,b) -> s ^ Printf.sprintf "(%d, %d)" b a) "" *)
 
 (* Stack Overflow Version *)
-let remov_nb (n: int): string =
-  let sum = n * (n+1) / 2 in
+let remov_nb (n : int) : string =
+  let sum = n * (n + 1) / 2 in
   let numbers = List.init n succ in
   BatList.cartesian_product numbers numbers
-  |> List.filter (fun (a,b) -> (a*b)=sum-a-b)
-  |> List.fold_left (fun s (a,b) -> s ^ Printf.sprintf "(%d, %d)" a b) ""
+  |> List.filter (fun (a, b) -> a * b = sum - a - b)
+  |> List.fold_left (fun s (a, b) -> s ^ Printf.sprintf "(%d, %d)" a b) ""
 
 module Tests = struct
   open OUnit
-  let testing(n: int) (expectedOutput: string) =
+
+  let testing (n : int) (expectedOutput : string) =
     let act = remov_nb n in
     print_string "input ";
     print_int n;
     print_string "\n";
-    print_string "Expected "; print_string expectedOutput; print_endline "\n got ";
-    print_string act; print_endline "\n-----"; print_endline "";
-    assert_equal expectedOutput act;;
-  let suite = [
-      "remov_nb" >:::
-        [
-          "Basic tests" >:: (fun _ ->
-            testing 26  "(15, 21)(21, 15)";
-            testing 100  "";
-            testing 37  "(21, 31)(31, 21)";
-            testing 101  "(55, 91)(91, 55)";
-          );
-        ]
+    print_string "Expected ";
+    print_string expectedOutput;
+    print_endline "\n got ";
+    print_string act;
+    print_endline "\n-----";
+    print_endline "";
+    assert_equal expectedOutput act
+
+  let suite =
+    [
+      "remov_nb"
+      >::: [
+             ( "Basic tests" >:: fun _ ->
+               testing 26 "(15, 21)(21, 15)";
+               testing 100 "";
+               testing 37 "(21, 31)(31, 21)";
+               testing 101 "(55, 91)(91, 55)" );
+           ];
     ]
 end
+
 let _ = List.map OUnit.run_test_tt_main Tests.suite
