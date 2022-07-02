@@ -8,6 +8,8 @@
 (executable (name code8) (modules code8) (libraries oUnit))
 (executable (name code9) (modules code9) (libraries oUnit batteries))
 
+(executable (name code11) (modules code11) (libraries oUnit batteries))
+
 (env
  ; (dev
  ;  (flags (:standard -w @A-4-33-40-41-42-43-34-44-70)))
