@@ -3,8 +3,8 @@
 
 let game (n : int) : string =
   match n mod 2 with
-  | 0 -> Printf.sprintf "[%d]" @@ (n * n / 2)
-  | _ -> Printf.sprintf "[%d,2]" @@ (n * n)
+  | 0 -> Printf.sprintf "[%d]" (n * n / 2)
+  | _ -> Printf.sprintf "[%d,2]" (n * n)
 
 module Tests = struct
   open OUnit
