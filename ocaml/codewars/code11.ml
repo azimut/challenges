@@ -3,7 +3,7 @@
 
 let game (n : int) : string =
   match n mod 2 with
-  | 0 -> Printf.sprintf "[%d]" @@ Float.(to_int (div (pow (of_int n) 2.) 2.))
+  | 0 -> Printf.sprintf "[%d]" @@ (n * n / 2)
   | _ -> Printf.sprintf "[%d,2]" @@ (n * n)
 
 module Tests = struct
