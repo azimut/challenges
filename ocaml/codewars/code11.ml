@@ -1,15 +1,10 @@
 (* https://www.codewars.com/kata/55ab4f980f2d576c070000f4/train/ocaml *)
-
-let cellValue row col = Float.of_int (row + row + col)
+(* Solution: took from https://www.sitepoint.com/community/t/need-explanation-on-a-coding-challenge/367827/8 *)
 
 let game (n : int) : string =
-  let sum = ref 0. in
-  for col = 1 to n do
-    for row = 1 to n do
-      sum := !sum +. cellValue row col
-    done
-  done;
-  Printf.sprintf "[%f]" @@ BatFloat.round !sum
+  match n mod 2 with
+  | 0 -> Printf.sprintf "[%d]" @@ Float.(to_int (div (pow (of_int n) 2.) 2.))
+  | _ -> Printf.sprintf "[%d,2]" @@ (n * n)
 
 module Tests = struct
   open OUnit
