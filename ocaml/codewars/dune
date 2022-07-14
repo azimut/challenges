@@ -1,3 +1,4 @@
+(executable (name code0) (modules code0) (libraries oUnit batteries))
 (executable (name code1) (modules code1) (libraries oUnit))
 
 (executable (name code3) (modules code3) (libraries oUnit))
@@ -9,6 +10,7 @@
 (executable (name code9) (modules code9) (libraries oUnit batteries))
 
 (executable (name code11) (modules code11) (libraries oUnit batteries))
+(executable (name code12) (modules code12) (libraries oUnit batteries))
 
 (env
  ; (dev
