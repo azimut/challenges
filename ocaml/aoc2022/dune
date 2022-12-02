@@ -1,4 +1,5 @@
 (executable (name day1) (modules day1) (libraries oUnit batteries))
+(executable (name day2) (modules day2) (libraries oUnit batteries))
 
 (env
  (dev
