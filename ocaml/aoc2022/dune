@@ -1,7 +1,9 @@
 (executable (name day1) (modules day1) (libraries batteries))
 (executable (name day2) (modules day2) (libraries batteries))
-(executable (name day3) (modules day3) (libraries batteries))
+(executable (name day3) (modules day3) (libraries aoc batteries))
 
 (env
  (dev
-  (flags (:standard -w @A-4-33-40-41-42-43-34-44-70 -g))))
+  (flags (:standard -w @A-4-33-40-41-42-43-34-44-70 -g)))
+ (release
+  (ocamlopt_flags (:standard -O3))))
