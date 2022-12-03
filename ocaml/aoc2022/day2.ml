@@ -16,8 +16,11 @@ let make_hand = function
   | _ -> failwith "invalid value"
 
 let silver =
-  File.lines_of "day2.txt" |> Enum.map String.explode
-  |> Enum.map (fun [ a; _; c ] -> (make_hand a, make_hand c))
+  File.lines_of "day2.txt"
+  |> Enum.map String.explode
+  |> Enum.map (function
+       | [ a; _; c ] -> (make_hand a, make_hand c)
+       | _ -> failwith "invalid input")
   |> Enum.map (fun (x, y) -> score_match (x, y) + score_hand y)
   |> Enum.reduce ( + )
 
@@ -37,8 +40,11 @@ let hand_from_match = function
   | Rock, Draw | Paper, Lose | Scissor, Win -> Rock
 
 let gold =
-  File.lines_of "day2.txt" |> Enum.map String.explode
-  |> Enum.map (fun [ a; _; c ] -> (make_hand a, make_result c))
+  File.lines_of "day2.txt"
+  |> Enum.map String.explode
+  |> Enum.map (function
+       | [ a; _; c ] -> (make_hand a, make_result c)
+       | _ -> failwith "bad format")
   |> Enum.map (fun (x, y) ->
          score_result y + score_hand (hand_from_match (x, y)))
   |> Enum.reduce ( + )
