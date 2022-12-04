@@ -11,7 +11,7 @@ let numbers_to_section lst =
 let does_one_fully_overlap a b =
   BitSet.count (BitSet.diff a b) = 0 || BitSet.count (BitSet.diff b a) = 0
 
-(* silver = 2 *)
+(* silver = 2 - 444*)
 let silver =
   File.lines_of input_file
   |> List.of_enum
@@ -21,15 +21,14 @@ let silver =
   |> List.map
        (List.map (fun [ a; b ] -> List.range a `To b |> numbers_to_section))
   |> List.map (fun [ elf1; elf2 ] -> does_one_fully_overlap elf1 elf2)
-  |> List.filter (fun b -> b = true)
-  |> List.length
+  |> List.count_matching Fun.id
 
 let do_overlap a b =
   let tmp = BitSet.copy a in
   BitSet.differentiate a b;
   BitSet.equal a tmp
 
-(* gold = 4 *)
+(* gold = 4  - 801*)
 let gold =
   File.lines_of input_file
   |> List.of_enum
@@ -39,7 +38,6 @@ let gold =
   |> List.map
        (List.map (fun [ a; b ] -> List.range a `To b |> numbers_to_section))
   |> List.map (fun [ elf1; elf2 ] -> do_overlap elf1 elf2)
-  |> List.filter (fun b -> b = false)
-  |> List.length
+  |> List.count_matching not
 
 let main = Aoc.print_results silver gold
