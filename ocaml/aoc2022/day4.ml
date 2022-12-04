@@ -13,18 +13,19 @@ let does_one_fully_overlap a b =
 
 let parsed =
   File.lines_of input_file
-  |> List.of_enum
-  |> List.map (String.split_on_char ',')
-  |> List.map (List.map (String.split_on_char '-'))
-  |> List.map (List.map (List.map String.to_int))
-  |> List.map
+  |> Enum.map (String.split_on_char ',')
+  |> Enum.map (List.map (String.split_on_char '-'))
+  |> Enum.map (List.map (List.map String.to_int))
+  |> Enum.map
        (List.map (fun [ a; b ] -> List.range a `To b |> range_to_section))
 
 (* silver = 2 - 444*)
 let silver =
   parsed
-  |> List.map (fun [ elf1; elf2 ] -> does_one_fully_overlap elf1 elf2)
-  |> List.count_matching Fun.id
+  |> Enum.clone
+  |> Enum.map (fun [ elf1; elf2 ] -> does_one_fully_overlap elf1 elf2)
+  |> Enum.filter Fun.id
+  |> Enum.count
 
 let do_overlap a b =
   let tmp = BitSet.copy a in
@@ -34,7 +35,8 @@ let do_overlap a b =
 (* gold = 4  - 801*)
 let gold =
   parsed
-  |> List.map (fun [ elf1; elf2 ] -> do_overlap elf1 elf2)
-  |> List.count_matching not
+  |> Enum.map (fun [ elf1; elf2 ] -> do_overlap elf1 elf2)
+  |> Enum.filter not
+  |> Enum.count
 
 let main = Aoc.print_results silver gold
