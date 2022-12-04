@@ -1,6 +1,8 @@
 (executable (name day1) (modules day1) (libraries batteries))
 (executable (name day2) (modules day2) (libraries batteries))
 (executable (name day3) (modules day3) (libraries aoc batteries))
+(executable (name day4) (modules day4) (libraries aoc batteries))
+
 
 (env
  (dev

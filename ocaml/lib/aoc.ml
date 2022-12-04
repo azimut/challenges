@@ -1,6 +1,10 @@
-let snd_opt lst = List.nth_opt lst 1
-
 module Aoc = struct
+  let print_results silver gold =
+    Printf.printf "silver:\t%10d\ngold:\t%10d\n" silver gold
+
   let arg_or default =
-    Sys.argv |> Array.to_list |> snd_opt |> Option.value ~default
+    match Sys.argv with
+    | [| _; "-emacs" |] -> default
+    | [| _; filename |] -> filename
+    | _ -> default
 end
