@@ -3,7 +3,7 @@ open Aoc
 
 let input_file = Aoc.arg_or "day4.txt"
 
-let numbers_to_section lst =
+let range_to_section lst =
   let section = BitSet.create 100 in
   List.iter (fun n -> BitSet.set section n) lst;
   section
@@ -18,7 +18,7 @@ let parsed =
   |> List.map (List.map (String.split_on_char '-'))
   |> List.map (List.map (List.map String.to_int))
   |> List.map
-       (List.map (fun [ a; b ] -> List.range a `To b |> numbers_to_section))
+       (List.map (fun [ a; b ] -> List.range a `To b |> range_to_section))
 
 (* silver = 2 - 444*)
 let silver =
