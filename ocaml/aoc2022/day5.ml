@@ -15,7 +15,6 @@ let movements =
              { qty; src = src - 1; dst = dst - 1 }))
 
 let input_stacks file =
-  let mod4 n = Int.modulo n 4 in
   let lines =
     File.with_file_in file IO.read_all
     |> String.split_on_string ~by:"\n\n"
@@ -31,8 +30,7 @@ let input_stacks file =
   lines
   |> List.iter
        (String.iteri (fun i c ->
-            if mod4 (i - 1) = 0 && Char.is_letter c then
-              Stack.push c (List.at stacks (i / 4))));
+            if Char.is_letter c then Stack.push c (List.at stacks (i / 4))));
   stacks
 
 let popper stack n =
