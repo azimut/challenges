@@ -1,5 +1,4 @@
 open Batteries
-open Aoc
 
 let input_file = Aoc.arg_or "day4.txt"
 
