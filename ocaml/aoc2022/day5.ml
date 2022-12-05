@@ -1,6 +1,6 @@
 open! Batteries
 
-let input_file = Aoc.arg_or "day5.txt"
+let input_file = Aoc.arg_or "day5.test.txt"
 
 type movement = { qty : int; src : int; dst : int }
 
@@ -12,16 +12,7 @@ let movements file =
   |> String.split_on_char '\n'
   |> List.map (fun s ->
          Scanf.sscanf s "move %d from %d to %d" (fun qty src dst ->
-             { qty; src; dst }))
-
-let crane_9000_popper stack n =
-  let ret = ref [] in
-  for i = 0 to n - 1 do
-    ret := Stack.pop stack :: !ret
-  done;
-  !ret |> List.rev
-
-let pusher stack = List.iter (fun e -> Stack.push e stack)
+             { qty; src = src - 1; dst = dst - 1 }))
 
 let input_stacks () =
   match input_file with
@@ -43,35 +34,35 @@ let input_stacks () =
       |> List.map (fun lst -> lst |> List.enum |> Stack.of_enum)
   | _ -> failwith "unknown input ????"
 
-let silver () =
-  let stacks = input_stacks () in
-  movements input_file
-  |> List.iter (fun m ->
-         let src_stack = List.at stacks (m.src - 1) in
-         let dst_stack = List.at stacks (m.dst - 1) in
-         let to_move = crane_9000_popper src_stack m.qty in
-         pusher dst_stack to_move);
-  stacks
-  |> List.mapi (fun i s ->
-         if Stack.length s != 0 then Printf.printf "%d: %c\n" i (Stack.top s)
-         else Printf.printf "%d:\n" i)
-
-let crane_9001_popper stack n =
+let popper stack n =
   let ret = ref [] in
   for i = 0 to n - 1 do
     ret := Stack.pop stack :: !ret
   done;
   !ret
 
+let pusher stack = List.iter (fun e -> Stack.push e stack)
+
+let silver () =
+  let stacks = input_stacks () in
+  movements input_file
+  |> List.iter (fun m ->
+         let src_stack = List.at stacks m.src in
+         let dst_stack = List.at stacks m.dst in
+         let to_move = popper src_stack m.qty |> List.rev in
+         pusher dst_stack to_move);
+  stacks
+  |> List.map (fun s -> if Stack.length s = 0 then ' ' else Stack.top s)
+  |> String.implode
+
 let gold () =
   let stacks = input_stacks () in
   movements input_file
   |> List.iter (fun m ->
-         let src_stack = List.at stacks (m.src - 1) in
-         let dst_stack = List.at stacks (m.dst - 1) in
-         let to_move = crane_9001_popper src_stack m.qty in
+         let src_stack = List.at stacks m.src in
+         let dst_stack = List.at stacks m.dst in
+         let to_move = popper src_stack m.qty in
          pusher dst_stack to_move);
   stacks
-  |> List.mapi (fun i s ->
-         if Stack.length s != 0 then Printf.printf "%d: %c\n" i (Stack.top s)
-         else Printf.printf "%d:\n" i)
+  |> List.map (fun s -> if Stack.length s = 0 then ' ' else Stack.top s)
+  |> String.implode
