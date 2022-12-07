@@ -3,10 +3,13 @@ open! Batteries
 (* OUTPUT:
    SUM sizes of all directories with size < 100_000
    ...counting files more than once...
+
+   NOT
+   5061287
+   5061287
 *)
 
 (* NOTE: this works because I know logs cd's to something meaninful before ls *)
-
 type dirtree = File of string * int | Dir of string * dirtree list * int
 
 let rec map f = function
@@ -29,14 +32,6 @@ let insert' at_dir new_dt old_dt =
   | File _ as file -> file
 
 let insert at_dir new_dt = map (insert' at_dir new_dt)
-
-let parsed =
-  File.with_file_in "day7.test.txt" IO.read_all
-  |> String.trim
-  |> String.split_on_char '\n'
-  |> List.filter (( <> ) "$ ls")
-  |> List.filter (( <> ) "$ cd ..")
-
 let read_cd s = Scanf.sscanf s "$ cd %s" Fun.id
 let read_dir s = Dir (Scanf.sscanf s "dir %s" Fun.id, [], 0)
 let read_file s = Scanf.sscanf s "%d %s" (fun size name -> File (name, size))
@@ -51,7 +46,24 @@ let update_dir_size' = function
 
 let init_immediate_dirsizes = map update_dir_size'
 
+let sum_smallish_dirs =
+  fold
+    (fun acc dt ->
+      match dt with
+      | File _ -> acc
+      | Dir (_, _, size) when size <= 100000 -> acc + size
+      | Dir _ -> acc)
+    0
+
+let parsed =
+  File.with_file_in "day7.txt" IO.read_all
+  |> String.trim
+  |> String.split_on_char '\n'
+  |> List.filter (( <> ) "$ ls")
+  |> List.filter (( <> ) "$ cd ..")
+
 (* NOTE: this works because i know the first one is $ cd / *)
+(* NOTE: day7.txt has repeated directory names *)
 let rec silver current_dir dt lst =
   match lst with
   | "$ cd /" :: xs -> silver current_dir dt xs
