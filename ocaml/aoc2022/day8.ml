@@ -81,4 +81,48 @@ let silver forest =
   done;
   !visibles_trees + visibles_in_the_border
 
-let gold = 0
+(*
+  viewing distance (of trees)
+  viewing distance on the edge, at least 1 is 0(zero)
+  stop if edge OR reached bigger >= tree
+  - bigger still counts
+  SCENIC SCORE = multiplying viewing distance of NSEW
+  OUTPUT = highest scenic score for ANY tree
+ *)
+
+let scenic_score x y forest tree =
+  let rec visibility_on_top h w acc =
+    if h - 1 < 0 then acc
+    else if tree <= forest.mat.(h - 1).(w) then acc + 1
+    else visibility_on_top (h - 1) w (acc + 1)
+  in
+  let rec visibility_on_bottom h w acc =
+    if h + 1 > forest.height - 1 then acc
+    else if tree <= forest.mat.(h + 1).(w) then acc + 1
+    else visibility_on_bottom (h + 1) w (acc + 1)
+  in
+  let rec visibility_on_left h w acc =
+    if w + 1 > forest.width - 1 then acc
+    else if tree <= forest.mat.(h).(w + 1) then acc + 1
+    else visibility_on_left h (w + 1) (acc + 1)
+  in
+  let rec visibility_on_right h w acc =
+    if w - 1 < 0 then acc
+    else if tree <= forest.mat.(h).(w - 1) then acc + 1
+    else visibility_on_right h (w - 1) (acc + 1)
+  in
+  visibility_on_bottom x y 0
+  * visibility_on_top x y 0
+  * visibility_on_left x y 0
+  * visibility_on_right x y 0
+
+let gold forest =
+  let max_scenic_score = ref 0 in
+  for w = 0 to forest.width - 1 do
+    for h = 0 to forest.height - 1 do
+      let tree = forest.mat.(h).(w) in
+      let score = scenic_score h w forest tree in
+      if score > !max_scenic_score then max_scenic_score := score
+    done
+  done;
+  !max_scenic_score
