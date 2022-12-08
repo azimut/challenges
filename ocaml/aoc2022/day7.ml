@@ -1,16 +1,10 @@
 open! Batteries
 
-(* OUTPUT:
-   SUM sizes of all directories with size < 100_000
-   ...counting files more than once...
-
-   NOT
-   5061287 too big
-    878896 too low
-   1118405
+(*
+    PART 1 = 1118405
+    PART 2 = 12545514
 *)
 
-(* NOTE: this works because I know logs cd's to something meaninful before ls *)
 type dirtree = File of string * int | Dir of string * dirtree list * int
 
 module Cwd = struct
@@ -74,13 +68,14 @@ let sum_smallish_dirs =
     0
 
 (* NOTE: day7.txt has repeated directory names *)
+(* NOTE: this works because I know logs cd's to something meaninful before ls *)
 let parsed =
   File.with_file_in "day7.txt" IO.read_all
   |> String.trim
   |> String.split_on_char '\n'
   |> List.filter (( <> ) "$ ls")
 
-let silver dt lst =
+let directory_tree =
   let cwd = Cwd.create () in
   let rec silver' cwd dt lst =
     match lst with
@@ -101,4 +96,34 @@ let silver dt lst =
     | [] -> dt
     | _ -> assert false
   in
-  silver' cwd dt lst
+  silver' cwd (Dir ("/", [], 0)) parsed |> init_immediate_dirsizes
+
+let silver () = directory_tree |> sum_smallish_dirs
+
+module Closer = struct
+  type t = { mutable current : int; target : int }
+
+  let create target = { current = Int.max_num; target }
+  let get closer = closer.current
+
+  let push closer n =
+    if n >= closer.target && n < closer.current then closer.current <- n
+end
+
+let gold () =
+  let used_space = function Dir ("/", _, size) -> size | _ -> assert false in
+  let total_disk_size = 70000000 in
+  let free_space = total_disk_size - used_space directory_tree in
+  let needed_free_space = 30000000 in
+  let needs_to_reclaim = needed_free_space - free_space in
+  let answer = Closer.create needs_to_reclaim in
+  let _ =
+    map
+      (function
+        | File _ as f -> f
+        | Dir (_, _, size) as dir ->
+            Closer.push answer size;
+            dir)
+      directory_tree
+  in
+  Closer.get answer
