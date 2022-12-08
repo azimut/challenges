@@ -8,8 +8,6 @@ import (
 	"strconv"
 )
 
-type Sorting []int
-
 func main() {
 	f, err := os.Open("day1.txt")
 	if err != nil {

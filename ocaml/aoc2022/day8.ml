@@ -1,46 +1,25 @@
 open! Batteries
 
 (*
-  hidden
-  tree house
-
-  patch/grid
-  tall trees
-
-  count the N of trees visible from outside the grid
-  when looking directly along a row/column
-
-  map of tree heights
-  0 = shortest
-  9 = tallest
-
-  tree is "VISIBLE" if all trees around are shorter
-  - no diagonals
-  - no equal (if equal does not count as visible from there)
-  all trees at the border ARE VISIBLE
-
-  OUTPUT
-  How Many trees are visible?
-  = 21
-
-  PART 1 = 1801
+  PART 1 = 21 =   1801
+  PART 2 =  8 = 209880
 *)
 
 type forest = { width : int; height : int; mat : int array array }
 
-let make_forest =
-  let lines = File.lines_of "day8.txt" |> List.of_enum in
+let parsed_forest =
+  let lines = File.lines_of (Aoc.arg_or "day8.txt") |> List.of_enum in
   let width = lines |> List.first |> String.length in
   let height = List.length lines in
   let mat = Array.make_matrix width height (-1) in
-  let real_int_of_char c = int_of_char c - int_of_char '0' in
-  for w = 0 to width - 1 do
-    for h = 0 to height - 1 do
-      mat.(h).(w) <-
-        (let line = List.nth lines h in
-         let tree = String.get line w in
-         let tree_height = real_int_of_char tree in
-         tree_height)
+  for h = 0 to height - 1 do
+    let line =
+      List.nth lines h
+      |> String.explode
+      |> List.map (String.to_int % String.of_char)
+    in
+    for w = 0 to width - 1 do
+      mat.(h).(w) <- List.at line w
     done
   done;
   { width; height; mat }
@@ -49,9 +28,7 @@ let is_visible x y forest =
   let tree = forest.mat.(x).(y) in
   let rec is_visible_from_top h w =
     if h - 1 < 0 then true
-    else
-      let newtree = forest.mat.(h - 1).(w) in
-      tree > newtree && is_visible_from_top (h - 1) w
+    else tree > forest.mat.(h - 1).(w) && is_visible_from_top (h - 1) w
   in
   let rec is_visible_from_bottom h w =
     if h + 1 > forest.height - 1 then true
@@ -80,15 +57,6 @@ let silver forest =
     done
   done;
   !visibles_trees + visibles_in_the_border
-
-(*
-  viewing distance (of trees)
-  viewing distance on the edge, at least 1 is 0(zero)
-  stop if edge OR reached bigger >= tree
-  - bigger still counts
-  SCENIC SCORE = multiplying viewing distance of NSEW
-  OUTPUT = highest scenic score for ANY tree
- *)
 
 let scenic_score x y forest tree =
   let rec visibility_on_top h w acc =
@@ -126,3 +94,5 @@ let gold forest =
     done
   done;
   !max_scenic_score
+
+let _ = Aoc.print_results (silver parsed_forest) (gold parsed_forest)
