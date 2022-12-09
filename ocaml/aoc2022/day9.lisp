@@ -28,24 +28,28 @@
   - which is 1 horizontal and 1 vertical move
   - HEAD and TAIL start the same position overlapping
 
-  OUTPUT = count the N of positions the TAIL visited at least once, counting STARTING position
+  Part 2
+  - rope of 10 knots
+  - still 1 HEAD
+  - each knot follows the knot in front according to how we were doint it
+
+  PART 1 OUTPUT = count the N of positions the TAIL visited at least once, counting STARTING position
   PART 1 = 13 = 5858
   )
 
 (defun motions (&aux motions)
-  (reverse
-   (re:do-register-groups ((#'u:first-char dir) (#'parse-integer num))
-       ("([UDLR]+) (\\d+)"
-        (a:read-file-into-string "day9.txt")
-        motions)
-     (push `(,dir ,num) motions))))
-
-(defun dir (orientation)
-  (ecase orientation
-    (#\U (v!  0  1))
-    (#\D (v!  0 -1))
-    (#\L (v! -1  0))
-    (#\R (v!  1  0))))
+  (flet ((f (s)
+           (ecase (u:first-char s)
+             (#\U (v!  0  1))
+             (#\D (v!  0 -1))
+             (#\L (v! -1  0))
+             (#\R (v!  1  0)))))
+    (reverse
+     (re:do-register-groups ((#'f dir) (#'parse-integer num))
+         ("([UDLR]+) (\\d+)"
+          (a:read-file-into-string "day9.txt")
+          motions)
+       (push `(,dir ,num) motions)))))
 
 (defun new-position (tail head &aux (diff (v2:- head tail)))
   (flet ((f (i) (cond ((> i 0)  1) ((< i 0) -1) ((= i 0)  0))))
@@ -56,9 +60,9 @@
 
 (defun silver (&aux (visits ()) (head (v! 0 0)) (tail (v! 0 0)))
   (dolist (motion (motions))
-    (destructuring-bind (orientation by) motion
+    (destructuring-bind (direction by) motion
       (dotimes (i by)
-        (v2:incf head (dir orientation))
+        (v2:incf head direction)
         (push (setf tail (new-position tail head))
               visits))))
   (length (remove-duplicates (cons (v! 0 0) visits) :test #'v2:=)))
