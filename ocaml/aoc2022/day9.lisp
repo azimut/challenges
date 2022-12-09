@@ -1,4 +1,4 @@
-(ql:quickload '(#:defpackage-plus #:alexandria #:str #:serapeum #:rtg-math))
+(ql:quickload '(#:defpackage-plus #:alexandria #:serapeum #:rtg-math))
 
 (defpackage+-1:defpackage+ #:aoc2022-day9
   (:use #:cl #:rtg-math)
@@ -55,16 +55,13 @@
 (defun move-tails (tails head)
   (loop :for tail :in tails
         :with tmp-head := head
-        :with ret := ()
-        :do (setf tmp-head (car (push (new-position tail tmp-head) ret)))
-        :finally (return (nreverse ret))))
+        :collect (setf tmp-head (new-position tail tmp-head))))
 
 (-> gold () fixnum)
 (defun gold (&aux (visits ()) (head (v! 0 0)) (tails (make-list 9 :initial-element (v! 0 0))))
   (dolist (motion (motions))
     (destructuring-bind (direction by) motion
       (dotimes (i by)
-        (plot-coordinates tails)
         (v2:incf head direction)
         (push (a:lastcar (setf tails (move-tails tails head)))
               visits))))
@@ -72,5 +69,5 @@
    (remove-duplicates visits :test #'v2:=)))
 
 (defun main ()
-  (parse (or (s:take 1 (uiop:command-line-arguments))
+  (parse (or (s:take 1 (u:command-line-arguments))
              "day9.txt")))
