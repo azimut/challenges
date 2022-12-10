@@ -15,20 +15,20 @@
 ;; PART 1 = 13      = 5858
 ;; PART 2 =  1 = 36 = 2602
 
-(-> motions () list)
-(defun motions (&aux motions)
+(-> motions (string) list)
+(defun motions (filename)
   (flet ((f (s)
            (a:eswitch (s :test #'string=)
              ("U" (v!  0  1))
              ("D" (v!  0 -1))
              ("L" (v! -1  0))
              ("R" (v!  1  0)))))
-    (nreverse
-     (re:do-register-groups ((#'f dir) (#'parse-integer num))
-         ("([UDLR]+) (\\d+)"
-          (a:read-file-into-string "day9.txt")
-          motions)
-       (push `(,dir ,num) motions)))))
+    (with-open-file (fd filename)
+      (loop :for line := (read-line fd nil nil)
+            :while line
+            :collect
+            `(,(f (subseq line 0 1))
+              ,(parse-integer (subseq line 2)))))))
 
 (-> new-position (rtg-math.types:vec2 rtg-math.types:vec2)
     rtg-math.types:vec2)
@@ -39,9 +39,9 @@
         (v2:+ tail (v! (f (x diff)) (f (y diff))))
         tail)))
 
-(-> silver () fixnum)
-(defun silver (&aux (visits ()) (head (v! 0 0)) (tail (v! 0 0)))
-  (dolist (motion (motions))
+(-> silver (list) fixnum)
+(defun silver (motions &aux (visits ()) (head (v! 0 0)) (tail (v! 0 0)))
+  (dolist (motion motions)
     (destructuring-bind (direction by) motion
       (dotimes (i by)
         (v2:incf head direction)
@@ -57,9 +57,9 @@
         :with tmp-head := head
         :collect (setf tmp-head (new-position tail tmp-head))))
 
-(-> gold () fixnum)
-(defun gold (&aux (visits ()) (head (v! 0 0)) (tails (make-list 9 :initial-element (v! 0 0))))
-  (dolist (motion (motions))
+(-> gold (list) fixnum)
+(defun gold (motions &aux (visits ()) (head (v! 0 0)) (tails (make-list 9 :initial-element (v! 0 0))))
+  (dolist (motion motions)
     (destructuring-bind (direction by) motion
       (dotimes (i by)
         (v2:incf head direction)
@@ -69,5 +69,6 @@
    (remove-duplicates visits :test #'v2:=)))
 
 (defun main ()
+  #+nil
   (parse (or (s:take 1 (u:command-line-arguments))
              "day9.txt")))
