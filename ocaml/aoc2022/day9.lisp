@@ -6,8 +6,7 @@
   (:import-from #:serapeum #:->)
   (:local-nicknames (#:a #:alexandria)
                     (#:s #:serapeum)
-                    (#:u #:uiop)
-                    (#:re #:cl-ppcre)))
+                    (#:u #:uiop)))
 
 (in-package #:aoc2022-day9)
 
@@ -67,8 +66,3 @@
               visits))))
   (length
    (remove-duplicates visits :test #'v2:=)))
-
-(defun main ()
-  #+nil
-  (parse (or (s:take 1 (u:command-line-arguments))
-             "day9.txt")))
