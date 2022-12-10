@@ -1,25 +1,12 @@
-(ql:quickload '(#:defpackage-plus #:alexandria #:serapeum #:cl-ppcre))
+(ql:quickload '(#:defpackage-plus #:alexandria #:serapeum #:cl-ppcre #:cl-slice))
 
 (defpackage+-1:defpackage+ #:aoc2022-day10
   (:use #:cl)
   (:import-from #:serapeum #:->)
+  (:import-from #:cl-slice #:slice)
   (:local-nicknames (#:a #:alexandria) (#:s #:serapeum) (#:re #:cl-ppcre)))
 
 (in-package #:aoc2022-day10)
-
-(defstruct cpu (cycle 0 :type fixnum) (x 0 :type fixnum))
-
-
-#|
-x controls the HORIZONTAL position of a SPRITE
-SPRITE is 3(three) pixels wide
-x sets the HORIZONTAL position of the middle of the sprite
-
-CRT pixels 40x6 - 40 wide 6 high
-draws from top to bottom, from left to right (0-39)
-draws a pixel on each cycle
-240 cycles to draw the whole screen (1-40/41-80/81-120/121-160/161-200/201-240)
-|#
 
 (-> instructions (String) List)
 (defun instructions (filename)
@@ -44,4 +31,13 @@ draws a pixel on each cycle
          (mapcar #'* signal-cycles)
          (reduce #'+)))
 
-(defun gold () 0)
+(defun gold (instructions &aux (screen (make-array '(6 40) :initial-element #\?)))
+  (loop :for cycle :from 1 :to (* 6 40)
+        :for x := (cpu-x (find cycle instructions :key #'cpu-cycle :test #'<=))
+        :for drawp := (>= (1+ x) (mod cycle 40) (1- x))
+        :do
+           (print (list cycle x drawp))
+           (setf (row-major-aref screen (1- cycle))
+                 (if drawp #\# #\.)))
+  (loop :for i :from 0 :to (1- 6)
+        :collect (coerce (slice screen i t) 'string)))

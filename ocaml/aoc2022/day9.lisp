@@ -5,8 +5,7 @@
   (:export #:main)
   (:import-from #:serapeum #:->)
   (:local-nicknames (#:a #:alexandria)
-                    (#:s #:serapeum)
-                    (#:u #:uiop)))
+                    (#:s #:serapeum)))
 
 (in-package #:aoc2022-day9)
 
