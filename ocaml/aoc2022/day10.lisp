@@ -8,8 +8,10 @@
 
 (in-package #:aoc2022-day10)
 
-(-> instructions (String) List)
-(defun instructions (filename)
+(defstruct cpu cycle x)
+
+(-> cpu-states (String) List)
+(defun cpu-states (filename)
   (with-open-file (fd filename)
     (loop
       :for line := (read-line fd nil nil)
@@ -23,21 +25,19 @@
             (make-cpu :cycle (incf cycle)   :x x))))))
 
 (-> silver (List) Fixnum)
-(defun silver (instructions &aux (ri (reverse instructions)) (signal-cycles '(20 60 100 140 180 220)))
+(defun silver (cpu-states &aux (rcs (reverse cpu-states)) (signal-cycles '(20 60 100 140 180 220)))
   (s:~>> (loop :for signal-cycle :in signal-cycles
-               :collect (find signal-cycle ri :key #'cpu-cycle :test #'>=))
+               :collect (find signal-cycle rcs :key #'cpu-cycle :test #'>=))
          (remove-if #'null)
          (mapcar #'cpu-x)
          (mapcar #'* signal-cycles)
          (reduce #'+)))
 
-(defun gold (instructions &aux (screen (make-array '(6 40) :initial-element #\?)))
+(defun gold (cpu-states &aux (screen (make-array '(6 40) :initial-element #\?)))
   (loop :for cycle :from 1 :to (* 6 40)
-        :for x := (cpu-x (find cycle instructions :key #'cpu-cycle :test #'<=))
+        :for x := (cpu-x (find cycle cpu-states :key #'cpu-cycle :test #'<=))
         :for drawp := (>= (1+ x) (mod cycle 40) (1- x))
-        :do
-           (print (list cycle x drawp))
-           (setf (row-major-aref screen (1- cycle))
-                 (if drawp #\# #\.)))
+        :do (setf (row-major-aref screen (1- cycle))
+                  (if drawp #\# #\.)))
   (loop :for i :from 0 :to (1- 6)
         :collect (coerce (slice screen i t) 'string)))
