@@ -1,2 +1,0 @@
-(defpackage #:lisperati
-  (:use #:cl))
