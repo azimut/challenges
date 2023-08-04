@@ -13,6 +13,7 @@ done
 iterations=5 # read -r iterations
 positions=(-1 $(((cols - 1) / 2)))
 length=16
+length=$((RANDOM % 16))
 for _ in $(seq 1 ${iterations}); do
 	tmp_positions=()
 	for ((p = 0; p < ${#positions[@]}; p += 2)); do
@@ -21,29 +22,39 @@ for _ in $(seq 1 ${iterations}); do
 		# Vertical Branch
 		for i in $(seq 1 ${length}); do
 			((x++))
-			grid[cols * x + y]='1' # width * row + col
+			grid[cols * x + y]=$((grid[cols * x + y] + 1))
+			#grid[cols * x + y]='1' # width * row + col
 		done
 		tmp_x=${x}
 		tmp_y=${y}
 		# Left Branch
+		[[ $((RANDOM % 10)) -gt 2 ]] && {
+			length=$((RANDOM % 16))
+		}
 		for _ in $(seq 1 ${length}); do
 			((x++, y--))
-			grid[cols * x + y]='1' # width * row + col
+			grid[cols * x + y]=$((grid[cols * x + y] + 1))
+			#grid[cols * x + y]='1' # width * row + col
 		done
 		tmp_positions[${#tmp_positions[@]}]=${x}
 		tmp_positions[${#tmp_positions[@]}]=${y}
 		# Right Branch
 		x=${tmp_x}
 		y=${tmp_y}
+		[[ $((RANDOM % 10)) -gt 2 ]] && {
+			length=$((RANDOM % 16))
+		}
 		for _ in $(seq 1 ${length}); do
 			((x++, y++))
-			grid[cols * x + y]='1' # width * row + col
+			grid[cols * x + y]=$((grid[cols * x + y] + 1))
+			#grid[cols * x + y]='1' # width * row + col
 		done
 		tmp_positions[${#tmp_positions[@]}]=${x}
 		tmp_positions[${#tmp_positions[@]}]=${y}
 	done
 	positions=("${tmp_positions[@]}")
 	length=$((length / 2))
+	length=$((RANDOM % 16))
 done
 
 # Print GRID
