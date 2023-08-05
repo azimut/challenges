@@ -1,7 +1,6 @@
 #!/usr/bin/env python3
 
 # O(n) time | O(1) space
-# - while loop
 def is_subseq_while(array, sequence):
     arrIdx = 0
     seqIdx = 0
@@ -11,8 +10,8 @@ def is_subseq_while(array, sequence):
         arrIdx += 1
     return seqIdx == len(sequence)
 
+
 # O(n) time | O(1) space
-# - for loop
 def is_subseq_for(array, sequence):
     seqIdx = 0
     for value in array:
@@ -22,8 +21,8 @@ def is_subseq_for(array, sequence):
             seqIdx += 1
     return seqIdx == len(sequence)
 
+
 # O(n) time | O(1) space
-# - for loop
 def is_subseq(arr, subseq):
     last_index = 0
     for i in range(len(subseq)):
@@ -37,11 +36,11 @@ def is_subseq(arr, subseq):
 
 
 def main():
-    seq = [5,1,22,25,6,-1,8,10]
-    sub = [1,6,-1,10]
-    print(is_subseq(seq,sub))
-    print(is_subseq_for(seq,sub))
-    print(is_subseq_while(seq,sub))
+    seq = [5, 1, 22, 25, 6, -1, 8, 10]
+    sub = [1, 6, -1, 10]
+    print(is_subseq(seq, sub))
+    print(is_subseq_for(seq, sub))
+    print(is_subseq_while(seq, sub))
 
 
 if __name__ == '__main__':
