@@ -18,9 +18,9 @@ let atree =
 
 let rec branch_sums tree sum sums =
   match tree with
-  | Leaf -> sum :: sums
+  | Leaf -> sums
   | Node(value, Leaf, Leaf) -> (value + sum) :: sums
-  | Node(value, Leaf, right) ->branch_sums right (value + sum) []
-  | Node(value, left, Leaf) -> branch_sums left (value + sum) []
   | Node(value, left, right) ->
      branch_sums left (value + sum) [] @ branch_sums right (value + sum) []
+
+let _ = branch_sums atree 0 []
