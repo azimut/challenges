@@ -45,7 +45,6 @@ function calculate_depth_recursive_video(bt) {
   return calculate_depth_recursive_helper_video(bt, 0);
 }
 
-
 function calculate_depth_iterative(bt) {
   let sum = 0;
   let depth = 0;

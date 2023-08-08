@@ -35,13 +35,9 @@ def is_subseq(arr, subseq):
     return True
 
 
-def main():
+if __name__ == '__main__':
     seq = [5, 1, 22, 25, 6, -1, 8, 10]
     sub = [1, 6, -1, 10]
     print(is_subseq(seq, sub))
     print(is_subseq_for(seq, sub))
     print(is_subseq_while(seq, sub))
-
-
-if __name__ == '__main__':
-    main()

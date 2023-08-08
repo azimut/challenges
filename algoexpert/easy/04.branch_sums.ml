@@ -16,11 +16,18 @@ let atree =
              Node(6,Leaf,Leaf),
              Node(7,Leaf,Leaf)))
 
+(* O(n) time *)
+(* O(N) space*)
+(* returns a list of a the sums of all the values
+   in each branch in a BST *)
 let rec branch_sums tree sum sums =
   match tree with
-  | Leaf -> sums
-  | Node(value, Leaf, Leaf) -> (value + sum) :: sums
+  | Leaf ->
+     sums
+  | Node(value, Leaf, Leaf) ->
+     (value + sum) :: sums
   | Node(value, left, right) ->
-     branch_sums left (value + sum) [] @ branch_sums right (value + sum) []
+     branch_sums left (value + sum) []
+     @ branch_sums right (value + sum) []
 
 let _ = branch_sums atree 0 []

@@ -13,8 +13,9 @@ import java.util.*;
 // Sorted: [-1940664280, 1940665280]
 // System execution time: 33
 
-class TwoSum
+class TwoSum01
 {
+    // no number is repeated in ARR
     private static final int[] arr = {3,5,-4,8,11,1,-1,6};
     private static final int targetSum = 10;
 
@@ -29,8 +30,7 @@ class TwoSum
         }
         return String.format("No 2 numbers sum to `%d`", targetSum);
     }
-
-    // O(n)
+    // O(n) - Hash Table, we lookup for "complement" sum
     private static String setSearch(int[] arr, int targetSum) {
         Set<Integer> s = new HashSet<Integer>();
         for (int i = 0; i < arr.length-1; i++) {
@@ -45,7 +45,7 @@ class TwoSum
         return String.format("No 2 numbers sum to `%d`", targetSum);
     }
 
-    // O(n log n)
+    // O(n log n) - sorting - better than 2 for loops
     private static String sortedSearch(int[] arr, int targetSum) {
         int left = 0;
         int right = arr.length-1;
@@ -53,7 +53,9 @@ class TwoSum
         while (true) {
             int currentSum = arr[left] + arr[right];
             if (currentSum == targetSum) {
-                return String.format("[%d, %d]", arr[left], arr[right]);
+                return String.format("[%d, %d]",
+                                     arr[left],
+                                     arr[right]);
             }
             if (currentSum > targetSum) right--;
             if (currentSum < targetSum) left++;
