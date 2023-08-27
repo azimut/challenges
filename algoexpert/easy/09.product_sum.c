@@ -6,6 +6,7 @@ typedef struct List {
   struct List *tail;
 } List;
 
+// FIXME: outputs 23, when it should output 71
 int sum_product_aux(struct List *list, int depth) {
   int sum = 0;
 
