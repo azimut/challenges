@@ -9,3 +9,11 @@ let prod_sum lst =
     | []              -> acc * depth
   in
   f 0 1 lst
+
+let _ = prod_sum [
+            Value(1);
+            Value(2);
+            Value(3);
+            Item([Value(1);Value(3)]);
+            Value(3);
+          ]
