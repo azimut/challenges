@@ -3,8 +3,7 @@
 
 int main(void) {
   int input[] = {141, 1, 17, -7, -17, -27, 18, 541, 8, 7, 7};
-  int largest[3];
-  memset(largest, 0, sizeof(int) * 3);
+  int largest[3] = {0};
   for (int i = 0; i < sizeof(input) / sizeof(int); ++i) {
     for (int j = 2; j >= 0; --j) {
       if (input[i] > largest[j]) {
