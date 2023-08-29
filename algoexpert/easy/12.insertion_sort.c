@@ -15,6 +15,8 @@ int main(void) {
       if (input[i] < input[j]) {
         swap(input, i, j);
         i = j;
+      } else {
+        break;
       }
 
   for (int i = 0; i < length; ++i)
