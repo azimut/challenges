@@ -14,8 +14,8 @@ void bubble_sort(int numbers[], int length) {
   while (!is_sorted) {
     is_sorted = true;
     for (int i = 0; i < top - 1; ++i) {
-      printf("iter = %d\n", iter++);
       if (numbers[i] > numbers[i + 1]) {
+        printf("iter = %d\n", iter++);
         swap(numbers, i, i + 1);
         is_sorted = false;
       }
@@ -29,8 +29,8 @@ void bubble_sort_mine(int numbers[], int length) {
   int top = length;
   bool swapped = false;
   for (int i = 0; i < top - 1; ++i) {
-    printf("iter = %d\n", iter++);
     if (numbers[i] > numbers[i + 1]) {
+      printf("iter = %d\n", iter++);
       swap(numbers, i, i + 1);
       swapped = true;
     }
