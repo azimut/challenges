@@ -31,10 +31,9 @@ func LookupTable(numbers []int, target int) string {
 
 func SortedSearch(numbers []int, target int) string {
 	sort.Ints(numbers)
-	left := 0
-	right := len(numbers) - 1
+	left, right := 0, len(numbers)-1
 	var diff int
-	for {
+	for left < right {
 		diff = numbers[left] + numbers[right]
 		if diff > target {
 			right -= 1
@@ -44,9 +43,6 @@ func SortedSearch(numbers []int, target int) string {
 		}
 		if diff == target {
 			return "Sorted: found"
-		}
-		if left >= right {
-			break
 		}
 	}
 	return "Sorted: NOT found"
