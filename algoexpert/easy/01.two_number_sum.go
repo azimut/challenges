@@ -6,9 +6,9 @@ import (
 )
 
 func LinearSearch(numbers []int, target int) string {
-	for _, a := range numbers {
-		for _, b := range numbers {
-			if a+b == target {
+	for i := 0; i < len(numbers)-1; i++ {
+		for j := i + 1; j < len(numbers); j++ {
+			if numbers[i]+numbers[j] == target {
 				return "Linear: found"
 			}
 		}
