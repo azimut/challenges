@@ -52,6 +52,19 @@ void solve_blind(int numbers[], int length, int target) {
   printf("iter = %d\n", iter);
 }
 
+// O(n)
+// O(1)
+void solve_ae(int numbers[], int length, int target) {
+  int left = 0, right = length - 1;
+  while (left < right) {
+    while (left < right && numbers[right] == target)
+      right--;
+    if (numbers[left] == target)
+      swap(numbers, right, left);
+    left++;
+  }
+}
+
 int main() {
   int input[] = {2, 1, 2, 2, 2, 3, 4, 2};
   int length = sizeof(input) / sizeof(int);
