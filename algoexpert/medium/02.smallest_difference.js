@@ -23,7 +23,7 @@ function solve(xs, ys) {
   let iter = 0;
   xs.sort((a,b) => a - b);
   ys.sort((a,b) => a - b);
-  for(const x of xs) {
+  for(const x of xs)
     for(const y of ys) {
       iter++;
       diff = x - y;
@@ -31,18 +31,13 @@ function solve(xs, ys) {
         current = Math.abs(diff);
         pair = [x,y];
       }
-      if (x < y) {
-        break;
-      }
-      if (x > y) {
-        continue;
-      }
+      if (x < y) break;
+      if (x > y) continue;
       if (x == y) {
         console.log([x,y]);
         return current;
       }
     }
-  }
   console.log(pair, iter);
   return current;
 }
