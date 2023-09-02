@@ -79,5 +79,12 @@ int main() {
   solve_blind(input2, length, 2);
   echo(input2, length);
 
+  printf("\n\n");
+
+  int input3[] = {2, 1, 2, 2, 2, 3, 4, 2};
+  echo(input3, length);
+  solve_ae(input3, length, 2);
+  echo(input3, length);
+
   return 0;
 }
