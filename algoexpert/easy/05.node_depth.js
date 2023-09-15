@@ -27,22 +27,8 @@ function calculate_depth_helper(bt, depth) {
   if(bt.right) current += calculate_depth_helper(bt.right, depth + 1);
   return depth + current;
 }
-
 function calculate_depth_recursive(bt) {
   return calculate_depth_helper(bt, 0);
-}
-
-// copied from video...
-function calculate_depth_recursive_helper_video(bt, depth) {
-  if (!bt) return depth;
-  let current = 0;
-  if(bt.left) current += calculate_depth_recursive_helper_video(bt.left, depth + 1);
-  if(bt.right) current += calculate_depth_recursive_helper_video(bt.right, depth + 1);
-  return depth + current;
-}
-
-function calculate_depth_recursive_video(bt) {
-  return calculate_depth_recursive_helper_video(bt, 0);
 }
 
 function calculate_depth_iterative(bt) {
@@ -67,5 +53,4 @@ function calculate_depth_iterative(bt) {
 }
 
 console.log(calculate_depth_recursive(bt));
-console.log(calculate_depth_recursive_video(bt));
 console.log(calculate_depth_iterative(bt));

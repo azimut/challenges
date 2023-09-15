@@ -37,8 +37,7 @@ class TwoSum01
             int target = 10 - arr[i];
             if (s.contains(target)) {
                 return String.format("[%d, %d]", arr[i], target);
-            }
-            else {
+            } else {
                 s.add(arr[i]);
             }
         }
@@ -53,9 +52,7 @@ class TwoSum01
         while (true) {
             int currentSum = arr[left] + arr[right];
             if (currentSum == targetSum) {
-                return String.format("[%d, %d]",
-                                     arr[left],
-                                     arr[right]);
+                return String.format("[%d, %d]", arr[left], arr[right]);
             }
             if (currentSum > targetSum) right--;
             if (currentSum < targetSum) left++;
@@ -73,6 +70,7 @@ class TwoSum01
         System.out.println("Set: "    + setSearch(arr, targetSum));
         System.out.println("Sorted: " + sortedSearch(arr, targetSum));
         System.out.println(Arrays.toString(arr));
+        System.out.println("------------------------------");
         Random rd = new Random();
         int[] bar = new int[100000];
         for (int i = 0; i < bar.length; i++) {
