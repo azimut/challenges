@@ -5,7 +5,7 @@ type 'a tree =
 (* from the algoexpert explaination *)
 let validate tree =
   let rec f min max = function
-    | Node (x,_,_) when x < min || x > max ->
+    | Node (x,_,_) when x < min || x >= max ->
        false
     | Node (x, left, right) ->
        f min x left && f x max right
