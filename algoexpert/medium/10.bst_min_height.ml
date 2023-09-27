@@ -4,9 +4,8 @@ type 'a tree =
 
 (* after hearing the explaination, before seeing code *)
 let middle = function
-  | []           -> None
-  | x :: _ :: [] -> Some x
-  | xs           -> Some List.(nth xs (length xs / 2))
+  | [] -> None
+  | xs -> Some List.(nth xs (length xs / 2))
 
 let left xs =
   match middle xs with
