@@ -7,7 +7,6 @@ BEGIN {
 /list/        { print allergies($1) }
 /allergic_to/ { print index(allergies($1), $3) == 0 ? "false" : "true" }
 
-
 function allergies(current_score,    result, out) {
     closest_idx = int(log(current_score)/log(2))+1
     while (current_score > 256) {

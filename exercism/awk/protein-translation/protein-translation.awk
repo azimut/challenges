@@ -1,5 +1,5 @@
 BEGIN {
-    FPAT="..."
+    FPAT=".{1,3}"
     c2p["AUG"] = "Methionine"
     c2p["UUU"] = c2p["UUC"] = "Phenylalanine"
     c2p["UUA"] = c2p["UUG"] = "Leucine"
@@ -11,13 +11,12 @@ BEGIN {
 }
 
 {
-    length % 3 != 0 && incomplete=1
     for (i = 1; i <= NF; i++) {
         if (!($i in c2p)) invalid_codon()
-        if (c2p[$i] == "STOP") { incomplete=0; break }
+        if (c2p[$i] == "STOP") break
         result = result (sprintf(latch++?" %s":"%s", c2p[$i]))
     }
-    print incomplete ? invalid_codon() : result
+    print result
 }
 
 function invalid_codon() { printf "Invalid codon"; exit 1; }
