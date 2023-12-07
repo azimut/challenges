@@ -1,3 +1,5 @@
+# day 5
+
 almanac
 seeds: by numbers
 
@@ -11,7 +13,7 @@ mapping
 - 404 unmapped ones, map to the same number
 - 1 to 1
 
-# silver
+## silver
 
 problem
 find the lowest location number
@@ -19,6 +21,65 @@ that corresponds to any of the initial seeds
 
 test = 35
 
-# gold
+## gold
 
 seeds are actually a *range*, determined by PAIR of numbers (start,length)
+
+# day 6
+
+boat race
+
+you travel with your boat in the given times
+
+- get a list of **times** for each **race** in milliseconds
+- get a list of best distances for each race in millimetros
+
+you need to go farther than the best distances to win
+
+toy boats, charged by pressing a button while stopped 1ms = 1ml/ms
+they go faster the longer it was pressed
+
+can only push the button at the beggining of the race
+
+PROBLEM: multiply(count_of_ways_to_win) = 288
+
+# day 7 Camel Cards
+
+similar to poker
+
+input
+- list of hands of 5 cards
+- a bid
+
+card strengh
+- A, K, Q, J, T, 9, 8, 7, 6, 5, 4, 3, or 2.
+
+hand strength
+- five of a kind  (5 equal)
+- four of a kind  (4 equal)
+- full house      (3 equal and 2 equal)
+- three of a kind (3 equal and 2 different random not equal)
+- two pair        (2 equal and 2 equal)
+- one pair        (2 equal and 3 different random not equal)
+- high card       (all different)
+
+ordering
+- by hand strength
+- by each card on each hand (1 with 1, 2 with 2...)
+  - if different hand with the strongest first card is stronger
+  - if equal continue
+
+
+rank = order of the hand, 1 is weakest
+
+goal (total winnings)
+- order the hands
+- multiply the bid by the rank (starting at 1)
+- sum = 6440
+
+## gold
+
+J is a comodin now for hand_strength
+but the weakest in card comparisons
+
+goal winnings (same) = 5905

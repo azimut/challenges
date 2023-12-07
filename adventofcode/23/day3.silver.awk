@@ -32,5 +32,3 @@ END {
     print sum
 }
 function ndigits(n) { return int(log(n)/log(10)+1); }
-# 4361
-# 512794
