@@ -1,6 +1,6 @@
-BEGIN { FS = "[ =,\\(\\)]"; node=1; left=5; right=7 }
-NR==1 { ninstructions = split($0, instructions, "") }
-NR>2  {
+BEGIN   { FS = "[ =,\\(\\)]"; node=1; left=5; right=7 }
+NR == 1 { ninstructions = split($0, instructions, "") }
+NR >= 3 {
     network[$node]["L"] = $left
     network[$node]["R"] = $right
 }
