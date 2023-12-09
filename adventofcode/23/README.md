@@ -83,3 +83,22 @@ J is a comodin now for hand_strength
 but the weakest in card comparisons
 
 goal winnings (same) = 5905
+
+# --- Day 9: Mirage Maintenance ---
+
+- in an _oasis_
+
+- your INPUT
+  - list of values (positive/negative)
+  - each line is a different value
+  - each value on a line is a change of that value
+
+- steps
+  1. calculate the difference between all numebrs
+  2. if all /= 0
+     3. continue using this smaller sequence as the input do (1)
+     3. else add a new value to the zeroes and fill the inverse pyramid
+        with values equal to the number_below+number_left
+        the final numbers is the _prediction_ of that value
+
+- output: the sum of all predicted value
