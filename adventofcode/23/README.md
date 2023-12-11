@@ -102,3 +102,17 @@ goal winnings (same) = 5905
         the final numbers is the _prediction_ of that value
 
 - output: the sum of all predicted value
+# --- Day 11: Cosmic Expansion ---
+
+sum of lengths of shortests paths between galaxies
+- using manhattan distance (no diagonals)
+- only count the pairs ONCE
+
+account for universe expansion
+  - any row/column that contains no galaxies should be twice as big
+  - makes the columns thicked
+
+number the galaxies starting from 1
+  - from leftTOright and upTOdown
+
+Example: 9 galaxes, 36 pairs, shortest paths sum = 374

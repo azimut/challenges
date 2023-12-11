@@ -44,12 +44,14 @@ END {
     print "sum = "sum
 }
 
-function galaxy_distance(   i,j,x1,y1,x2,y2) {
+function galaxy_distance(   i,j,x1,y1,x2,y2,dist) {
     x1 = galaxies[i]["x"]
     y1 = galaxies[i]["y"]
     x2 = galaxies[j]["x"]
     y2 = galaxies[j]["y"]
-    return abs(x1-x2) + abs(y1-y2)
+    dist = abs(x1-x2) + abs(y1-y2)
+    printf "%2d = %d(%d,%d) -> %d(%d,%d)\n", dist, i, x1, y1, j, x2, y2
+    return dist
 }
 function abs(    x)   { return (x<0)?-x:x }
 function format_matrix(    arr, row, col, res) {
