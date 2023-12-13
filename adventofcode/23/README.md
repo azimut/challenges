@@ -102,6 +102,12 @@ goal winnings (same) = 5905
         the final numbers is the _prediction_ of that value
 
 - output: the sum of all predicted value
+# Day 10
+ Gauss's magic shoelace area formula and its calculus companion
+ https://www.youtube.com/watch?v=0KjG8Pg6LGk
+
+ Pick's theorem: The wrong, amazing proof
+ https://www.youtube.com/watch?v=uh-yRNqLpOg&t=76s
 # --- Day 11: Cosmic Expansion ---
 
 sum of lengths of shortests paths between galaxies
@@ -116,3 +122,8 @@ number the galaxies starting from 1
   - from leftTOright and upTOdown
 
 Example: 9 galaxes, 36 pairs, shortest paths sum = 374
+# --- Day 13: Point of Incidence ---
+each pattern has 1(one) reflective axis
+result = add
+- number of cols to the left of vertical reflection
+- 100 * number of rows above of horizontal reflectio

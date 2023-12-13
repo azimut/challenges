@@ -1,4 +1,4 @@
-BEGIN   { FS = ""; pid = 1; ASH = "."; ROCKS = "#" }
+BEGIN   { FS = ""; pid = 1 }
 /^$/    { pid++; row = 0; next }
         {
             rows[pid][++row] = $0
@@ -17,7 +17,6 @@ BEGIN   { FS = ""; pid = 1; ASH = "."; ROCKS = "#" }
             else if (maxcols < maxrows)       sum += rowarr["count"] * 100
             else                              sum += colarr["count"]
         }
-        delete colarr; delete rowarr;
         print "sum="sum
     }
     function max(    x,y) { return (x>y)?x:y  }
