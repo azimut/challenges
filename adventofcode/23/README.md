@@ -108,6 +108,9 @@ goal winnings (same) = 5905
 
  Pick's theorem: The wrong, amazing proof
  https://www.youtube.com/watch?v=uh-yRNqLpOg&t=76s
+
+<img src="./day10vis.gold.txt.png" alt="display of only the pipe maze of day 10" width="500"/>
+
 # --- Day 11: Cosmic Expansion ---
 
 sum of lengths of shortests paths between galaxies
