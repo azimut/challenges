@@ -136,6 +136,4 @@ result = add
 
 # --- Day 14: Parabolic Reflector Dish ---
 
-https://media.githubusercontent.com/media/azimut/challenges/master/assets/day14vispart1.mp4
-
-<video src="https://media.githubusercontent.com/media/azimut/challenges/master/assets/day14vispart1.mp4" width="500" />
+<img src="./day14vispart1.mp4.png" alt="animation for day 14 part 1" width="500"/>
