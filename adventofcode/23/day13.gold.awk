@@ -1,5 +1,4 @@
-# each pattern has a SMUDGE?
-BEGIN   { FS = ""; pid = 1; ASH = "."; ROCKS = "#" }
+BEGIN   { FS = ""; pid = 1 }
 /^$/    { pid++; idx = 0; next }
         {
             idx++
@@ -20,7 +19,6 @@ BEGIN   { FS = ""; pid = 1; ASH = "."; ROCKS = "#" }
             else if (maxcols < maxrows)       sum += rowarr["count"] * 100
             else                              sum += colarr["count"]
         }
-        delete colarr; delete rowarr;
         print "sum="sum
     }
     function diffs(xs, ys,    count) { # assumes same index names
@@ -31,7 +29,6 @@ BEGIN   { FS = ""; pid = 1; ASH = "."; ROCKS = "#" }
         return count
     }
     function max_mirror(arr,_retarr,pid,isRow,    max_amplitude, idx, size, lcursor, rcursor, left, right) {
-        print "START: max_mirror", pid, isRow
         size = length(arr)
         max_amplitude = 0
         for (idx = 1; idx < size; idx++) { # check 2 values per iteration
@@ -42,47 +39,49 @@ BEGIN   { FS = ""; pid = 1; ASH = "."; ROCKS = "#" }
             count       = idx
             amplitude   = 0
             while ((lcursor > 0) && (rcursor <= size) && (differences == 0 || (canHaveDiff && differences == 1))) {
-                printPattern(pid,lcursor,rcursor,isRow)
-                --lcursor
-                ++rcursor
-                differences += diffs(arr[lcursor],arr[rcursor])
+                # print printPattern(pid,lcursor,rcursor,isRow) > pid "_" isRow "_" idx "_"abs(lcursor-idx) "_" rcursor ".txt"
+                differences += diffs(arr[--lcursor],arr[++rcursor])
                 amplitude   += 2
                 if (canHaveDiff && differences == 1) {
-                    print "!!! patched differences !!!", lcursor,rcursor,differences
                     differences = 0
                     canHaveDiff = 0
                 }
             }
-            # print "MID: "canHaveDiff,amplitude,lcursor,rcursor,size
             if (amplitude > max_amplitude && (lcursor == 0 || rcursor > size) && canHaveDiff == 0) {
-                print "adentro!!",lcursor,rcursor,count
-                printPattern(pid,lcursor,rcursor,isRow)
+                # print printPattern(pid,lcursor,rcursor,isRow) > pid "_" isRow "_" idx "_" abs(lcursor-idx) "_"rcursor ".txt"
                 max_amplitude    = amplitude
                 _retarr["count"] = count
             }
         }
         _retarr["max"] = max_amplitude
-        print "END max_mirror", max_amplitude, count
     }
+    function abs(    x)   { return (x<0)?-x:x }
     function printPattern(pid, cursora, cursorb, isRow) {
+        result = ""
+        if (isRow) result = result " \n" # add extra lines at top
+
         for (rid in rows[pid]) {
-            if (isRow && ((rid == cursora)||(rid == cursorb))) {
-                printf " >"
-            } else
-                printf "  "
+
+            if (isRow && ((rid == cursora)||(rid == cursorb))) # ->
+                result = result "> "
+            else
+                result = result "  "
+
             if (!isRow && rid == 1) {
                 for (cid in rows[pid][rid]) {
                     if ((cid == cursora)||(cid == cursorb))
-                        printf "V"
+                        result = result "v"
                     else
-                        printf " "
+                        result = result " "
                 }
-                printf "\n  "
+                result = result "\n  "
             }
+
             for (cid in rows[pid][rid]) {
-                printf rows[pid][rid][cid]
+                result = result rows[pid][rid][cid]
             }
-            printf "\n"
+            result = result " \n"
         }
-        printf "\n"
+        result = result "\n"
+        return result
     }
