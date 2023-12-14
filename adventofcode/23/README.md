@@ -125,6 +125,7 @@ number the galaxies starting from 1
   - from leftTOright and upTOdown
 
 Example: 9 galaxes, 36 pairs, shortest paths sum = 374
+
 # --- Day 13: Point of Incidence ---
 each pattern has 1(one) reflective axis
 result = add
@@ -132,3 +133,7 @@ result = add
 - 100 * number of rows above of horizontal reflectio
 
 <img src="./day13_pid37.gif" alt="search animation for day 13" width="200"/>
+
+# --- Day 14: Parabolic Reflector Dish ---
+
+<video src="./day14vispart1.mp4" width="500" />
