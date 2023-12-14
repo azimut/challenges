@@ -127,3 +127,4 @@ each pattern has 1(one) reflective axis
 result = add
 - number of cols to the left of vertical reflection
 - 100 * number of rows above of horizontal reflectio
+![search animation for day 13](./day13_pid37.gif)
