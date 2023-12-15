@@ -10,7 +10,6 @@ BEGIN { RS="[,\n]" }
                 found = idx
     if (found != -1) { # shrink
         oldsize = length(boxes[box])
-        # delete boxes[box][found] # rm slot in box
         for (i = found; i < oldsize; i++) {
             delete boxes[box][i] # otherwise you will have 2 entries for "i"
             l = first(boxes[box][i+1])
@@ -23,20 +22,16 @@ BEGIN { RS="[,\n]" }
 }
 /=/ {
     focalLength = parts[2];
-    if (box in boxes) {  # replace it
+    if (box in boxes)  # replace it
         for (idx in boxes[box])
             if (exists(box,idx,label)) {
                 boxes[box][idx][label] = focalLength
                 next # !!
             }
-    }
     boxes[box][length(boxes[box])+1][label] = focalLength # insert it
 }
-# {
-#     print format_boxes()
-# }
 END {
-    print format_boxes()
+    # print format_boxes()
     print focusing_power()
 }
 function first(arr) { for (idx in arr) return idx }
@@ -51,22 +46,31 @@ function hash(input,    current, arr) {
     }
     return current
 }
-function format_boxes() {
+function focusing_power(    result) {
+    for (box in boxes)
+        for (slot in boxes[box])
+            for (label in boxes[box][slot])
+                result += (1+box) * slot * boxes[box][slot][label]
+    return result
+}
+function format_graph(    result, partial) {
+    for (box = 0; box <= 255; box++) {
+        partial = ""
+        if (box in boxes)
+            for (sid in boxes[box])
+                for (label in boxes[box][sid])
+                    partial = partial "#"
+        result = result sprintf("%16s\n", partial)
+    }
+    return result
+}
+function format_boxes(    result) {
     for (box in boxes) {
-        printf "Box %d:", box
+        result = result sprintf("Box %3d:", box)
         for (sid in boxes[box])
             for (label in boxes[box][sid])
-                printf " [%s %d]", label, boxes[box][sid][label]
-        print ""
-    }
-}
-function focusing_power(    result) {
-    for (box in boxes) {
-        for (slot in boxes[box]) {
-            for (label in boxes[box][slot]) {
-                result += (1+box) * slot * boxes[box][slot][label]
-            }
-        }
+                result = result sprintf(" [%s %d]", label, boxes[box][sid][label])
+        result = result "\n"
     }
     return result
 }
