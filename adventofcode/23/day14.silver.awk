@@ -10,9 +10,9 @@ END {
             if (platform_at(cid,rid) != FLOOR_BALL)
                 continue
             offset = 1
-            while (platform_at(cid, rid-offset) == FLOOR_GROUND && platform_at(cid, rid-offset+1) == FLOOR_BALL) {
-                platform[cid][rid-offset] = FLOOR_BALL # previous
+            while (platform_at(cid, rid-offset+1) == FLOOR_BALL && platform_at(cid, rid-offset) == FLOOR_GROUND) {
                 platform[cid][rid-offset+1] = FLOOR_GROUND # here
+                platform[cid][rid-offset] = FLOOR_BALL # previous
                 offset++
             }
         }
