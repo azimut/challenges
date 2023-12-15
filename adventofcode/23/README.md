@@ -139,7 +139,7 @@ result = add
 
 <a href="https://media.githubusercontent.com/media/azimut/challenges/master/adventofcode/23/day14vispart1.mp4"><img src="./day14vispart1.mp4.png" alt="animation for day 14 part 1" width="500"/></a>
 
-# 15
+# --- Day 15: Lens Library ---
 
 Part 1
 
@@ -150,3 +150,23 @@ Part 1
  - %= 256
 
  Sum hashes of each group of letters
+
+Part 2
+
+ each BOX has LENS slots
+ boxes             = [0-255]
+ lens have LABELS
+ - hash(label)  = box nr they belong
+ lens FOCAL LENGTH = [1-9]
+ input STEPS are a label+operation
+ operation:
+ (=FL) replace it with the new one (with new focal lenght) if existed
+       or just add it "behind" the other lenses (not moving them)
+   (-) remove lens with label from hash(label) box
+       shrink lenses, do not leave empty spaces
+
+ sum of focusing power of each LENS
+ multiply
+ - (1+) box nr where is it
+ - nr of slot ([1-]) where is it
+ - his focal length
