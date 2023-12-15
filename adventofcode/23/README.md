@@ -138,3 +138,15 @@ result = add
 
 
 <a href="https://media.githubusercontent.com/media/azimut/challenges/master/adventofcode/23/day14vispart1.mp4"><img src="./day14vispart1.mp4.png" alt="animation for day 14 part 1" width="500"/></a>
+
+# 15
+
+Part 1
+
+ Hash = string -> number[0-255]
+ - start at 0
+ - increase it by ascii char
+ - *= 17
+ - %= 256
+
+ Sum hashes of each group of letters

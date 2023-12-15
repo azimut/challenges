@@ -1,7 +1,6 @@
 @include "ord"
-BEGIN { RS="[,\n]"; FS=""; current = 0 }
+BEGIN { RS="[,\n]"; FS="" }
       {
-          current = 0
           for (i = 1; i <= NF; i++) {
               current += ord($i)
               current *= 17
