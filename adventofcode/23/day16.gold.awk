@@ -2,8 +2,8 @@ BEGIN { FS = "" }
 {
     for (i = 1; i <= NF; i++) {
         tiles[i][NR]     = $i
-        energyMap[i][NR] = "."
-        travelMap[i][NR] = "."
+        energyMap[i][NR] = " "
+        travelMap[i][NR] = " "
     }
 }
 END {
@@ -84,24 +84,24 @@ function formatEnergyMap(    res) {
         res = res "\n"
     }
     return res
+}
+function formatTravelMap(    res) {
+    res = ""
+    for (rid in travelMap) {
+        for (cid in travelMap[rid])
+            if (tileAt(cid,rid) != " ")
+                res = res tileAt(cid,rid)
+            else
+                res = res travelMap[cid][rid]
+        res = res "\n"
     }
-    function formatTravelMap(    res) {
-        res = ""
-        for (rid in travelMap) {
-            for (cid in travelMap[rid])
-                if (tileAt(cid,rid) != ".")
-                    res = res tileAt(cid,rid)
-                else
-                    res = res travelMap[cid][rid]
-            res = res "\n"
-        }
-        return res
+    return res
+}
+function direction2arrow(    direction) {
+    switch (direction) {
+    case "R": return ">"
+    case "L": return "<"
+    case "U": return "^"
+    case "D": return "v"
     }
-    function direction2arrow(    direction) {
-        switch (direction) {
-        case "R": return ">"
-        case "L": return "<"
-        case "U": return "^"
-        case "D": return "v"
-        }
-    }
+}
