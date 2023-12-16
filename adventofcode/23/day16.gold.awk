@@ -7,16 +7,15 @@ BEGIN { FS = "" }
     }
 }
 END {
-    for (x = 1; x <= length(tiles); x++) {
+    for (x = 1; x <= length(tiles); x++)
         for (y = 1; y <= length(tiles[x]); y++) {
-            if (!isBorder(x,y)) continue
-            if (x == 1                    && y == 1) { # TL corner
+            if (x == 1 && y == 1) {                    # TL corner
                 max_energy = max(max_energy, shoot_and_chase(x,y,"R"))
                 max_energy = max(max_energy, shoot_and_chase(x,y,"D"))
             } else if (x == length(tiles) && y == 1) { # TR corner
                 max_energy = max(max_energy, shoot_and_chase(x,y,"L"))
                 max_energy = max(max_energy, shoot_and_chase(x,y,"D"))
-            } else if (x == 1             && y == length(tiles[1])) { # BL corner
+            } else if (x == 1 && y == length(tiles[1])) { # BL corner
                 max_energy = max(max_energy, shoot_and_chase(x,y,"U"))
                 max_energy = max(max_energy, shoot_and_chase(x,y,"R"))
             } else if (x == length(tiles) && y == length(tiles[1])) {
@@ -31,17 +30,10 @@ END {
                 max_energy = max(max_energy, shoot_and_chase(x,y,"L"))
             else if (y == length(tiles[1])) # - bottom
                 max_energy = max(max_energy, shoot_and_chase(x,y,"U"))
-
-            # max_energy = max(max_energy, energy)
-            printf "x=%3d y=%3d\n", x,y
         }
-    }
     print "max_energy="max_energy
 }
 function max(    x,y) { return (x>y)?x:y  }
-function isBorder(    x, y) {
-    return (x == 1 || y == 1 || x == length(tiles) || y == length(tiles[1]))
-}
 function shoot_and_chase(    fromx, fromy, fromdir, energy) {
     shoot(fromx, fromy, fromdir)
     delete counter # !!
@@ -51,10 +43,7 @@ function shoot_and_chase(    fromx, fromy, fromdir, energy) {
 }
 function shoot(    fromx, fromy, fromdir, xoffset, yoffset, newx, newy) {
     # print fromx, fromy, fromdir, tileAt(fromx,fromy)
-    if (counter[fromx][fromy][fromdir]++ > 10) { # FIXME: shitty cycle detection
-        # print "exit loop"
-        return
-    }
+    if (counter[fromx][fromy][fromdir]++ > 0) return # cycle detection
     if (tileAt(fromx,fromy) != "?")
         energyMap[fromx][fromy] = "#"
     # travelMap[fromx][fromy] = direction2arrow(fromdir)
@@ -78,9 +67,7 @@ function shoot(    fromx, fromy, fromdir, xoffset, yoffset, newx, newy) {
     default : break # tile outside range
     }
 }
-function tileAt(    x,y) {
-    return (x in tiles && y in tiles[x]) ? tiles[x][y] : "?"
-}
+function tileAt(    x,y) { return (x in tiles && y in tiles[x]) ? tiles[x][y] : "?" }
 function current_energy(    rid,cid,energy) {
     energy = 0
     for (rid in energyMap)
