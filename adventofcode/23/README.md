@@ -84,7 +84,7 @@ but the weakest in card comparisons
 
 goal winnings (same) = 5905
 
-# --- Day 9: Mirage Maintenance ---
+# --- Day 09: Mirage Maintenance ---
 
 - in an _oasis_
 
@@ -102,7 +102,8 @@ goal winnings (same) = 5905
         the final numbers is the _prediction_ of that value
 
 - output: the sum of all predicted value
-# Day 10
+# --- Day 10: Pipe Maze ---
+
  Gauss's magic shoelace area formula and its calculus companion
  https://www.youtube.com/watch?v=0KjG8Pg6LGk
 
@@ -125,6 +126,8 @@ number the galaxies starting from 1
   - from leftTOright and upTOdown
 
 Example: 9 galaxes, 36 pairs, shortest paths sum = 374
+
+# --- Day 12: Hot Springs ---
 
 # --- Day 13: Point of Incidence ---
 each pattern has 1(one) reflective axis
@@ -170,3 +173,20 @@ Part 2
  - (1+) box nr where is it
  - nr of slot ([1-]) where is it
  - his focal length
+# --- Day 16: The Floor Will Be Lava ---
+
+ light enters on the top-left corner
+ - in RIGHT direction
+
+ On
+ - empty space, keeps direction
+
+ - mirror /\, gets reflected 90°
+   - right ray / changes direction upwards, from mirror
+   - rigth raw \ changes direction dowards, from mirror
+
+ - splitter |-
+   - pointy side, does nothing, like empty space
+   - flat side, splits into 2 rays, in the split direction
+
+ how many ENERGIZED tiles are (aka a beam passes through)
