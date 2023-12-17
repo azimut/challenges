@@ -196,4 +196,5 @@ Part 2
 
 # --- Day 17: Clumsy Crucible ---
 
-![day 17 visualization of my input data...spinning](./day17.inputvis.spin.gif "raw visualization of my input data, white is 9, black is 0")
+
+<img src="./day17.inputvis.spin.gif" alt="day 17 visualization of my input data...spinning" width="500"/>
