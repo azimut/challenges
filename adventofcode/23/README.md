@@ -104,11 +104,14 @@ goal winnings (same) = 5905
 - output: the sum of all predicted value
 # --- Day 10: Pipe Maze ---
 
- Gauss's magic shoelace area formula and its calculus companion
- https://www.youtube.com/watch?v=0KjG8Pg6LGk
+- Gauss's magic shoelace area formula and its calculus companion
+  https://www.youtube.com/watch?v=0KjG8Pg6LGk
 
- Pick's theorem: The wrong, amazing proof
- https://www.youtube.com/watch?v=uh-yRNqLpOg&t=76s
+- Pick's theorem: The wrong, amazing proof
+  https://www.youtube.com/watch?v=uh-yRNqLpOg&t=76s
+
+- Topology: Jordan's Curve Theorem
+  https://www.youtube.com/watch?v=hnds9-GmwkM
 
 <img src="./day10vis.gold.txt.png" alt="display of only the pipe maze of day 10" width="500"/>
 
@@ -190,3 +193,7 @@ Part 2
    - flat side, splits into 2 rays, in the split direction
 
  how many ENERGIZED tiles are (aka a beam passes through)
+
+# --- Day 17: Clumsy Crucible ---
+
+![day 17 visualization of my input data...spinning](./day17.inputvis.spin.gif "raw visualization of my input data, white is 9, black is 0")
