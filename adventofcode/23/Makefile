@@ -1,5 +1,5 @@
 .PHONY: all
-all: day17.inputvis.test.pgm day17.inputvis.pgm day17.inputvis.png day17.inputvis.test.png day17.inputvis.spin.gif day18.gold.vis.pbm.png day18.silver.vis.pbm.png
+all: day17.inputvis.png day17.inputvis.test.png day17.inputvis.spin.gif day18.gold.vis.pbm.png day18.silver.vis.pbm.png
 
 # Day 18
 day18.gold.vis.pbm: day18.gold.vis.awk
