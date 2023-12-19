@@ -1,3 +1,6 @@
+*.ppm
+*.pgm
+*.pbm
 elm-stuff
 *.o
 *.class
