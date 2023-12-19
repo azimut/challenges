@@ -224,3 +224,21 @@ x = [-3_375_035..10_344_944]
 y = [-16_526_864..2_399_363]
 
 distances = [332..654246]
+# --- Day 19: Aplenty ---
+
+a pile of **parts** is classified in, with a value associated to each and 1 or more of these
+- x: extremely cool
+- m: musical
+- a: aerodinamic
+- s: shiny
+
+each parts goes through a **workflows** to ultimately accept it or reject it
+
+each workflow has a list of **rules**
+
+some rules a **condition** and a **place** to send it
+some rules are either **R** or **A**, to immediately reject or accept
+
+part 1
+
+start from workflow "in", sum the ratings (xmas) of all the ACCEPTED parts
