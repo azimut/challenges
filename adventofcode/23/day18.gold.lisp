@@ -31,7 +31,8 @@
 (defun positions (instructions)
   (loop :for ((dx dy) distance _) :in instructions
         :with x = 0 and y = 0
-        :collecting (list (incf x (* distance dx)) (incf y (* distance dy)))
+        :collecting (list (incf x (* (floor distance) dx))
+                          (incf y (* (floor distance) dy)))
           :into positions
         :finally (return (cons '(0 0) positions))))
 
@@ -44,9 +45,7 @@
 
 (defun picks (instructions internal-area) ;; Pick's theorem
   (let ((b (reduce #'+ (mapcar #'second instructions))))
-    (+ internal-area
-       1
-       (/ b 2))))
+    (+ 1 internal-area (/ b 2))))
 
 (defun solve (filename &aux (instructions (input filename)))
   (~>> (shoelace (positions instructions))
