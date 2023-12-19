@@ -204,8 +204,8 @@ Part 2
 # --- Day 18: Lavaduct Lagoon ---
 
 <p float="left">
-  <img src="./day18.gold.vis.pbm.png"   alt="day 18 part 1 result" width="50"/>
-  <img src="./day18.silver.vis.pbm.png" alt="day 18 part 2 result" width="50"/>
+  <img src="./day18.gold.vis.pbm.png"   alt="day 18 part 1 result" width="50%"/>
+  <img src="./day18.silver.vis.pbm.png" alt="day 18 part 2 result" width="50%"/>
 </p>
 
 input: dig plan
