@@ -198,3 +198,24 @@ Part 2
 
 
 <img src="./day17.inputvis.spin.gif" alt="day 17 visualization of my input data...spinning" width="500"/>
+
+- Dijkstra's Algorithm - Computerphile
+  https://www.youtube.com/watch?v=GazC3A4OQTE
+# --- Day 18: Lavaduct Lagoon ---
+
+input: dig plan
+- start 1 cubic meter into the ground
+- then  1 cubic meter into the ULDR direction
+
+part 1 - area of draw area based on instructions
+
+part 2 - decode from the "hexcode" a direction/distance
+
+result positions ranges
+x = [0..1_186_328]
+y = [0..1_186_328]
+
+x = [-3_375_035..10_344_944]
+y = [-16_526_864..2_399_363]
+
+distances = [332..654246]
