@@ -58,6 +58,7 @@
             (_ module))))
 
 (defmethod receive ((module string) pulse source-name queue));; dead end module
+
 (defmethod receive ((module broadcaster) pulse source-name queue)
   (enq-all "broadcaster" (broadcaster-destinations module) queue pulse))
 
@@ -78,7 +79,7 @@
                            (count-high 0)
                            (count-low 0))
   (dotimes (i 1000)
-    (s:enq `("button" :low "broadcaster") queue);; button
+    (s:enq `("button" :low "broadcaster") queue)
     (loop :until (s:queue-empty-p queue)
           :for (source-name pulse destination-name) = (s:deq queue)
           :for module = (or (href factory destination-name) destination-name)
@@ -86,4 +87,4 @@
               (case pulse
                 (:low (incf count-low))
                 (:high (incf count-high)))))
-  (values count-low count-high))
+  (* count-low count-high))
