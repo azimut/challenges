@@ -242,3 +242,47 @@ some rules are either **R** or **A**, to immediately reject or accept
 part 1
 
 start from workflow "in", sum the ratings (xmas) of all the ACCEPTED parts
+
+part 2
+
+how many combinations of ratings, from 1-4000 can pass through the workflows
+
+167409079868000
+167_409_079_868_000
+# --- Day 20: Pulse Propagation ---
+
+machine/cables/communication modules(relay)/pulses(high/low)/destination modules
+
+pulses are proceed in the order they are sent
+- before process the NEW pulses, you have to process the send first
+
+some sequence might repeat
+
+part 1
+ - given a how times you pushed the "button"
+ - what is the result of multiplying the number of low by high pulses sent
+
+## type of modules (%&bb)
+
+- % flip-flop (off/on)
+  - flips on low pulses **only**
+  - when flipped outputs:
+    - HIGH when off -> on
+    - LOW when  on  -> off
+
+- & conjunction
+  - remembers most recent type of pulse received
+  - default to low-pulse before receiving anything from that module
+  - if ALL of if memory is HIGH, outputs LOW, otherwise outputs HIGH
+
+- broadcast
+  - whatever it receives it sends it back
+
+- button
+  - pressed **once** at the start
+  - sends LOW to broadcaster
+  - not pressed again until, processing of pulses is done
+
+- untyped
+  - for testing?
+  - no outputs?
