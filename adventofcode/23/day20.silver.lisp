@@ -46,44 +46,48 @@
 (defun enq-all (source-name destinations queue pulse)
   (mapc (op (s:enq `(,source-name ,pulse ,_) queue)) destinations))
 
-(defmethod receive (module pulse source-name queue))
-
-(defmethod receive :before (module pulse source-name queue)
-  #+nil
-  (format t "~a -~a-> ~a~%" source-name pulse
-          (match module
-            ((broadcaster) "broadcaster")
-            ((conj name) name)
-            ((flip name) name)
-            (_ module))))
-
-(defmethod receive ((module string) pulse source-name queue));; dead end module
-
-(defmethod receive ((module broadcaster) pulse source-name queue)
-  (enq-all "broadcaster" (broadcaster-destinations module) queue pulse))
-
-(defmethod receive ((module flip) (pulse (eql :low)) source-name queue &aux output-pulse)
-  (ecase (flip-state module)
-    (:on  (setf (flip-state module) :off output-pulse :low))
-    (:off (setf (flip-state module) :on  output-pulse :high)))
-  (enq-all (flip-name module) (flip-destinations module) queue output-pulse))
-
-(defmethod receive ((module conj) pulse source-name queue)
-  (setf (href (conj-states module) source-name) pulse)
-  (enq-all (conj-name module) (conj-destinations module) queue
-           (if (every (op (eql :high _)) (a:hash-table-values  (conj-states module)))
-               :low
-               :high)))
+(defgeneric receive (module pulse source-name queue)
+  (:method (module pulse source-name queue))
+  (:method ((module string) pulse source-name queue))
+  (:method ((module conj) pulse source-name queue)
+    (setf (href (conj-states module) source-name) pulse)
+    (enq-all (conj-name module) (conj-destinations module) queue
+             (if (every (op (eql :high _)) (a:hash-table-values  (conj-states module)))
+                 :low
+                 :high)))
+  (:method ((module flip) (pulse (eql :low)) source-name queue &aux output-pulse)
+    (ecase (flip-state module)
+      (:on  (setf (flip-state module) :off output-pulse :low))
+      (:off (setf (flip-state module) :on  output-pulse :high)))
+    (enq-all (flip-name module) (flip-destinations module) queue output-pulse))
+  (:method ((module broadcaster) pulse source-name queue)
+    (enq-all "broadcaster" (broadcaster-destinations module) queue pulse))
+  (:method :before (module pulse source-name queue)
+    #+nil
+    (format t "~a -~a-> ~a~%" source-name pulse
+            (match module
+              ((broadcaster) "broadcaster")
+              ((conj name) name)
+              ((flip name) name)
+              (_ module)))))
 
 (defun solve (factory &aux (queue (s:queue))
                            (count-high 0)
-                           (count-low 0))
+                           (count-low 0)
+                           (last 0))
   (dotimes (i 1000)
     (s:enq `("button" :low "broadcaster") queue)
     (loop :until (s:queue-empty-p queue)
           :for (source-name pulse destination-name) = (s:deq queue)
           :for module = (or (href factory destination-name) destination-name)
           :do (receive module pulse source-name queue)
+              (when (and (or (string= source-name "lz")
+                             (string= source-name "mz")
+                             (string= source-name "pl")
+                             (string= source-name "zm"))
+                         (eql :high pulse))
+                (print (list source-name i (- i last)))
+                (setf last i))
               (case pulse
                 (:low (incf count-low))
                 (:high (incf count-high)))))

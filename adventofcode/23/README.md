@@ -258,10 +258,6 @@ pulses are proceed in the order they are sent
 
 some sequence might repeat
 
-part 1
- - given a how times you pushed the "button"
- - what is the result of multiplying the number of low by high pulses sent
-
 ## type of modules (%&bb)
 
 - % flip-flop (off/on)
@@ -286,3 +282,53 @@ part 1
 - untyped
   - for testing?
   - no outputs?
+
+## part 1
+
+ - given a how times you pushed the "button"
+ - what is the result of multiplying the number of low by high pulses sent
+
+## part 2
+
+```
+("pl" 3796 3796)
+("zm" 3822   26)
+("mz" 3880   58)
+("lz" 4002  122) x2
+
+("pl" 7593 3591)
+("zm" 7645   52)
+("mz" 7761  116)
+("lz" 8005  244) x2
+
+("pl" 11390 3385) >>> 3591-3385 = 206 >> 11390-7593 = 3797
+("zm" 11468   78)
+("mz" 11642  174)
+("lz" 12008  366) x2
+
+("pl" 15187 3179) >>> 3385-3179 = 206 >> 15187-11390 = 3797
+("zm" 15291  104)
+("mz" 15523  232)
+("lz" 16011  488) >>> 16011-12008 = 4003
+```
+
+LCM (3795 3821 3879 4001)
+225514321828633 !!!
+
+```
+INPUT OF "bn", which sends to "rx", all need to be HIGH at the same time
+"lz" = :LOW [remove entry]
+"mz" = :LOW [remove entry]
+"pl" = :LOW [remove entry]
+"zm" = :LOW [remove entry]
+
+LCM = 240,424,460,542,695 HIGH
+LCM = 225,514,321,828,633
+LCM =  75,016,343,938,635 LOW
+LCM =     361,028,183,880 LOW
+
+240424460542695 TOO HIGH
+ 75016343938635 TOO LOW
+   361028183880 TOO LOW
+
+```
