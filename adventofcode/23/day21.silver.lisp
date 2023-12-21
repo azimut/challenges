@@ -3,7 +3,7 @@
 
 (defpackage+-1:defpackage+ #:day21.silver
   (:use #:cl)
-  (:import-from #:serapeum #:op #:~> #:~>>)
+  (:import-from #:serapeum #:op #:~> #:~>> #:->)
   (:local-nicknames (#:a #:alexandria) (#:s #:serapeum) (#:re #:cl-ppcre)))
 
 (in-package #:day21.silver)
@@ -14,8 +14,9 @@
     (~> (remove #\NewLine content)
         (aops:reshape (list width t)))))
 
-(defun neighbours (map x y &aux (directions '((0 1) (1 0) (0 -1) (-1 0))))
-  (loop :for (dx dy) :in directions
+(-> neighbours ((array character (* *)) Fixnum Fixnum) List)
+(defun neighbours (map x y)
+  (loop :for (dx dy) :in '((0 1) (1 0) (0 -1) (-1 0))
         :for nx = (+ x dx)
         :for ny = (+ y dy)
         :when (and (<= 0 nx (1- (array-dimension map 1)))
@@ -30,26 +31,25 @@
 
 ;; steps/map/garden plot(.)/rocks(#)/starting position (S)/tile/NSEW
 
-(defun solve (map target-step
-
-              &aux (aseen (aops:make-array-like map :initial-element 0 :element-type 'fixnum))
-                   (queue (s:queue)))
-
-  (destructuring-bind (startx starty) (start-pos map)
-    (s:enq `(,startx ,starty 0) queue))
-
-  (loop :until (s:queue-empty-p queue)
-        :for (x y step) = (s:deq queue)
-        :if (= target-step step)
-          :do (incf (aref aseen x y))
+(-> travel ((array character (* *)) Fixnum Fixnum Fixnum Fixnum (array fixnum (* *))) (values))
+(defun travel (map x y target-step step seen)
+  (declare (optimize (speed 3)))
+  (loop :for (nx ny) :in (neighbours map x y)
+        :if (= step target-step)
+          :do (when (zerop (aref seen x y))
+                (incf (aref seen x y)))
         :else
-          :do (loop :for (nx ny) :in (neighbours map x y)
-                    :do (s:enq `(,nx ,ny ,(+ 1 step)) queue)))
+          :do (travel map nx ny target-step (+ step 1) seen))
+  (values))
 
-  (s:summing
-    (aops:each-index (x y)
-      (when (plusp (aref aseen x y))
-        (sum 1)))))
+(defun solve (map target-step)
+  (let ((seen (aops:make-array-like map :initial-element 0 :element-type 'fixnum)))
+    (destructuring-bind (startx starty) (start-pos map)
+      (travel map startx starty target-step 0 seen))
+    (s:summing
+      (aops:each-index (x y)
+        (when (plusp (aref seen x y))
+          (sum 1))))))
 
 ;; ------------------------------
 
