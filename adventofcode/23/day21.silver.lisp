@@ -14,13 +14,14 @@
     (~> (remove #\NewLine content)
         (aops:reshape (list width t)))))
 
-(-> neighbours ((array character (* *)) Fixnum Fixnum) List)
-(defun neighbours (map x y)
+(-> neighbours ((array character (* *)) (array boolean (* *)) Fixnum Fixnum) List)
+(defun neighbours (map seen x y)
   (loop :for (dx dy) :in '((0 1) (1 0) (0 -1) (-1 0))
         :for nx = (+ x dx)
         :for ny = (+ y dy)
         :when (and (<= 0 nx (1- (array-dimension map 1)))
                    (<= 0 ny (1- (array-dimension map 0)))
+                   (not (aref seen ny nx))
                    (not (eql #\# (aref map ny nx)))) ;; not a rock
           :collect `(,nx ,ny)))
 
@@ -31,25 +32,48 @@
 
 ;; steps/map/garden plot(.)/rocks(#)/starting position (S)/tile/NSEW
 
-(-> travel ((array character (* *)) Fixnum Fixnum Fixnum Fixnum (array fixnum (* *))) (values))
-(defun travel (map x y target-step step seen)
-  (declare (optimize (speed 3)))
-  (loop :for (nx ny) :in (neighbours map x y)
-        :if (= step target-step)
-          :do (when (zerop (aref seen x y))
-                (incf (aref seen x y)))
-        :else
-          :do (travel map nx ny target-step (+ step 1) seen))
-  (values))
+(-> flip (character) character)
+(defun flip (char)
+  (ecase char
+    (#\S #\O); start is lost in translation
+    (#\. #\O)
+    (#\O #\.)
+    (#\# #\#)))
 
-(defun solve (map target-step)
-  (let ((seen (aops:make-array-like map :initial-element 0 :element-type 'fixnum)))
-    (destructuring-bind (startx starty) (start-pos map)
-      (travel map startx starty target-step 0 seen))
-    (s:summing
-      (aops:each-index (x y)
-        (when (plusp (aref seen x y))
-          (sum 1))))))
+;; NOTE: might be I could reduce the search size using a radius and start positions
+(defun flip-seen (map seen)
+  (dotimes (x (array-dimension map 0))
+    (dotimes (y (array-dimension map 1))
+      (when (aref seen x y)
+        (setf (aref map x y) (flip (aref map x y)))))))
+
+(defun solve (map target-step
+              &aux (queue (s:queue))
+                   (seen (aops:make-array-like map :initial-element nil :element-type 'boolean)))
+
+  (destructuring-bind (startx starty) (start-pos map)
+    (s:enq `(,startx ,starty 0) queue))
+  (print-2d-array map)
+  (loop :until (s:queue-empty-p queue)
+        :for (x y step) = (s:deq queue)
+        :for i :from 0
+        :with prev-step = 0
+        :when (/= prev-step step)
+          :do (flip-seen map seen)
+        :when (/= step target-step)
+          :do (setf (aref seen y x) t)
+              (format t "i=~d s=~d q=~d~%" i step (s:qlen queue))
+              (loop :for (nx ny) :in (neighbours map seen x y)
+                    :do (s:enq `(,nx ,ny ,(+ step 1)) queue))
+              ;;(print-2d-array map)
+              ;;(print-2d-array seen (lambda (c) (if c "t" ".")))
+              (setf prev-step step))
+  (print-2d-array map)
+
+  (s:summing
+    (aops:each-index (x y)
+      (when (eql #\O (aref map x y))
+        (sum 1)))))
 
 ;; ------------------------------
 
