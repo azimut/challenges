@@ -249,6 +249,7 @@ how many combinations of ratings, from 1-4000 can pass through the workflows
 
 167409079868000
 167_409_079_868_000
+
 # --- Day 20: Pulse Propagation ---
 
 machine/cables/communication modules(relay)/pulses(high/low)/destination modules
@@ -332,3 +333,54 @@ LCM =     361,028,183,880 LOW
    361028183880 TOO LOW
 
 ```
+
+# --- Day 21: Step Counter ---
+
+steps/map/garden plot(.)/rocks(#)/starting position (S)/tile/NSEW
+
+remaining 64 steps
+starting position is a plot
+
+first step
+
+# --- Day 22: Sand Slabs ---
+
+sand/bricsofsand/disintigrated/freelyflowingsand/topple/snapshot/falling brigs/made of cube
+
+coordinates
+- x and y are horizontal coordinates
+- z=0 is the ground
+
+input (each line)
+- the position of a single brick (xyz)
+- 2 coordinates, one for each end of the brick
+- all coordinates above the ground (no negative)
+- still falling
+
+
+bricks
+- made of a single straight line of cubes
+- lowest z is 1
+- never rotate
+  
+## part 1
+
+after they fall,
+which bricks are CAN be desintigrated (not at the same time)
+aka are not supporting other bricks OR is not alone supporting other brick
+
+example = 5
+# --- Day 23: A Long Walk ---
+
+map/hikingtrails/(.)paths/(#)forest/(^>v<)steepslopes(icy)/downhill/tile/row/start/goal/scenichike
+
+- start from the single path tile on the top row
+- goal single path tile at the bottom row
+- stepping int a slope, next tile must be on that direction
+- never step on the same tile twice
+
+## part 1
+
+longes hike you can take?
+
+test = 94

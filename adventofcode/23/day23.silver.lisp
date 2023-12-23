@@ -43,16 +43,16 @@
                          (or (eql #\. (aref map ny nx))
                              (slope-p (aref map ny nx))))
                 :collect (complex nx ny)))));; x y
-;; map/hikingtrails/(.)paths/(#)forest/(^>v<)steepslopes(icy)/downhill/tile/row/start/goal/scenichike
+
 (defun hike (map pos travel end-pos travel-min)
   ;;  (print-map map travel)
   ;;  (format t "pos=~a~%" pos)
   (if (= pos end-pos)
       (progn
-        (spit-map map travel (format nil "day23.silver.~5,'0d.~4,'0d.txt" (length travel) (incf *count*)))
+        (spit-pbm map travel (format nil "day23.silver.~5,'0d.~4,'0d.pbm" (length travel) (incf *count*)))
         (push (length travel) *what*))
       (loop :for neighbour :in (neighbours map pos)
-                                        ;,:do (format t "pos=~a ne=~a~%" pos neighbour)
+            ;;,:do (format t "pos=~a ne=~a~%" pos neighbour)
             :unless (position neighbour travel)
               :do (hike map neighbour (cons neighbour travel) end-pos travel-min))))
 (defvar *count* 0)
@@ -91,3 +91,29 @@
 (defun spit-map (map travel filename)
   (spit filename (format-map map travel))
   (values))
+
+(defun spit-pbm (map travel filename)
+  (spit filename (map2pbm map travel))
+  (values))
+
+(defun map2pbm (map travel &aux (map-copy (a:copy-array map)))
+  ;;(print (format-map map travel))
+  (loop :for pos :in travel
+        :for x = (realpart pos)
+        :for y = (imagpart pos)
+        :do (setf (aref map-copy y x) #\o))
+  (with-output-to-string (ppm)
+    (format ppm "P3 ~d ~d 255~%" ; format width height maxcolor
+            (array-dimension map 0)
+            (array-dimension map 1))
+    (dotimes (y (array-dimension map 0))
+      (dotimes (x (array-dimension map 1))
+        (format ppm " ~a "
+                (case (aref map-copy y x)
+                  (#\o "238 114 20"); hike
+                  (#\# "82 120 83"); forest
+                  (#\. "249 232 217"); path
+                  (t   "255 113 135")
+                  ;;(#\. " 94 139 128")
+                  ;;(t   " 94 0 0")
+                  ))))))
