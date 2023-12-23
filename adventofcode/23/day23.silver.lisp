@@ -40,8 +40,7 @@
               :for ny = (imagpart new-pos)
               :when (and (<= 0 nx (1- width))
                          (<= 0 ny (1- width))
-                         (or (eql #\. (aref map ny nx))
-                             (slope-p (aref map ny nx))))
+                         (char/= #\# (aref map ny nx)))
                 :collect (complex nx ny)))));; x y
 
 (defun hike (map pos travel end-pos travel-min)
@@ -49,7 +48,7 @@
   ;;  (format t "pos=~a~%" pos)
   (if (= pos end-pos)
       (progn
-        (spit-pbm map travel (format nil "day23.silver.~5,'0d.~4,'0d.pbm" (length travel) (incf *count*)))
+        ;;(spit-pbm map travel (format nil "day23.silver.~5,'0d.~4,'0d.pbm" (length travel) (incf *count*)))
         (push (length travel) *what*))
       (loop :for neighbour :in (neighbours map pos)
             ;;,:do (format t "pos=~a ne=~a~%" pos neighbour)
