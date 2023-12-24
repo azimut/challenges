@@ -1,259 +1,60 @@
 # Advent Of Code 2023
-## day 5
+## Day 24
 
-almanac
-seeds: by numbers
+Something
+## Day 23 - A Long Walk
 
-relationships between categories, as lines of 3 numbers
-- seed-to-soil
-- soil-to-fertilzed
-- etc...
+https://private-user-images.githubusercontent.com/2867036/292656762-5f365896-13a1-4d3f-bd88-7e44c74aa4de.mp4
 
-mapping
-- src/dst/range
-- 404 unmapped ones, map to the same number
-- 1 to 1
+map/hikingtrails/(.)paths/(#)forest/(^>v<)steepslopes(icy)/downhill/tile/row/start/goal/scenichike
 
-### silver
+- start from the single path tile on the top row
+- goal single path tile at the bottom row
+- stepping int a slope, next tile must be on that direction
+- never step on the same tile twice
 
-problem
-find the lowest location number
-that corresponds to any of the initial seeds
+### part 1
 
-test = 35
+longes hike you can take?
 
-### gold
+test = 94
 
-    seeds are actually a *range*, determined by PAIR of numbers (start,length)
+## Day 22 - Sand Slabs
 
-## day 6
+sand/bricsofsand/disintigrated/freelyflowingsand/topple/snapshot/falling brigs/made of cube
 
-boat race
+coordinates
+- x and y are horizontal coordinates
+- z=0 is the ground
 
-you travel with your boat in the given times
+input (each line)
+- the position of a single brick (xyz)
+- 2 coordinates, one for each end of the brick
+- all coordinates above the ground (no negative)
+- still falling
 
-- get a list of **times** for each **race** in milliseconds
-- get a list of best distances for each race in millimetros
 
-you need to go farther than the best distances to win
+bricks
+- made of a single straight line of cubes
+- lowest z is 1
+- never rotate
 
-toy boats, charged by pressing a button while stopped 1ms = 1ml/ms
-they go faster the longer it was pressed
+### part 1
 
-can only push the button at the beggining of the race
+after they fall,
+which bricks are CAN be desintigrated (not at the same time)
+aka are not supporting other bricks OR is not alone supporting other brick
 
-PROBLEM: multiply(count_of_ways_to_win) = 288
+example = 5
 
-## day 7 Camel Cards
+## Day 21 - Step Counter
 
-similar to poker
+steps/map/garden plot(.)/rocks(#)/starting position (S)/tile/NSEW
 
-input
-- list of hands of 5 cards
-- a bid
+remaining 64 steps
+starting position is a plot
 
-card strengh
-- A, K, Q, J, T, 9, 8, 7, 6, 5, 4, 3, or 2.
-
-hand strength
-- five of a kind  (5 equal)
-- four of a kind  (4 equal)
-- full house      (3 equal and 2 equal)
-- three of a kind (3 equal and 2 different random not equal)
-- two pair        (2 equal and 2 equal)
-- one pair        (2 equal and 3 different random not equal)
-- high card       (all different)
-
-ordering
-- by hand strength
-- by each card on each hand (1 with 1, 2 with 2...)
-  - if different hand with the strongest first card is stronger
-  - if equal continue
-
-
-rank = order of the hand, 1 is weakest
-
-goal (total winnings)
-- order the hands
-- multiply the bid by the rank (starting at 1)
-- sum = 6440
-
-### gold
-
-J is a comodin now for hand_strength
-but the weakest in card comparisons
-
-goal winnings (same) = 5905
-
-## Day 09 - Mirage Maintenance
-
-- in an _oasis_
-
-- your INPUT
-  - list of values (positive/negative)
-  - each line is a different value
-  - each value on a line is a change of that value
-
-- steps
-  1. calculate the difference between all numebrs
-  2. if all /= 0
-     3. continue using this smaller sequence as the input do (1)
-     3. else add a new value to the zeroes and fill the inverse pyramid
-        with values equal to the number_below+number_left
-        the final numbers is the _prediction_ of that value
-
-- output - the sum of all predicted value
-
-## Day 10 - Pipe Maze
-
-<img src="./day10vis.gold.txt.png" alt="display of only the pipe maze of day 10" width="500"/>
-
-- Gauss's magic shoelace area formula and its calculus companion
-  https://www.youtube.com/watch?v=0KjG8Pg6LGk
-
-- Pick's theorem - The wrong, amazing proof
-  https://www.youtube.com/watch?v=uh-yRNqLpOg&t=76s
-
-- Topology - Jordan's Curve Theorem
-  https://www.youtube.com/watch?v=hnds9-GmwkM
-
-## Day 11 - Cosmic Expansion
-
-sum of lengths of shortests paths between galaxies
-- using manhattan distance (no diagonals)
-- only count the pairs ONCE
-
-account for universe expansion
-  - any row/column that contains no galaxies should be twice as big
-  - makes the columns thicked
-
-number the galaxies starting from 1
-  - from leftTOright and upTOdown
-
-Example - 9 galaxes, 36 pairs, shortest paths sum = 374
-
-## Day 12 - Hot Springs
-## Day 13 - Point of Incidence
-
-<img src="./day13_pid37.gif" alt="search animation for day 13" width="200"/>
-
-each pattern has 1(one) reflective axis
-result = add
-- number of cols to the left of vertical reflection
-- 100 * number of rows above of horizontal reflectio
-
-## Day 14 - Parabolic Reflector Dish
-
-https://private-user-images.githubusercontent.com/2867036/292657138-91d1debf-0400-494a-bb24-01b05d5a9736.mp4
-
-## Day 15 - Lens Library
-
-### Part 1
-
- Hash = string -> number[0-255]
- - start at 0
- - increase it by ascii char
- - *= 17
- - %= 256
-
- Sum hashes of each group of letters
-
-### Part 2
-
- each BOX has LENS slots
- boxes             = [0-255]
- lens have LABELS
- - hash(label)  = box nr they belong
- lens FOCAL LENGTH = [1-9]
- input STEPS are a label+operation
- operation:
- (=FL) replace it with the new one (with new focal lenght) if existed
-       or just add it "behind" the other lenses (not moving them)
-   (-) remove lens with label from hash(label) box
-       shrink lenses, do not leave empty spaces
-
- sum of focusing power of each LENS
- multiply
- - (1+) box nr where is it
- - nr of slot ([1-]) where is it
- - his focal length
-
-## Day 16 - The Floor Will Be Lava
-
-<video src="https://private-user-images.githubusercontent.com/2867036/292657163-6d0fdc16-94ba-41a4-8a47-2b7caed2ee94.mp4" width="500" />
-
- light enters on the top-left corner
- - in RIGHT direction
-
- On
- - empty space, keeps direction
-
- - mirror /\, gets reflected 90°
-   - right ray / changes direction upwards, from mirror
-   - rigth raw \ changes direction dowards, from mirror
-
- - splitter |-
-   - pointy side, does nothing, like empty space
-   - flat side, splits into 2 rays, in the split direction
-
- how many ENERGIZED tiles are (aka a beam passes through)
-
-## Day 17 - Clumsy Crucible
-
-<img src="./day17.inputvis.spin.gif" alt="day 17 visualization of my input data...spinning" width="500"/>
-
-- Dijkstra's Algorithm - Computerphile
-  https://www.youtube.com/watch?v=GazC3A4OQTE
-
-## Day 18 - Lavaduct Lagoon
-
-<p float="left">
-  <img src="./day18.silver.vis.pbm.png" alt="day 18 part 1 result" width="45%"/>
-  <img src="./day18.gold.vis.pbm.png"   alt="day 18 part 2 result" width="45%"/>
-</p>
-
-input - dig plan
-- start 1 cubic meter into the ground
-- then  1 cubic meter into the ULDR direction
-
-part 1 - area of draw area based on instructions
-
-part 2 - decode from the "hexcode" a direction/distance
-
-result positions ranges
-x = [0..1_186_328]
-y = [0..1_186_328]
-
-x = [-3_375_035..10_344_944]
-y = [-16_526_864..2_399_363]
-
-distances = [332..654246]
-
-## Day 19 - Aplenty
-
-a pile of **parts** is classified in, with a value associated to each and 1 or more of these
-- x - extremely cool
-- m - musical
-- a - aerodinamic
-- s - shiny
-
-each parts goes through a **workflows** to ultimately accept it or reject it
-
-each workflow has a list of **rules**
-
-some rules a **condition** and a **place** to send it
-some rules are either **R** or **A**, to immediately reject or accept
-
-part 1
-
-start from workflow "in", sum the ratings (xmas) of all the ACCEPTED parts
-
-part 2
-
-how many combinations of ratings, from 1-4000 can pass through the workflows
-
-167409079868000
-167_409_079_868_000
+first step
 
 ## Day 20 - Pulse Propagation
 
@@ -339,60 +140,258 @@ LCM =     361,028,183,880 LOW
 
 ```
 
-## Day 21 - Step Counter
+## Day 19 - Aplenty
 
-steps/map/garden plot(.)/rocks(#)/starting position (S)/tile/NSEW
+a pile of **parts** is classified in, with a value associated to each and 1 or more of these
+- x - extremely cool
+- m - musical
+- a - aerodinamic
+- s - shiny
 
-remaining 64 steps
-starting position is a plot
+each parts goes through a **workflows** to ultimately accept it or reject it
 
-first step
+each workflow has a list of **rules**
 
-## Day 22 - Sand Slabs
+some rules a **condition** and a **place** to send it
+some rules are either **R** or **A**, to immediately reject or accept
 
-sand/bricsofsand/disintigrated/freelyflowingsand/topple/snapshot/falling brigs/made of cube
+part 1
 
-coordinates
-- x and y are horizontal coordinates
-- z=0 is the ground
+start from workflow "in", sum the ratings (xmas) of all the ACCEPTED parts
 
-input (each line)
-- the position of a single brick (xyz)
-- 2 coordinates, one for each end of the brick
-- all coordinates above the ground (no negative)
-- still falling
+part 2
+
+how many combinations of ratings, from 1-4000 can pass through the workflows
+
+167409079868000
+167_409_079_868_000
+
+## Day 18 - Lavaduct Lagoon
+
+<p float="left">
+  <img src="./day18.silver.vis.pbm.png" alt="day 18 part 1 result" width="45%"/>
+  <img src="./day18.gold.vis.pbm.png"   alt="day 18 part 2 result" width="45%"/>
+</p>
+
+input - dig plan
+- start 1 cubic meter into the ground
+- then  1 cubic meter into the ULDR direction
+
+part 1 - area of draw area based on instructions
+
+part 2 - decode from the "hexcode" a direction/distance
+
+result positions ranges
+x = [0..1_186_328]
+y = [0..1_186_328]
+
+x = [-3_375_035..10_344_944]
+y = [-16_526_864..2_399_363]
+
+distances = [332..654246]
+
+## Day 17 - Clumsy Crucible
+
+<img src="./day17.inputvis.spin.gif" alt="day 17 visualization of my input data...spinning" width="500"/>
+
+- Dijkstra's Algorithm - Computerphile
+  https://www.youtube.com/watch?v=GazC3A4OQTE
+
+## Day 16 - The Floor Will Be Lava
+
+https://private-user-images.githubusercontent.com/2867036/292657163-6d0fdc16-94ba-41a4-8a47-2b7caed2ee94.mp4
+
+ light enters on the top-left corner
+ - in RIGHT direction
+
+ On
+ - empty space, keeps direction
+
+ - mirror /\, gets reflected 90°
+   - right ray / changes direction upwards, from mirror
+   - rigth raw \ changes direction dowards, from mirror
+
+ - splitter |-
+   - pointy side, does nothing, like empty space
+   - flat side, splits into 2 rays, in the split direction
+
+ how many ENERGIZED tiles are (aka a beam passes through)
+
+## Day 15 - Lens Library
+
+### Part 1
+
+ Hash = string -> number[0-255]
+ - start at 0
+ - increase it by ascii char
+ - *= 17
+ - %= 256
+
+ Sum hashes of each group of letters
+
+### Part 2
+
+ each BOX has LENS slots
+ boxes             = [0-255]
+ lens have LABELS
+ - hash(label)  = box nr they belong
+ lens FOCAL LENGTH = [1-9]
+ input STEPS are a label+operation
+ operation:
+ (=FL) replace it with the new one (with new focal lenght) if existed
+       or just add it "behind" the other lenses (not moving them)
+   (-) remove lens with label from hash(label) box
+       shrink lenses, do not leave empty spaces
+
+ sum of focusing power of each LENS
+ multiply
+ - (1+) box nr where is it
+ - nr of slot ([1-]) where is it
+ - his focal length
+
+## Day 14 - Parabolic Reflector Dish
+
+https://private-user-images.githubusercontent.com/2867036/292657138-91d1debf-0400-494a-bb24-01b05d5a9736.mp4
+
+## Day 13 - Point of Incidence
+
+<img src="./day13_pid37.gif" alt="search animation for day 13" width="200"/>
+
+each pattern has 1(one) reflective axis
+result = add
+- number of cols to the left of vertical reflection
+- 100 * number of rows above of horizontal reflectio
+
+## Day 12 - Hot Springs
+## Day 11 - Cosmic Expansion
+
+sum of lengths of shortests paths between galaxies
+- using manhattan distance (no diagonals)
+- only count the pairs ONCE
+
+account for universe expansion
+  - any row/column that contains no galaxies should be twice as big
+  - makes the columns thicked
+
+number the galaxies starting from 1
+  - from leftTOright and upTOdown
+
+Example - 9 galaxes, 36 pairs, shortest paths sum = 374
+
+## Day 10 - Pipe Maze
+
+<img src="./day10vis.gold.txt.png" alt="display of only the pipe maze of day 10" width="500"/>
+
+- Gauss's magic shoelace area formula and its calculus companion
+  https://www.youtube.com/watch?v=0KjG8Pg6LGk
+
+- Pick's theorem - The wrong, amazing proof
+  https://www.youtube.com/watch?v=uh-yRNqLpOg&t=76s
+
+- Topology - Jordan's Curve Theorem
+  https://www.youtube.com/watch?v=hnds9-GmwkM
+
+## Day 09 - Mirage Maintenance
+
+- in an _oasis_
+
+- your INPUT
+  - list of values (positive/negative)
+  - each line is a different value
+  - each value on a line is a change of that value
+
+- steps
+  1. calculate the difference between all numebrs
+  2. if all /= 0
+     3. continue using this smaller sequence as the input do (1)
+     3. else add a new value to the zeroes and fill the inverse pyramid
+        with values equal to the number_below+number_left
+        the final numbers is the _prediction_ of that value
+
+- output - the sum of all predicted value
+
+## day 7 Camel Cards
+
+similar to poker
+
+input
+- list of hands of 5 cards
+- a bid
+
+card strengh
+- A, K, Q, J, T, 9, 8, 7, 6, 5, 4, 3, or 2.
+
+hand strength
+- five of a kind  (5 equal)
+- four of a kind  (4 equal)
+- full house      (3 equal and 2 equal)
+- three of a kind (3 equal and 2 different random not equal)
+- two pair        (2 equal and 2 equal)
+- one pair        (2 equal and 3 different random not equal)
+- high card       (all different)
+
+ordering
+- by hand strength
+- by each card on each hand (1 with 1, 2 with 2...)
+  - if different hand with the strongest first card is stronger
+  - if equal continue
 
 
-bricks
-- made of a single straight line of cubes
-- lowest z is 1
-- never rotate
+rank = order of the hand, 1 is weakest
 
-### part 1
+goal (total winnings)
+- order the hands
+- multiply the bid by the rank (starting at 1)
+- sum = 6440
 
-after they fall,
-which bricks are CAN be desintigrated (not at the same time)
-aka are not supporting other bricks OR is not alone supporting other brick
+### gold
 
-example = 5
+J is a comodin now for hand_strength
+but the weakest in card comparisons
 
-## Day 23 - A Long Walk
+goal winnings (same) = 5905
 
-<video src="https://private-user-images.githubusercontent.com/2867036/292656762-5f365896-13a1-4d3f-bd88-7e44c74aa4de.mp4" width="500" />
+## day 6
 
-map/hikingtrails/(.)paths/(#)forest/(^>v<)steepslopes(icy)/downhill/tile/row/start/goal/scenichike
+boat race
 
-- start from the single path tile on the top row
-- goal single path tile at the bottom row
-- stepping int a slope, next tile must be on that direction
-- never step on the same tile twice
+you travel with your boat in the given times
 
-### part 1
+- get a list of **times** for each **race** in milliseconds
+- get a list of best distances for each race in millimetros
 
-longes hike you can take?
+you need to go farther than the best distances to win
 
-test = 94
+toy boats, charged by pressing a button while stopped 1ms = 1ml/ms
+they go faster the longer it was pressed
 
-## Day 24
+can only push the button at the beggining of the race
 
-Something
+PROBLEM: multiply(count_of_ways_to_win) = 288
+
+## day 5
+
+almanac
+seeds: by numbers
+
+relationships between categories, as lines of 3 numbers
+- seed-to-soil
+- soil-to-fertilzed
+- etc...
+
+mapping
+- src/dst/range
+- 404 unmapped ones, map to the same number
+- 1 to 1
+
+### silver
+
+problem
+find the lowest location number
+that corresponds to any of the initial seeds
+
+test = 35
+
+### gold
+
+    seeds are actually a *range*, determined by PAIR of numbers (start,length)
