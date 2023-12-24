@@ -142,8 +142,7 @@ result = add
 
 # --- Day 14: Parabolic Reflector Dish ---
 
-
-<a href="https://media.githubusercontent.com/media/azimut/challenges/master/adventofcode/23/day14vispart1.mp4"><img src="./day14vispart1.mp4.png" alt="animation for day 14 part 1" width="500"/></a>
+<video src="https://private-user-images.githubusercontent.com/2867036/292657138-91d1debf-0400-494a-bb24-01b05d5a9736.mp4" width="500" />
 
 # --- Day 15: Lens Library ---
 
@@ -177,6 +176,8 @@ Part 2
  - nr of slot ([1-]) where is it
  - his focal length
 # --- Day 16: The Floor Will Be Lava ---
+
+<video src="https://private-user-images.githubusercontent.com/2867036/292657163-6d0fdc16-94ba-41a4-8a47-2b7caed2ee94.mp4" width="500" />
 
  light enters on the top-left corner
  - in RIGHT direction
