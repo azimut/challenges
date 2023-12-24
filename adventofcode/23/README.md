@@ -3,7 +3,7 @@
 
 Something
 
-## Day 23: A Long Walk
+## Day 23 - A Long Walk
 
 <video src="https://private-user-images.githubusercontent.com/2867036/292656762-5f365896-13a1-4d3f-bd88-7e44c74aa4de.mp4" width="500" />
 
@@ -20,7 +20,7 @@ longes hike you can take?
 
 test = 94
 
-## Day 22: Sand Slabs
+## Day 22 - Sand Slabs
 
 sand/bricsofsand/disintigrated/freelyflowingsand/topple/snapshot/falling brigs/made of cube
 
@@ -48,7 +48,7 @@ aka are not supporting other bricks OR is not alone supporting other brick
 
 example = 5
 
-## Day 21: Step Counter
+## Day 21 - Step Counter
 
 steps/map/garden plot(.)/rocks(#)/starting position (S)/tile/NSEW
 
@@ -57,7 +57,7 @@ starting position is a plot
 
 first step
 
-## Day 20: Pulse Propagation
+## Day 20 - Pulse Propagation
 
 machine/cables/communication modules(relay)/pulses(high/low)/destination modules
 
@@ -141,13 +141,13 @@ LCM =     361,028,183,880 LOW
 
 ```
 
-## Day 19: Aplenty
+## Day 19 - Aplenty
 
 a pile of **parts** is classified in, with a value associated to each and 1 or more of these
-- x: extremely cool
-- m: musical
-- a: aerodinamic
-- s: shiny
+- x - extremely cool
+- m - musical
+- a - aerodinamic
+- s - shiny
 
 each parts goes through a **workflows** to ultimately accept it or reject it
 
@@ -167,14 +167,14 @@ how many combinations of ratings, from 1-4000 can pass through the workflows
 167409079868000
 167_409_079_868_000
 
-## Day 18: Lavaduct Lagoon
+## Day 18 - Lavaduct Lagoon
 
 <p float="left">
   <img src="./day18.silver.vis.pbm.png" alt="day 18 part 1 result" width="45%"/>
   <img src="./day18.gold.vis.pbm.png"   alt="day 18 part 2 result" width="45%"/>
 </p>
 
-input: dig plan
+input - dig plan
 - start 1 cubic meter into the ground
 - then  1 cubic meter into the ULDR direction
 
@@ -191,14 +191,14 @@ y = [-16_526_864..2_399_363]
 
 distances = [332..654246]
 
-## Day 17: Clumsy Crucible
+## Day 17 - Clumsy Crucible
 
 <img src="./day17.inputvis.spin.gif" alt="day 17 visualization of my input data...spinning" width="500"/>
 
 - Dijkstra's Algorithm - Computerphile
   https://www.youtube.com/watch?v=GazC3A4OQTE
 
-## Day 16: The Floor Will Be Lava
+## Day 16 - The Floor Will Be Lava
 
 <video src="https://private-user-images.githubusercontent.com/2867036/292657163-6d0fdc16-94ba-41a4-8a47-2b7caed2ee94.mp4" width="500" />
 
@@ -218,7 +218,7 @@ distances = [332..654246]
 
  how many ENERGIZED tiles are (aka a beam passes through)
 
-## Day 15: Lens Library
+## Day 15 - Lens Library
 
 ### Part 1
 
@@ -250,11 +250,11 @@ distances = [332..654246]
  - nr of slot ([1-]) where is it
  - his focal length
 
-## Day 14: Parabolic Reflector Dish
+## Day 14 - Parabolic Reflector Dish
 
 <video src="https://private-user-images.githubusercontent.com/2867036/292657138-91d1debf-0400-494a-bb24-01b05d5a9736.mp4" width="500" />
 
-## Day 13: Point of Incidence
+## Day 13 - Point of Incidence
 
 <img src="./day13_pid37.gif" alt="search animation for day 13" width="200"/>
 
@@ -263,8 +263,8 @@ result = add
 - number of cols to the left of vertical reflection
 - 100 * number of rows above of horizontal reflectio
 
-## Day 12: Hot Springs
-## Day 11: Cosmic Expansion
+## Day 12 - Hot Springs
+## Day 11 - Cosmic Expansion
 
 sum of lengths of shortests paths between galaxies
 - using manhattan distance (no diagonals)
@@ -277,22 +277,22 @@ account for universe expansion
 number the galaxies starting from 1
   - from leftTOright and upTOdown
 
-Example: 9 galaxes, 36 pairs, shortest paths sum = 374
+Example - 9 galaxes, 36 pairs, shortest paths sum = 374
 
-## Day 10: Pipe Maze
+## Day 10 - Pipe Maze
 
 <img src="./day10vis.gold.txt.png" alt="display of only the pipe maze of day 10" width="500"/>
 
 - Gauss's magic shoelace area formula and its calculus companion
   https://www.youtube.com/watch?v=0KjG8Pg6LGk
 
-- Pick's theorem: The wrong, amazing proof
+- Pick's theorem - The wrong, amazing proof
   https://www.youtube.com/watch?v=uh-yRNqLpOg&t=76s
 
-- Topology: Jordan's Curve Theorem
+- Topology - Jordan's Curve Theorem
   https://www.youtube.com/watch?v=hnds9-GmwkM
 
-## Day 09: Mirage Maintenance
+## Day 09 - Mirage Maintenance
 
 - in an _oasis_
 
@@ -309,7 +309,7 @@ Example: 9 galaxes, 36 pairs, shortest paths sum = 374
         with values equal to the number_below+number_left
         the final numbers is the _prediction_ of that value
 
-- output: the sum of all predicted value
+- output - the sum of all predicted value
 
 ## day 7 Camel Cards
 
