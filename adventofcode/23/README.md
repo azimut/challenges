@@ -1,6 +1,6 @@
 # Day 23: A Long Walk
 
-<video src="https://private-user-images.githubusercontent.com/2867036/292656762-5f365896-13a1-4d3f-bd88-7e44c74aa4de.mp4" width="500"/>
+<video src="https://private-user-images.githubusercontent.com/2867036/292656762-5f365896-13a1-4d3f-bd88-7e44c74aa4de.mp4" width="500" />
 
 map/hikingtrails/(.)paths/(#)forest/(^>v<)steepslopes(icy)/downhill/tile/row/start/goal/scenichike
 
