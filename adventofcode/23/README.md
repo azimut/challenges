@@ -144,7 +144,11 @@ result = add
 
 ## Day 14 - Parabolic Reflector Dish
 
+foo
+
 <video src="https://private-user-images.githubusercontent.com/2867036/292657138-91d1debf-0400-494a-bb24-01b05d5a9736.mp4" width="500" />
+
+bar
 
 ## Day 15 - Lens Library
 
