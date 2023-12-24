@@ -1,4 +1,5 @@
-# Day 23: A Long Walk
+# Advent Of Code 2023
+## Day 23: A Long Walk
 
 <video src="https://private-user-images.githubusercontent.com/2867036/292656762-5f365896-13a1-4d3f-bd88-7e44c74aa4de.mp4" width="500" />
 
@@ -9,13 +10,13 @@ map/hikingtrails/(.)paths/(#)forest/(^>v<)steepslopes(icy)/downhill/tile/row/sta
 - stepping int a slope, next tile must be on that direction
 - never step on the same tile twice
 
-## part 1
+### part 1
 
 longes hike you can take?
 
 test = 94
 
-# Day 22: Sand Slabs
+## Day 22: Sand Slabs
 
 sand/bricsofsand/disintigrated/freelyflowingsand/topple/snapshot/falling brigs/made of cube
 
@@ -35,7 +36,7 @@ bricks
 - lowest z is 1
 - never rotate
 
-## part 1
+### part 1
 
 after they fall,
 which bricks are CAN be desintigrated (not at the same time)
@@ -43,7 +44,7 @@ aka are not supporting other bricks OR is not alone supporting other brick
 
 example = 5
 
-# Day 21: Step Counter
+## Day 21: Step Counter
 
 steps/map/garden plot(.)/rocks(#)/starting position (S)/tile/NSEW
 
@@ -52,7 +53,7 @@ starting position is a plot
 
 first step
 
-# Day 20: Pulse Propagation
+## Day 20: Pulse Propagation
 
 machine/cables/communication modules(relay)/pulses(high/low)/destination modules
 
@@ -61,7 +62,7 @@ pulses are proceed in the order they are sent
 
 some sequence might repeat
 
-## type of modules (%&bb)
+### type of modules (%&bb)
 
 - % flip-flop (off/on)
   - flips on low pulses **only**
@@ -86,12 +87,12 @@ some sequence might repeat
   - for testing?
   - no outputs?
 
-## part 1
+### part 1
 
  - given a how times you pushed the "button"
  - what is the result of multiplying the number of low by high pulses sent
 
-## part 2
+### part 2
 
 ```
 ("pl" 3796 3796)
@@ -136,7 +137,7 @@ LCM =     361,028,183,880 LOW
 
 ```
 
-# Day 19: Aplenty
+## Day 19: Aplenty
 
 a pile of **parts** is classified in, with a value associated to each and 1 or more of these
 - x: extremely cool
@@ -162,7 +163,7 @@ how many combinations of ratings, from 1-4000 can pass through the workflows
 167409079868000
 167_409_079_868_000
 
-# Day 18: Lavaduct Lagoon
+## Day 18: Lavaduct Lagoon
 
 <p float="left">
   <img src="./day18.silver.vis.pbm.png" alt="day 18 part 1 result" width="45%"/>
@@ -186,14 +187,14 @@ y = [-16_526_864..2_399_363]
 
 distances = [332..654246]
 
-# Day 17: Clumsy Crucible
+## Day 17: Clumsy Crucible
 
 <img src="./day17.inputvis.spin.gif" alt="day 17 visualization of my input data...spinning" width="500"/>
 
 - Dijkstra's Algorithm - Computerphile
   https://www.youtube.com/watch?v=GazC3A4OQTE
 
-# Day 16: The Floor Will Be Lava
+## Day 16: The Floor Will Be Lava
 
 <video src="https://private-user-images.githubusercontent.com/2867036/292657163-6d0fdc16-94ba-41a4-8a47-2b7caed2ee94.mp4" width="500" />
 
@@ -213,9 +214,9 @@ distances = [332..654246]
 
  how many ENERGIZED tiles are (aka a beam passes through)
 
-# Day 15: Lens Library
+## Day 15: Lens Library
 
-## Part 1
+### Part 1
 
  Hash = string -> number[0-255]
  - start at 0
@@ -225,7 +226,7 @@ distances = [332..654246]
 
  Sum hashes of each group of letters
 
-## Part 2
+### Part 2
 
  each BOX has LENS slots
  boxes             = [0-255]
@@ -245,11 +246,11 @@ distances = [332..654246]
  - nr of slot ([1-]) where is it
  - his focal length
 
-# Day 14: Parabolic Reflector Dish
+## Day 14: Parabolic Reflector Dish
 
 <video src="https://private-user-images.githubusercontent.com/2867036/292657138-91d1debf-0400-494a-bb24-01b05d5a9736.mp4" width="500" />
 
-# Day 13: Point of Incidence
+## Day 13: Point of Incidence
 
 <img src="./day13_pid37.gif" alt="search animation for day 13" width="200"/>
 
@@ -258,8 +259,8 @@ result = add
 - number of cols to the left of vertical reflection
 - 100 * number of rows above of horizontal reflectio
 
-# Day 12: Hot Springs
-# Day 11: Cosmic Expansion
+## Day 12: Hot Springs
+## Day 11: Cosmic Expansion
 
 sum of lengths of shortests paths between galaxies
 - using manhattan distance (no diagonals)
@@ -274,7 +275,7 @@ number the galaxies starting from 1
 
 Example: 9 galaxes, 36 pairs, shortest paths sum = 374
 
-# Day 10: Pipe Maze
+## Day 10: Pipe Maze
 
 <img src="./day10vis.gold.txt.png" alt="display of only the pipe maze of day 10" width="500"/>
 
@@ -287,7 +288,7 @@ Example: 9 galaxes, 36 pairs, shortest paths sum = 374
 - Topology: Jordan's Curve Theorem
   https://www.youtube.com/watch?v=hnds9-GmwkM
 
-# Day 09: Mirage Maintenance
+## Day 09: Mirage Maintenance
 
 - in an _oasis_
 
@@ -306,7 +307,7 @@ Example: 9 galaxes, 36 pairs, shortest paths sum = 374
 
 - output: the sum of all predicted value
 
-# day 7 Camel Cards
+## day 7 Camel Cards
 
 similar to poker
 
@@ -340,14 +341,14 @@ goal (total winnings)
 - multiply the bid by the rank (starting at 1)
 - sum = 6440
 
-## gold
+### gold
 
 J is a comodin now for hand_strength
 but the weakest in card comparisons
 
 goal winnings (same) = 5905
 
-# day 6
+## day 6
 
 boat race
 
@@ -365,7 +366,7 @@ can only push the button at the beggining of the race
 
 PROBLEM: multiply(count_of_ways_to_win) = 288
 
-# day 5
+## day 5
 
 almanac
 seeds: by numbers
@@ -380,7 +381,7 @@ mapping
 - 404 unmapped ones, map to the same number
 - 1 to 1
 
-## silver
+### silver
 
 problem
 find the lowest location number
@@ -388,6 +389,6 @@ that corresponds to any of the initial seeds
 
 test = 35
 
-## gold
+### gold
 
-seeds are actually a *range*, determined by PAIR of numbers (start,length)
+    seeds are actually a *range*, determined by PAIR of numbers (start,length)
