@@ -1,7 +1,49 @@
 # Advent Of Code 2023
 ## Day 24
 
-Something
+![day24 plot of input](./day24.realinput.png)
+
+hailstones/position@velocity/break/time=0/xyz/nanosecond/forwardintime/paths/intersect
+
+input file
+- each line has a
+- position @ velocity in x y z
+- position at time = 0
+- velocity movement in 1=nanosecond
+
+- 2D Coding Math: Episode 32 - Line Intersections Part I https://www.youtube.com/watch?v=4bIsntTiKfM
+  - ways to define a line
+    - 2 points
+    - slope intersect form: y=mx+b (m=slope,b=yintercept)
+    - "standard form": Ax + By = C
+  - how to convert 2 points
+    - slope = (y2 - y1)/(x2 - x1)
+    - plug the x,y of any point, that gives you the "b"
+    - intersection: aka there is a single value for xy that would be on two lines/equations
+      ``` javascript
+      function lineIntersection(p0, p1, p2, p3) {
+          var A1 = p1.y - p0.y,
+              B1 = p0.x - p1.x,
+              C1 = A1 * p0.x + B1 * p0.y,
+              A2 = p3.y - p2.y,
+              B2 = p2.x - p3.x,
+              C2 = A2 * p2.x + B2 * p2.y,
+              denominator = A1 * B2 - A2 * B1;
+
+          return {
+            x: (B2*C1 - B1*C2) / denominator,
+            y: (A1*C2 - A2*C1) / denominator
+          };
+      }
+      ```
+
+### part 1
+
+ignore z axis
+how many hailstones PATHS will intersect? between given x and y ranges
+
+test ranges 7 = 27
+
 ## Day 23 - A Long Walk
 
 https://private-user-images.githubusercontent.com/2867036/292656762-5f365896-13a1-4d3f-bd88-7e44c74aa4de.mp4
