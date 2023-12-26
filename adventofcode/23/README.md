@@ -1,7 +1,7 @@
 # Advent Of Code 2023
 ## Day 24
 
-![day24 plot of input](./day24.realinput.png)
+<img src="./day24.realinput.png" width="500" />
 
 hailstones/position@velocity/break/time=0/xyz/nanosecond/forwardintime/paths/intersect
 
