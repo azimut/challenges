@@ -3,7 +3,7 @@
 
 <p float="left">
     <img src="./day25.silver.png" width="45%" alt="day25 graphviz visualization of real input data" />
-    <img src="./day25.silver.test.png" width="45%" alt="day25 graphviz visualization of test data" />
+    <img src="./day25.silver.test.png" width="35%" alt="day25 graphviz visualization of test data" />
 </p>
 
 
