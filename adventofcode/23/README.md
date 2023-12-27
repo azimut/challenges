@@ -1,9 +1,17 @@
 # Advent Of Code 2023
+## Day 25
+
+<p float="left">
+    <img src="./day25.silver.png" width="45%" alt="day25 graphviz visualization of real input data" />
+    <img src="./day25.silver.test.png" width="45%" alt="day25 graphviz visualization of test data" />
+</p>
+
+
 ## Day 24
 
 <p float="left">
-    <img src="./day24.realinput.png" width="45%" alt="day24 sketch visualization of real input data" width="500" />
-    <img src="./day24.test.png" width="45%" alt="day24 sketch visualization of forward inner points with test data" width="500" />
+    <img src="./day24.realinput.png" width="45%" alt="day24 sketch visualization of real input data" />
+    <img src="./day24.test.png" width="45%" alt="day24 sketch visualization of forward inner points with test data" />
 </p>
 
 hailstones/position@velocity/break/time=0/xyz/nanosecond/forwardintime/paths/intersect
