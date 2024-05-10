@@ -1,4 +1,4 @@
-#!/usr/bin/jq -Mf
+#!/usr/bin/jq -Mrf
 
 def formatName: .name  | split(" ") | nth(1) | ascii_downcase ;
 def formatPhone: .phone | gsub("-";"") ;
@@ -20,3 +20,4 @@ def person2number:
 ;
 
 select(person2number == formatPhone)
+      .phone

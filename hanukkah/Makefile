@@ -1,8 +1,12 @@
-.PHONY: all 01
-all: 01
+CUSTOMERS = data/5784/noahs-customers.jsonl
+PRODUCTS  = data/5784/noahs-products.jsonl
+ORDERS    = data/5784/noahs-orders.jsonl
 
-01:
-	< data/5784/noahs-customers.jsonl ./01.jq
+.PHONY: all 01 02
+all: 01 02
+
+01:; ./01.jq < $(CUSTOMERS)
+02:; ./02.jq --slurpfile products $(PRODUCTS) --slurpfile customers $(CUSTOMERS) < $(ORDERS)
 
 # 5783 = 2023
 # 5777 = 2017
