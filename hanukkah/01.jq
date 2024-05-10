@@ -19,4 +19,4 @@ def person2number:
   | join("")
 ;
 
-inputs | select(person2number == formatPhone)
+select(person2number == formatPhone)
