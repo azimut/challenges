@@ -12,8 +12,7 @@ def isTargetProduct:
   | select(.sku == $product)
   | .desc
   | ascii_downcase
-  | match("coffe|bagel|clean") // {}
-  | has("string");
+  | test("coffe|bagel|clean");
 
 # FIXME: exit when found
 select(.items | length == 3)
