@@ -10,14 +10,13 @@ def letter2number:
   }
   | to_entries[]
   | select(.key | contains([$letter]|implode))
-  | .value
-;
+  | .value;
+
 def person2number:
   formatName
   | explode
   | map(letter2number)
-  | join("")
-;
+  | join("");
 
 select(person2number == formatPhone)
       .phone

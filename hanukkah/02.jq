@@ -4,8 +4,7 @@ def getPhone:
   . as $customer
   | $customers[]
   | select(.customerid == $customer)
-  | .phone
-;
+  | .phone;
 
 def isTargetProduct:
   . as $product
@@ -14,8 +13,7 @@ def isTargetProduct:
   | .desc
   | ascii_downcase
   | match("coffe|bagel|clean") // {}
-  | has("string")
-;
+  | has("string");
 
 # FIXME: exit when found
 select(.items | length == 3)
