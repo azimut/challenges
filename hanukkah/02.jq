@@ -5,11 +5,9 @@ def isTargetProduct:
   . as $product
   | $products[]
   | select(.sku == $product).desc
-  | ascii_downcase
-  | test("coffe|bagel|clean");
+  | test("coffe|bagel|clean"; "i");
 
 # FIXME: exit when found
 select(.items | length == 3)
-  | select([.items[].sku]
-            | all(isTargetProduct))
+  | select([.items[].sku] | all(isTargetProduct))
   | cx2phone
