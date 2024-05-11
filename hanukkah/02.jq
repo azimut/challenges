@@ -1,11 +1,6 @@
 #!/usr/bin/jq -Mrf
 
-def getPhone:
-  . as $customer
-  | $customers[]
-  | select(.customerid == $customer)
-  | .phone;
-
+def cx2phone: .customerid as $cid | $customers[] | select(.customerid == $cid).phone;
 def isTargetProduct:
   . as $product
   | $products[]
@@ -19,5 +14,4 @@ select(.items | length == 3)
   | select([.items[].sku]
             | map(isTargetProduct)
             | all)
-  | .customerid
-  | getPhone
+  | cx2phone
