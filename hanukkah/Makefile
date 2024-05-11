@@ -2,8 +2,8 @@ CUSTOMERS = data/5784/noahs-customers.jsonl
 PRODUCTS  = data/5784/noahs-products.jsonl
 ORDERS    = data/5784/noahs-orders.jsonl
 
-.PHONY: all 01 02
-all: 01 02 03
+.PHONY: all 01 02 03 04
+all: 01 02 03 04
 
 01:; ./01.jq < $(CUSTOMERS)
 02:; ./02.jq --slurpfile products $(PRODUCTS) --slurpfile customers $(CUSTOMERS) < $(ORDERS)
