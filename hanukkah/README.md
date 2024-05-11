@@ -25,8 +25,6 @@ BEGIN {
 }
 ```
 
-### Day 6
-
 #### SQLite
 
 Mostly straighforward. Once I dropped trying to lookup for someone that bought a "Noah's Jersey"... Speed wise, I tried subselects, JOINs and putting the condition on JOIN/ON/AND instead of WHERE. But neither showed better speed results.
