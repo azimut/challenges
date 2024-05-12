@@ -8,6 +8,6 @@ SELECT customers.customerid,
        JOIN orders_items ON orders_items.orderid = orders.orderid
        JOIN products     ON orders_items.sku     = products.sku
        JOIN customers    ON orders.customerid    = customers.customerid
-GROUP BY orders.customerid
+ GROUP BY orders.customerid
  ORDER BY diff
  LIMIT 1;

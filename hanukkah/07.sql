@@ -3,7 +3,7 @@ WITH RECURSIVE
     SELECT orders.ordered, products.sku, substr(products.desc, 0, instr(products.desc, '(')-1)
       FROM orders
            JOIN orders_items ON orders_items.orderid = orders.orderid
-           JOIN products     ON products.sku = orders_items.sku
+           JOIN products     ON products.sku         = orders_items.sku
      WHERE orders.customerid = 4167           -- Sherri
        AND products.desc LIKE 'Noah%(%'       -- something colored
        AND orders.ordered    = orders.shipped -- inplace purchase
