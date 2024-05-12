@@ -12,7 +12,7 @@ I give up. There isn't a way to run an expression just once for the whole execut
 
 #### Awk
 
-It could be done...more precisely it could be done with *Gawk* using **FPAT** to define the csv parsing. But, having to manually parse 3 different files, kind of makes it not fun. For example, I will need to do the bookeeping of each file line processing on an explicit loop and limit my work to BEGIN. Not the end of the world but...
+It could be done (EDIT: it's done)...more precisely it could be done with *Gawk* using **FPAT** to define the csv parsing. But, having to manually parse 3 different files, kind of makes it not fun. For example, I will need to do the bookeeping of each file line processing on an explicit loop and limit my work to BEGIN. Not the end of the world but...
 
 For example:
 
