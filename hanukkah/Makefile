@@ -3,17 +3,17 @@ PRODUCTS  = data/5784/noahs-products.jsonl
 ORDERS    = data/5784/noahs-orders.jsonl
 SQLITE    = data/5784/noahs.sqlite
 
-.PHONY: all 01 02 03 04 05 06 07 08
-all: 01 02 03 04 05 06 07 08
+.PHONY: all 1 2 3 4 5 6 7 8
+all: 1 2 3 4 5 6 7 8
 
-01:; ./01.jq < $(CUSTOMERS)
-02:; ./02.jq --slurpfile products $(PRODUCTS) --slurpfile customers $(CUSTOMERS) < $(ORDERS)
-03:; ./03.jq -n --slurpfile customers $(CUSTOMERS)
-04:; ./04.jq --slurpfile products $(PRODUCTS) --slurpfile customers $(CUSTOMERS) < $(ORDERS)
-05:; sqlite3 $(SQLITE) < 05.sql
-06:; sqlite3 $(SQLITE) < 06.sql
-07:; sqlite3 $(SQLITE) < 07.sql
-08:; sqlite3 $(SQLITE) < 08.sql
+1:; ./01.jq < $(CUSTOMERS)
+2:; ./02.jq --slurpfile products $(PRODUCTS) --slurpfile customers $(CUSTOMERS) < $(ORDERS)
+3:; ./03.jq -n --slurpfile customers $(CUSTOMERS)
+4:; ./04.jq --slurpfile products $(PRODUCTS) --slurpfile customers $(CUSTOMERS) < $(ORDERS)
+5:; sqlite3 $(SQLITE) < 5.sql
+6:; sqlite3 $(SQLITE) < 6.sql
+7:; sqlite3 $(SQLITE) < 7.sql
+8:; sqlite3 $(SQLITE) < 8.sql
 
 
 # 5783 = 2023
