@@ -1,16 +1,3 @@
---
--- Manually find the product Sherri purchase that has distintive color
---
--- SELECT orders.customerid, orders.ordered, products.sku, products.desc
---   FROM orders
---        JOIN orders_items ON orders_items.orderid = orders.orderid
---        JOIN products ON products.sku = orders_items.sku
---  WHERE orders.customerid = 4167        -- Sherri
---    AND products.desc LIKE 'Noah%(%'    -- something colored
---    AND orders.ordered = orders.shipped -- inplace purchase
---    AND orders_items.qty = 1;           -- one item bought
---
-
 WITH RECURSIVE
   sherri(tiempo, sku, desc) AS (
     SELECT orders.ordered, products.sku, substr(products.desc, 0, instr(products.desc, '(')-1)
