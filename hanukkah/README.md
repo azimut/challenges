@@ -1,6 +1,6 @@
 # hanukkah of data
 
-home: https://hanukkah.bluebird.sh/5784/
+see: https://hanukkah.bluebird.sh/about/
 
 ## notes
 

@@ -3,14 +3,15 @@ PRODUCTS  = data/5784/noahs-products.jsonl
 ORDERS    = data/5784/noahs-orders.jsonl
 SQLITE    = data/5784/noahs.sqlite
 
-.PHONY: all 01 02 03 04 05
-all: 01 02 03 04 05
+.PHONY: all 01 02 03 04 05 06
+all: 01 02 03 04 05 06
 
 01:; ./01.jq < $(CUSTOMERS)
 02:; ./02.jq --slurpfile products $(PRODUCTS) --slurpfile customers $(CUSTOMERS) < $(ORDERS)
 03:; ./03.jq -n --slurpfile customers $(CUSTOMERS)
 04:; ./04.jq --slurpfile products $(PRODUCTS) --slurpfile customers $(CUSTOMERS) < $(ORDERS)
 05:; sqlite3 $(SQLITE) < 05.sql
+06:; sqlite3 $(SQLITE) < 06.sql
 
 # 5783 = 2023
 # 5777 = 2017
