@@ -1,3 +1,4 @@
+#!/usr/bin/awk -f
 BEGIN {
     FPAT = "([^,]+)|(\"[^\"]+\")"
     cid=1;name=2;city=4;phone=6;sku=1;desc=2;oid=1
