@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="test-rna-transcription.bats" tests="6" failures="0" errors="0" skipped="0" time="0" timestamp="2024-05-13T20:23:49" hostname="darkstar">
+  <properties>
+    <property name="BATS_ROOT_PID" value="119967"/>
+    <property name="BATS_TMPDIR" value="/tmp"/>
+    <property name="BATS_RUN_TMPDIR" value="/tmp/bats-run-119967"/>
+    <property name="BATS_VERSION" value="1.2.1"/>
+    <property name="BATS_TEST_PATTERN" value="^[[:blank:]]*@test[[:blank:]]+(.*[^[:blank:]])[[:blank:]]+\{(.*)$"/>
+    <property name="BATS_CWD" value="/home/sendai/projects/challenges/exercism/jq/rna-transcription"/>
+    <property name="BATS_TEST_FILTER" value=""/>
+    <property name="BATS_RUN_SKIPPED" value="true"/>
+    <property name="BATS_LIBEXEC" value="/usr/libexec/bats-core"/>
+    <property name="BATS_ROOT" value="/usr"/>
+  </properties>
+    <testcase classname="test-rna-transcription.bats" name="Empty RNA sequence" time="0"/>
+    <testcase classname="test-rna-transcription.bats" name="RNA complement of cytosine is guanine" time="0"/>
+    <testcase classname="test-rna-transcription.bats" name="RNA complement of guanine is cytosine" time="0"/>
+    <testcase classname="test-rna-transcription.bats" name="RNA complement of thymine is adenine" time="0"/>
+    <testcase classname="test-rna-transcription.bats" name="RNA complement of adenine is uracil" time="0"/>
+    <testcase classname="test-rna-transcription.bats" name="RNA complement" time="0"/>
+  <system-out></system-out>
+  <system-err></system-err>
+</testsuite>
