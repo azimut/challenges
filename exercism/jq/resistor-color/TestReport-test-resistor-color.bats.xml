@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="test-resistor-color.bats" tests="4" failures="4" errors="0" skipped="0" time="0" timestamp="2024-05-13T07:52:30" hostname="darkstar">
+  <properties>
+    <property name="BATS_ROOT_PID" value="29700"/>
+    <property name="BATS_TMPDIR" value="/tmp"/>
+    <property name="BATS_RUN_TMPDIR" value="/tmp/bats-run-29700"/>
+    <property name="BATS_VERSION" value="1.2.1"/>
+    <property name="BATS_TEST_PATTERN" value="^[[:blank:]]*@test[[:blank:]]+(.*[^[:blank:]])[[:blank:]]+\{(.*)$"/>
+    <property name="BATS_CWD" value="/home/sendai/projects/challenges/exercism/jq/resistor-color"/>
+    <property name="BATS_TEST_FILTER" value=""/>
+    <property name="BATS_RUN_SKIPPED" value="true"/>
+    <property name="BATS_LIBEXEC" value="/usr/libexec/bats-core"/>
+    <property name="BATS_ROOT" value="/usr"/>
+  </properties>
+    <testcase classname="test-resistor-color.bats" name="Color codes:Black" time="0">
+        <failure type="failure"><![CDATA[
+(from function `assert_equal' in file bats-extra.bash, line 178,
+ in test file test-resistor-color.bats, line 19)
+  `assert_equal "$output" "$expected"' failed
+
+-- values do not equal --
+expected : 0
+actual   : ["black","brown","red","orange","yellow","green","blue","violet","grey","white"]
+--
+]]></failure>
+    </testcase>
+    <testcase classname="test-resistor-color.bats" name="Color codes:White" time="0">
+        <failure type="failure"><![CDATA[
+(from function `assert_equal' in file bats-extra.bash, line 178,
+ in test file test-resistor-color.bats, line 36)
+  `assert_equal "$output" "$expected"' failed
+
+-- values do not equal --
+expected : 9
+actual   : ["black","brown","red","orange","yellow","green","blue","violet","grey","white"]
+--
+]]></failure>
+    </testcase>
+    <testcase classname="test-resistor-color.bats" name="Color codes:Orange" time="0">
+        <failure type="failure"><![CDATA[
+(from function `assert_equal' in file bats-extra.bash, line 178,
+ in test file test-resistor-color.bats, line 53)
+  `assert_equal "$output" "$expected"' failed
+
+-- values do not equal --
+expected : 3
+actual   : ["black","brown","red","orange","yellow","green","blue","violet","grey","white"]
+--
+]]></failure>
+    </testcase>
+    <testcase classname="test-resistor-color.bats" name="Colors" time="0">
+        <failure type="failure"><![CDATA[
+(from function `assert_success' in file bats-extra.bash, line 409,
+ in test file test-resistor-color.bats, line 66)
+  `assert_success' failed with status 5
+
+-- command failed --
+status : 5
+output : jq: error (at <stdin>:4): Cannot index object with null
+--
+]]></failure>
+    </testcase>
+  <system-out></system-out>
+  <system-err></system-err>
+</testsuite>

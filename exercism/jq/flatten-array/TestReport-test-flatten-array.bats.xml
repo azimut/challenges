@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="test-flatten-array.bats" tests="11" failures="0" errors="0" skipped="0" time="1" timestamp="2024-05-13T07:26:14" hostname="darkstar">
+  <properties>
+    <property name="BATS_ROOT_PID" value="26166"/>
+    <property name="BATS_TMPDIR" value="/tmp"/>
+    <property name="BATS_RUN_TMPDIR" value="/tmp/bats-run-26166"/>
+    <property name="BATS_VERSION" value="1.2.1"/>
+    <property name="BATS_TEST_PATTERN" value="^[[:blank:]]*@test[[:blank:]]+(.*[^[:blank:]])[[:blank:]]+\{(.*)$"/>
+    <property name="BATS_CWD" value="/home/sendai/projects/challenges/exercism/jq/flatten-array"/>
+    <property name="BATS_TEST_FILTER" value=""/>
+    <property name="BATS_RUN_SKIPPED" value="true"/>
+    <property name="BATS_LIBEXEC" value="/usr/libexec/bats-core"/>
+    <property name="BATS_ROOT" value="/usr"/>
+  </properties>
+    <testcase classname="test-flatten-array.bats" name="empty" time="0"/>
+    <testcase classname="test-flatten-array.bats" name="no nesting" time="0"/>
+    <testcase classname="test-flatten-array.bats" name="flattens a nested array" time="0"/>
+    <testcase classname="test-flatten-array.bats" name="flattens array with just integers present" time="1"/>
+    <testcase classname="test-flatten-array.bats" name="5 level nesting" time="0"/>
+    <testcase classname="test-flatten-array.bats" name="6 level nesting" time="0"/>
+    <testcase classname="test-flatten-array.bats" name="null values are omitted from the final result" time="0"/>
+    <testcase classname="test-flatten-array.bats" name="consecutive null values at the front of the list are omitted from the final result" time="0"/>
+    <testcase classname="test-flatten-array.bats" name="consecutive null values in the middle of the list are omitted from the final result" time="0"/>
+    <testcase classname="test-flatten-array.bats" name="6 level nest list with null values" time="0"/>
+    <testcase classname="test-flatten-array.bats" name="all values in nested list are null" time="0"/>
+  <system-out></system-out>
+  <system-err></system-err>
+</testsuite>

@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="test-resistor-color-duo.bats" tests="7" failures="0" errors="0" skipped="0" time="1" timestamp="2024-05-13T08:33:13" hostname="darkstar">
+  <properties>
+    <property name="BATS_ROOT_PID" value="35400"/>
+    <property name="BATS_TMPDIR" value="/tmp"/>
+    <property name="BATS_RUN_TMPDIR" value="/tmp/bats-run-35400"/>
+    <property name="BATS_VERSION" value="1.2.1"/>
+    <property name="BATS_TEST_PATTERN" value="^[[:blank:]]*@test[[:blank:]]+(.*[^[:blank:]])[[:blank:]]+\{(.*)$"/>
+    <property name="BATS_CWD" value="/home/sendai/projects/challenges/exercism/jq/resistor-color-duo"/>
+    <property name="BATS_TEST_FILTER" value=""/>
+    <property name="BATS_RUN_SKIPPED" value="true"/>
+    <property name="BATS_LIBEXEC" value="/usr/libexec/bats-core"/>
+    <property name="BATS_ROOT" value="/usr"/>
+  </properties>
+    <testcase classname="test-resistor-color-duo.bats" name="Brown and black" time="0"/>
+    <testcase classname="test-resistor-color-duo.bats" name="Blue and grey" time="0"/>
+    <testcase classname="test-resistor-color-duo.bats" name="Yellow and violet" time="0"/>
+    <testcase classname="test-resistor-color-duo.bats" name="White and red" time="0"/>
+    <testcase classname="test-resistor-color-duo.bats" name="Orange and orange" time="1"/>
+    <testcase classname="test-resistor-color-duo.bats" name="Ignore additional colors" time="0"/>
+    <testcase classname="test-resistor-color-duo.bats" name="Black and brown, one-digit" time="0"/>
+  <system-out></system-out>
+  <system-err></system-err>
+</testsuite>
