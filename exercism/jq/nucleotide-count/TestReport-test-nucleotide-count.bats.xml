@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="test-nucleotide-count.bats" tests="5" failures="0" errors="0" skipped="0" time="1" timestamp="2024-05-14T09:44:21" hostname="darkstar">
+  <properties>
+    <property name="BATS_ROOT_PID" value="38311"/>
+    <property name="BATS_TMPDIR" value="/tmp"/>
+    <property name="BATS_RUN_TMPDIR" value="/tmp/bats-run-38311"/>
+    <property name="BATS_VERSION" value="1.2.1"/>
+    <property name="BATS_TEST_PATTERN" value="^[[:blank:]]*@test[[:blank:]]+(.*[^[:blank:]])[[:blank:]]+\{(.*)$"/>
+    <property name="BATS_CWD" value="/home/sendai/projects/challenges/exercism/jq/nucleotide-count"/>
+    <property name="BATS_TEST_FILTER" value=""/>
+    <property name="BATS_RUN_SKIPPED" value="true"/>
+    <property name="BATS_LIBEXEC" value="/usr/libexec/bats-core"/>
+    <property name="BATS_ROOT" value="/usr"/>
+  </properties>
+    <testcase classname="test-nucleotide-count.bats" name="empty strand" time="1"/>
+    <testcase classname="test-nucleotide-count.bats" name="can count one nucleotide in single-character input" time="0"/>
+    <testcase classname="test-nucleotide-count.bats" name="strand with repeated nucleotide" time="0"/>
+    <testcase classname="test-nucleotide-count.bats" name="strand with multiple nucleotides" time="0"/>
+    <testcase classname="test-nucleotide-count.bats" name="strand with invalid nucleotides" time="0"/>
+  <system-out></system-out>
+  <system-err></system-err>
+</testsuite>
