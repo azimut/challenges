@@ -1,7 +1,7 @@
 .legacy
-  | to_entries
-  | map(.key as $key | .value
-         | map({key: ascii_downcase,
-                value: $key | tonumber}))
-  | flatten
-  | from_entries
+  | with_entries(
+        {
+          key: .value[]|ascii_downcase,
+          value: .key|tonumber,
+        }
+      )
