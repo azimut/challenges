@@ -6,10 +6,10 @@ SQLITE    = data/5784/noahs.sqlite
 .PHONY: all 1 2 3 4 5 6 7 8
 all: 1 2 3 4 5 6 7 8
 
-1:; ./01.jq < $(CUSTOMERS)
-2:; ./02.jq --slurpfile products $(PRODUCTS) --slurpfile customers $(CUSTOMERS) < $(ORDERS)
-3:; ./03.jq -n --slurpfile customers $(CUSTOMERS)
-4:; ./04.jq --slurpfile products $(PRODUCTS) --slurpfile customers $(CUSTOMERS) < $(ORDERS)
+1:; ./1.jq < $(CUSTOMERS)
+2:; ./2.jq --slurpfile products $(PRODUCTS) --slurpfile customers $(CUSTOMERS) < $(ORDERS)
+3:; ./3.jq -n --slurpfile customers $(CUSTOMERS)
+4:; ./4.jq --slurpfile products $(PRODUCTS) --slurpfile customers $(CUSTOMERS) < $(ORDERS)
 5:; sqlite3 $(SQLITE) < 5.sql
 6:; sqlite3 $(SQLITE) < 6.sql
 7:; sqlite3 $(SQLITE) < 7.sql
