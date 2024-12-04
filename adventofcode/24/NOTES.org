@@ -4,3 +4,11 @@ chief historian
 sleigh launch
 note -> locations (ID) / north pole
 office
+* Day 2
+
+rudolph
+red-nosed reindeer nuclear fusion/fission plant/reactor
+reports (row=report, column=level)
+safe report
+- all gradually increasing/decreasing
+- 1 <= diff <= 3
