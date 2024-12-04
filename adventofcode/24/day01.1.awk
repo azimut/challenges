@@ -3,8 +3,8 @@
 }
 
 END {
-    size = asort(left, left); asort(right, right)
-    for (i = 0; i <= size; i++)
+    asort(left, left); asort(right, right)
+    for (i = 0; i < length(left); i++)
         total_distance += abs(left[i] - right[i])
     print total_distance
 }
