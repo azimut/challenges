@@ -1,11 +1,8 @@
-(ql:quickload '(defpackage-plus alexandria
-                serapeum
-                binding-arrows))
+(ql:quickload '(defpackage-plus alexandria serapeum))
 
 (defpackage+-1:defpackage+ #:day02
-  (:use #:cl #:binding-arrows)
-  (:local-nicknames (#:a #:alexandria)
-                    (#:s #:serapeum)))
+  (:use #:cl)
+  (:local-nicknames (#:a #:alexandria) (#:s #:serapeum)))
 
 (in-package #:day02)
 
