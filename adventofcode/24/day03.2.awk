@@ -13,13 +13,7 @@ BEGIN {
 }
 END { print total }
 
-function updateState(instruction) {
-    switch (instruction) {
-    case "do()" :
-        enabled = 1
-        break
-    case "don't()":
-        enabled = 0
-        break
-    }
+function updateState(instr) {
+    if (instr == "do()") enabled = 1
+    if (instr == "don't()") enabled = 0
 }
