@@ -12,3 +12,20 @@ reports (row=report, column=level)
 safe report
 - all gradually increasing/decreasing
 - 1 <= diff <= 3
+* Day 3
+
+warehouse
+- chief historian (in stock)
+- shopkeeper
+- north pole toboggan rental shop
+
+computers
+issues
+memory
+- corrupted
+- jumbled
+
+program
+- multiplies some numbers
+- instructions
+- mul(X,Y)
