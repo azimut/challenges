@@ -4,7 +4,8 @@ BEGIN {
 }
 {
     for (i = 1; i <= NF; i++) {
-        updateState($i)
+        if ($i == "do()") enabled = 1
+        if ($i == "don't()") enabled = 0
         if (!enabled) continue
         gsub("[^0-9,]","",$i)
         split($i,numbers,",")
@@ -12,8 +13,3 @@ BEGIN {
     }
 }
 END { print total }
-
-function updateState(instr) {
-    if (instr == "do()") enabled = 1
-    if (instr == "don't()") enabled = 0
-}
