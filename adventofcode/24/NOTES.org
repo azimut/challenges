@@ -1,3 +1,40 @@
+* 4chan
+
+1) https://boards.4chan.org/g/thread/103352712#p103362965
+   https://boards.4chan.org/g/thread/103364801#p103364801
+   https://boards.4chan.org/g/thread/103369303#p103369303
+   https://boards.4chan.org/g/thread/103374603#p103374603
+
+2) https://boards.4chan.org/g/thread/103374603#p103375628
+   https://boards.4chan.org/g/thread/103369303#p103375641
+   https://boards.4chan.org/g/thread/103378303#p103378303
+   https://boards.4chan.org/g/thread/103413259#p103416158
+   https://boards.4chan.org/g/thread/103384151#p103384151
+
+3) https://boards.4chan.org/g/thread/103384151#p103386498
+   https://boards.4chan.org/g/thread/103388939#p103388939
+   https://boards.4chan.org/g/thread/103393964#p103393964
+
+4) https://boards.4chan.org/g/thread/103393964#p103398502
+   https://boards.4chan.org/g/thread/103399209#p103399209
+   https://boards.4chan.org/g/thread/103403621#p103403621
+   https://boards.4chan.org/g/thread/103408470#p103408470
+   https://boards.4chan.org/g/thread/103413259#p103416183
+
+5) https://boards.4chan.org/g/thread/103408470#p103409858
+   https://boards.4chan.org/g/thread/103413251#p103413251
+   https://boards.4chan.org/g/thread/103413259#p103413259
+
+
+* Bigboys
+
+bigboy #1
+url:    http://0x0.st/XRnR.txt.7z
+pairs:  4M
+silver: 70030075280
+gold:   112445724586901
+
+
 * Day 1
 
 chief historian
@@ -29,3 +66,30 @@ program
 - multiplies some numbers
 - instructions
 - mul(X,Y)
+* TODO Day 4 - Ceres Search
+
+place: Ceres monitoring station
+word search
+- find all
+- XMAS
+- horizontal, vertical, diagonal, backwards, ovelapping
+
+part1: 18 on example
+* Day 5 - Print Queue
+
+scanning
+stationery stacks
+sub-basement 17
+printing deparment
+printer
+sleigh launch safety manual updates (print)
+
+PRINT IN ORDER
+
+** page ordering rules
+
+X|Y update
+- X,Y are page numbers
+- X < Y
+
+** pages to produce in each update
