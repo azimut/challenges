@@ -11,7 +11,7 @@ BEGIN { FS = "" }
 END {
     for (rid in rows) total += count_xmas(rows[rid])
     for (cid in cols) total += count_xmas(cols[cid])
-    # diagonals                                 \
+    # diagonals \
     for (cid = 1; cid <= NF; cid++) { # up
         rid = 0
         diag = ""
@@ -38,7 +38,7 @@ END {
         }
         total += count_xmas(diag)
     }
-    for (rid = 2; rid <= NR; rid++) { # down
+    for (rid = 2; rid <= NR; rid++) { # bottm
         cid = NF
         diag = ""
         for (coord = rid; coord <= NR; coord++) {
