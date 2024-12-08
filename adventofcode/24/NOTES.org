@@ -66,7 +66,7 @@ program
 - multiplies some numbers
 - instructions
 - mul(X,Y)
-* TODO Day 4 - Ceres Search
+* Day 4 - Ceres Search
 
 place: Ceres monitoring station
 word search
@@ -93,3 +93,18 @@ X|Y update
 - X < Y
 
 ** pages to produce in each update
+* Day 6 - Guard Gallivant
+
+
+prototype suit manufacturing lab
+year 1518
+chief
+
+map
+guard        ^
+'s patrol    .
+obstructions #
+
+movement protocol
+- >90° on obstruction
+- else forward
