@@ -32,7 +32,7 @@ END {
             guardy = nexty
         }
 
-        print length(visits), guardx, guardy, map_at(guardx,guardy)
+        print length(visits), ++x, guardx, guardy, map_at(guardx,guardy)
     }
     print length(visits)
 }
