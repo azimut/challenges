@@ -6,25 +6,34 @@
    https://boards.4chan.org/g/thread/103374603#p103374603
 
 2) https://boards.4chan.org/g/thread/103374603#p103375628
-   https://boards.4chan.org/g/thread/103369303#p103375641
-   https://boards.4chan.org/g/thread/103378303#p103378303
-   https://boards.4chan.org/g/thread/103413259#p103416158
-   https://boards.4chan.org/g/thread/103384151#p103384151
+   +https://boards.4chan.org/g/thread/103369303#p103375641+
+   +https://boards.4chan.org/g/thread/103378303+
+   +https://boards.4chan.org/g/thread/103384151#p103384151+
 
-3) https://boards.4chan.org/g/thread/103384151#p103386498
-   https://boards.4chan.org/g/thread/103388939#p103388939
-   https://boards.4chan.org/g/thread/103393964#p103393964
+3) +https://boards.4chan.org/g/thread/103384151#p103386498+
+   +https://boards.4chan.org/g/thread/103388939#p103388939+
+   +https://boards.4chan.org/g/thread/103393964#p103393964+
 
-4) https://boards.4chan.org/g/thread/103393964#p103398502
-   https://boards.4chan.org/g/thread/103399209#p103399209
-   https://boards.4chan.org/g/thread/103403621#p103403621
-   https://boards.4chan.org/g/thread/103408470#p103408470
-   https://boards.4chan.org/g/thread/103413259#p103416183
+4) +https://boards.4chan.org/g/thread/103393964#p103398502+
+   +https://boards.4chan.org/g/thread/103399209#p103399209+
+   +https://boards.4chan.org/g/thread/103403621#p103403621+
+   +https://boards.4chan.org/g/thread/103408470+
 
-5) https://boards.4chan.org/g/thread/103408470#p103409858
-   https://boards.4chan.org/g/thread/103413251#p103413251
-   https://boards.4chan.org/g/thread/103413259#p103413259
+5) +https://boards.4chan.org/g/thread/103408470#p103409858+
+   +https://boards.4chan.org/g/thread/103413251#p103413251+
+   +https://boards.4chan.org/g/thread/103413259#p103413259+
 
+6) https://boards.4chan.org/g/thread/103413259#p103413259
+   https://boards.4chan.org/g/thread/103424466
+   https://boards.4chan.org/g/thread/103432240
+7) https://boards.4chan.org/g/thread/103432240#p103432240
+   https://boards.4chan.org/g/thread/103437490
+   https://boards.4chan.org/g/thread/103442187
+8) https://boards.4chan.org/g/thread/103442187#p103445067
+   https://boards.4chan.org/g/thread/103447426
+   https://boards.4chan.org/g/thread/103453726
+9) https://boards.4chan.org/g/thread/103453726#p103453726
+   https://boards.4chan.org/g/thread/103458931
 
 * Bigboys
 
@@ -34,6 +43,39 @@ pairs:  4M
 silver: 70030075280
 gold:   112445724586901
 
+bigboy #2
+url:     http://0x0.st/X7HT.txt.7z
+reports: 500K
+silver:  105674
+gold:    140748
+
+bigboy #3?
+Wideboy
+https://files.catbox.moe/p8z01t.zip
+Part 1: 518
+Part 2: 588
+Tallboy
+http://0x0.st/X7HT.txt.7z
+Part 1: 105674
+Part 2: 140748
+
+bigboy #4
+url:    http://0x0.st/X71Z.txt.7z
+size:   15000x15000
+silver: 7025140
+gold:   879274
+
+bigboy #5
+url:     http://0x0.st/X740.txt.7z
+updates: 5K
+silver:  14346279
+gold:    14357204
+
+bigboy #9
+url:    http://0x0.st/XhSB.txt
+files:  500K
+silver: 70317453809507637
+gold:   70351090993107482
 
 * Day 1
 
@@ -93,18 +135,75 @@ X|Y update
 - X < Y
 
 ** pages to produce in each update
-* Day 6 - Guard Gallivant
-
+* TODO Day 6 - Guard Gallivant
 
 prototype suit manufacturing lab
 year 1518
 chief
 
+** part 1
+
 map
-guard        ^
-'s patrol    .
-obstructions #
+|--------------+---|
+| guard        | ^ |
+| 's patrol    | . |
+| obstructions | # |
+|--------------+---|
 
 movement protocol
 - >90° on obstruction
 - else forward
+
+** TODO part 2
+
+loop it
+|---+-----------------|
+| O | new obstacle    |
+| - | loop left-right |
+| + | loop corner     |
+| ¦ | loop up-down    |
+|---+-----------------|
+
+how many positions can you put a single obstruction to cause a loop?
+6 in test
+
+* TODO Day 7 - Bridge Repair
+
+rope bridge
+- over a river
+- in the middle of a jungle
+
+repair
+- final calibrations needed
+- stolen =operators=, from their =calibration equations=
+
+equation
+- <TESTVALUE>: [OPERANDS]
+- always left to right (not in operator precedence)
+- operators: + *
+- not all test can be true/solved
+
+** part 1
+
+total calibration result
+= sum tests values that can be true
+= 3749 (in test)
+
+* Day 8 - Resonant Collinearity
+
+roof of top-secret eastern bunny installation
+
+huge antenna
+- emits signal
+- 0.1% more likely to buy
+- "imitation mediocre chocolate"
+- [a-zA-Z0-9] representing the frequency
+
+** part 1
+
+antinodes
+- two antenas on the same freq define a line
+- antinodes where when one antenna is 2x(twice) the distance than the other antenna
+- can happen where other antenas are
+
+unique antinodes? 14 in example (including overlap with antenna)
