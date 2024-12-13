@@ -28,12 +28,12 @@
    +https://boards.4chan.org/g/thread/103432240+
 
 7) +https://boards.4chan.org/g/thread/103432240#p103433541+
-   https://boards.4chan.org/g/thread/103437490
-   https://boards.4chan.org/g/thread/103442187
+   +https://boards.4chan.org/g/thread/103437490+
+   +https://boards.4chan.org/g/thread/103442187+
 
 8) https://boards.4chan.org/g/thread/103442187#p103445067
-   https://boards.4chan.org/g/thread/103447426
-   https://boards.4chan.org/g/thread/103453726
+   +https://boards.4chan.org/g/thread/103447426+
+   +https://boards.4chan.org/g/thread/103453726+
 
 9) https://boards.4chan.org/g/thread/103453726#p103453726
    https://boards.4chan.org/g/thread/103458931
@@ -140,7 +140,7 @@ X|Y update
 - X < Y
 
 ** pages to produce in each update
-* TODO Day 6 - Guard Gallivant
+* Day 6 - Guard Gallivant
 
 prototype suit manufacturing lab
 year 1518
@@ -159,7 +159,7 @@ movement protocol
 - >90° on obstruction
 - else forward
 
-** TODO part 2
+** part 2
 
 loop it
 |---+-----------------|
