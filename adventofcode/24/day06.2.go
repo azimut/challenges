@@ -57,7 +57,6 @@ func main() {
 func (p Patrol) possibleLoops() (ret int) {
 	for y := 0; y < p.gps.height; y++ {
 		for x := 0; x < p.gps.width; x++ {
-			// println(x, y)
 			if p.gps.lookup(x, y) != GpsCoordEmpty {
 				continue
 			}
@@ -77,13 +76,11 @@ func (p Patrol) loops() bool {
 	for {
 		aheadx, aheady, err := p.lookAhead()
 		if err != nil {
-			// fmt.Fprintln(os.Stderr, err)
 			break
 		}
 		ahead := p.gps.lookup(aheadx, aheady)
 		switch ahead {
 		case GpsCoordObstacle:
-			// fmt.Println("obstacle!")
 			p.guard.rotate()
 		case GpsCoordEmpty:
 			idx := fmt.Sprintf("%d,%d,%c", p.guard.x, p.guard.y, p.guard.orientation)
@@ -94,8 +91,6 @@ func (p Patrol) loops() bool {
 			}
 			p.step()
 		}
-		// fmt.Println(len(visits), p.guard.x, p.guard.y)
-		// time.Sleep(1000)
 	}
 	return false
 }
@@ -111,13 +106,11 @@ func (p Patrol) walk() int {
 		ahead := p.gps.lookup(aheadx, aheady)
 		switch ahead {
 		case GpsCoordObstacle:
-			// fmt.Println("obstacle!")
 			p.guard.rotate()
 		case GpsCoordEmpty:
 			p.step()
 			visits[fmt.Sprintf("%d,%d", aheadx, aheady)] = true
 		}
-		// fmt.Println(len(visits), p.guard.x, p.guard.y)
 		time.Sleep(1000)
 	}
 	return len(visits)
