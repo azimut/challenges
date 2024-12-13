@@ -23,19 +23,24 @@
    +https://boards.4chan.org/g/thread/103413251#p103413251+
    +https://boards.4chan.org/g/thread/103413259#p103413259+
 
-6) https://boards.4chan.org/g/thread/103413259#p103413259
-   https://boards.4chan.org/g/thread/103424466
-   https://boards.4chan.org/g/thread/103432240
-7) https://boards.4chan.org/g/thread/103432240#p103432240
+6) +https://boards.4chan.org/g/thread/103413259#p103422153+
+   +https://boards.4chan.org/g/thread/103424466+
+   +https://boards.4chan.org/g/thread/103432240+
+
+7) +https://boards.4chan.org/g/thread/103432240#p103433541+
    https://boards.4chan.org/g/thread/103437490
    https://boards.4chan.org/g/thread/103442187
+
 8) https://boards.4chan.org/g/thread/103442187#p103445067
    https://boards.4chan.org/g/thread/103447426
    https://boards.4chan.org/g/thread/103453726
+
 9) https://boards.4chan.org/g/thread/103453726#p103453726
    https://boards.4chan.org/g/thread/103458931
 
 * Bigboys
+
+https://github.com/Error916/Aoc2024/
 
 bigboy #1
 url:    http://0x0.st/XRnR.txt.7z
