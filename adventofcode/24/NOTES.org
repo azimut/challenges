@@ -31,12 +31,20 @@
    +https://boards.4chan.org/g/thread/103437490+
    +https://boards.4chan.org/g/thread/103442187+
 
-8) https://boards.4chan.org/g/thread/103442187#p103445067
+8) +https://boards.4chan.org/g/thread/103442187#p103445067+
    +https://boards.4chan.org/g/thread/103447426+
    +https://boards.4chan.org/g/thread/103453726+
 
-9) https://boards.4chan.org/g/thread/103453726#p103453726
-   https://boards.4chan.org/g/thread/103458931
+9) +https://boards.4chan.org/g/thread/103453726#p103456219+
+   +https://boards.4chan.org/g/thread/103458931+
+   +https://boards.4chan.org/g/thread/103466287+
+
+10) https://boards.4chan.org/g/thread/103466287#p103467831
+    +https://boards.4chan.org/g/thread/103471260+
+    https://boards.4chan.org/g/thread/103478070
+
+11) https://boards.4chan.org/g/thread/103478070#p103479099
+    https://boards.4chan.org/g/thread/103481467
 
 * Bigboys
 
@@ -81,6 +89,12 @@ url:    http://0x0.st/XhSB.txt
 files:  500K
 silver: 70317453809507637
 gold:   70351090993107482
+
+bigboy #10
+url:    http://0x0.st/XhOX.txt.7z
+grid:   7500x7500
+silver: 433087
+gold:   624588
 
 * Day 1
 
@@ -172,7 +186,7 @@ loop it
 how many positions can you put a single obstruction to cause a loop?
 6 in test
 
-* TODO Day 7 - Bridge Repair
+* Day 7 - Bridge Repair
 
 rope bridge
 - over a river
@@ -212,3 +226,31 @@ antinodes
 - can happen where other antenas are
 
 unique antinodes? 14 in example (including overlap with antenna)
+
+* Day 9 - Disk Fragment
+
+hallways
+amphipods
+mini-submarine
+walls
+
+amphipod's computer
+contiguous (disk) free-space
+compacting files
+
+~disk map~
+- alternate between
+  - file length in blocks
+  - frespace length in blocks
+
+each file has an =id number=
+- based on the order of the files as they appear (before re-arrengement)
+- from 0
+
+compact
+- moving 1 block at the time, from right to left
+- leaving no space between
+
+checksum
+- sum of
+- multiplication of: id * position (start by 0)
