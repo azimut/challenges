@@ -1,0 +1,16 @@
+* Write a Zeek script to fetch data in real time
+https://www.upwork.com/jobs/~021874810321594410894
+
+We are looking for an experienced Zeek/Bro script developer to create a custom solution that achieves the following:
+1. SNI/Domain/Hostname Detection:
+  - Extract the Server Name Indication (SNI), domain name, or hostname of every outbound SSL/HTTP connection.
+  - Log this data for monitoring purposes.
+2. Application-Level Response Time Calculation:
+  - Capture the total application-layer response time for every HTTP/HTTPS request.
+  - This includes the complete lifecycle of a request, encompassing:
+    - DNS resolution.
+    - SSL negotiation.
+    - TCP handshake.
+    - Connection establishment.
+    - Data transfer and resource download.
+  - The goal is to have response time metrics similar to those provided by web servers like Apache or Nginx.
