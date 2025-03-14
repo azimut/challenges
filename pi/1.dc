@@ -1,0 +1,12 @@
+#!/usr/bin/env dc
+
+[q]sQ
+
+[
+d2>Q
+d1-lfx
+r2-lfx
++
+]sf
+
+[Enter desired nth fibonacci number: ]P?lfxp
