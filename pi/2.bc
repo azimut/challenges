@@ -1,0 +1,12 @@
+#!/usr/bin/bc -q
+
+"Enter desired nth fibonacci number: "
+n = read()
+pp = 1; p = 1
+for (i = 3; i <= n; i++) {
+    res = p + pp
+    pp = p
+    p = res
+}
+res
+quit

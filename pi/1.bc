@@ -1,0 +1,10 @@
+#!/usr/bin/bc -lq
+
+define fibo (n) {
+    if (n == 1 || n == 2) { return 1 }
+    return fibo(n-1) + fibo(n-2)
+}
+
+"Enter desired nth fibonacci number: "
+fibo(read())
+quit
