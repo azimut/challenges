@@ -45,9 +45,16 @@ Ejemplo:
 ```
 > Restricciones: La solución debe ejecutrase en O(log n) o mejor
 
+- See video [The Fibonacci Matrix](https://www.youtube.com/watch?v=RPbAqlrVp5Y)
+- See video [One second to compute the largest Fibonacci number I can](https://www.youtube.com/watch?v=KzT9I1d-LlQ)
+- Solution video at [Binary Exponentiation](https://youtu.be/9VEqjAZxmeA?t=566)
+- Solution video at [Matrix Exponentiation to solve the Fibonacci problem](https://www.youtube.com/watch?v=fBzwKEqSYxE)
+- Read a solution at [The Fibonacci Matrix](https://ianthehenry.com/posts/fibonacci/)
+- Read a solution at [BigO and Beyond: How to Compute Fibonacci Sequence Efficiently with Matrix Exponentiation](https://robwilsondev.medium.com/bigo-and-beyond-how-to-compute-fibonacci-sequence-efficiently-with-matrix-exponentiation-d9924545fe54)
+
 ## Desafío 3: Suma de Dígitos en la Expansión de π
 
-Calcula la suma de los primeros n dígitos de la expansión edcimal de π  (sin incluir el "3.").
+Calcula la suma de los primeros n dígitos de la expansión decimal de π  (sin incluir el "3.").
 **Entrada**: Un número entero n (1 <= n <= 10^4)
 **Salida**: La suma de los primeros n dígitos después del punto decimal.
 Ejemplo:

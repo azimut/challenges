@@ -2,7 +2,7 @@
 
 "Enter desired nth fibonacci number: "
 n = read()
-pp = 1; p = 1
+pp = p = 1
 for (i = 3; i <= n; i++) {
     res = p + pp
     pp = p

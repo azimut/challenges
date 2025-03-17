@@ -1,0 +1,32 @@
+#!/usr/bin/bc -q
+
+define mul4(*m[], *n[], *r[]) {
+    auto w,x,y,z,a,b,c,d
+    a=m[0];b=m[1];c=m[2];d=m[3]
+    w=n[0];x=n[1];y=n[2];z=n[3]
+    r[0] = a*w + b*y
+    r[1] = a*x + b*z
+    r[2] = c*w + d*y
+    r[3] = c*x + d*z
+}
+
+define matpow(*a[], n, *r[]) {
+    auto x, y
+    r[0]=1; r[1]=0; r[2]=0; r[3]=1 # identity
+    while (n != 0) {
+        if (n % 2 != 0) {
+           x = mul4(r[],a[],r[]) # r = r * a
+        }
+        y = mul4(a[],a[],a[]) # a = a * a
+        n = n / 2
+    }
+}
+
+mat[0] = 1; mat[1] = 1; mat[2] = 1; mat[3] = 0
+res[0] = 0; res[1] = 0; res[2] = 0; res[3] = 0
+
+"Enter desired nth fibonacci number: "
+z = matpow(mat[], read() - 1, res[])
+
+res[0]
+quit

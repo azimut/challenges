@@ -1,4 +1,4 @@
-#!/usr/bin/bc -lq
+#!/usr/bin/bc -q
 
 define fibo (n) {
     if (n == 1 || n == 2) { return 1 }
