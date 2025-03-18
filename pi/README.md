@@ -52,6 +52,15 @@ Ejemplo:
 - Read a solution at [The Fibonacci Matrix](https://ianthehenry.com/posts/fibonacci/)
 - Read a solution at [BigO and Beyond: How to Compute Fibonacci Sequence Efficiently with Matrix Exponentiation](https://robwilsondev.medium.com/bigo-and-beyond-how-to-compute-fibonacci-sequence-efficiently-with-matrix-exponentiation-d9924545fe54)
 
+### output
+
+``` shell
+$ echo 1000000 | ./2.bc
+Enter desired nth fibonacci number:
+195328...
+Compilation finished ... duration 33.9 s
+```
+
 ## Desafío 3: Suma de Dígitos en la Expansión de π
 
 Calcula la suma de los primeros n dígitos de la expansión decimal de π  (sin incluir el "3.").
@@ -76,12 +85,15 @@ Ejemplo:
 ```
 > Restricciones: La solución debe ejecutarse en tiempo razonable para n = 10^8
 
+- See video of implementation with darts at [Coding Challenge 95: Approximating the Value of Pi](https://www.youtube.com/watch?v=5cNnf_7e92Q)
+- See video of implementation with random coprimes at [Generating π from 1,000 random numbers](https://www.youtube.com/watch?v=RZBhSi_PwHU)
+
 ## Desafío 5: π en la Transformada de Fourier
 
 Se te da una señal de audio discretizada en N puntos. Usa la Transformada Rápida de Fourier (FFT) para encontrar la frecuencia dominante y verificar si está relacionada con π.
 **Entrada**: Un número entero N (1024 <= N <= 2^16), seguido de N valores que representan una señal.
 **Salida**: La frecuencia dominante y un mensaje indicando si está relacionada con π.
-Ejmeplo:
+Ejemplo:
 ```
 **Entrada**:
 1024
