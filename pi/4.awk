@@ -1,4 +1,4 @@
-#!/usr/bin/mawk -f
+#!/usr/bin/awk -f
 BEGIN {
     printf "Enter number of random samples to use: "
     getline iterations < "-"
