@@ -1,9 +1,10 @@
+# incomplete: works only with test input file, not with full input
 BEGIN { FS="" }
 {
-    is_file_block = 1
     file_id = 0
     disk_size = 1
     for (i = 1; i <= NF; i++) {
+        is_file_block = i % 2 != 0
         block_size = $i
         block_data = is_file_block ? file_id : "."
         for (j = disk_size; j < disk_size + block_size; j++) {
@@ -11,13 +12,12 @@ BEGIN { FS="" }
         }
         disk_size += block_size
         if (is_file_block) file_id++
-        is_file_block = is_file_block ? 0 : 1
     }
     disk_size--
 }
 # 5653027521320 too low
 # 6420913947251 too high
-END { # 2858 - 94957 too low
+END { # 2858
     # print_disk()
     right_pointer = disk_size
     print "disk_size = "disk_size
