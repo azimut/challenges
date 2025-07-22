@@ -1,3 +1,74 @@
+- linux autorun usb https://www.upwork.com/jobs/~021880112883628141180
+  - run after boot
+  - add entries in crontab
+
+- https://www.upwork.com/jobs/~021902709439521749667
+  - unzip & zip again without password
+  - windows support?
+
+* tech
+
+- redis
+  - delete data from script https://www.upwork.com/jobs/~021880112883628141180
+- letsencrypt
+- ssh
+  - portknocking https://www.upwork.com/jobs/~021888078913349425366
+- proxy
+  - caddy
+    - ddos https://www.upwork.com/jobs/~021878837916782046036
+  - haproxy
+    - dns https://www.upwork.com/jobs/~021878657257176964625
+    - lb https://www.upwork.com/jobs/~021885535750800604154
+- nginx
+  - setup for static site https://www.upwork.com/jobs/~021877407972902316884
+    - prove: security
+    - prove: performance
+      - maybe think on showing a benchmark
+  - ssl setup
+    - let's encrypt to isrg root x1 https://www.upwork.com/jobs/~021866856745242491333
+- aws
+- synology
+- splunk
+- mysql
+  - backups, offsite, automatically ran
+
+* c
+
+- https://www.upwork.com/jobs/~021902808482033826467 Processing Fixed Length Record Data with Threads
+  - This is a C programming project.
+  - I have attached pdf which contains  the requirements and detailed description.
+  - This is associate with OS.
+  - CODE MUST BE WRITTEN BY HUMAN NOT WITH AI TOOLS.
+  - I will double check that for plagiarism once it will done
+
+- https://www.upwork.com/jobs/~021880519195662673289
+  - It receive data from another servers. Then, it keep in a cache.
+  - Now, I need to use this data to make some statistics of it. It will make stat table in the cache or memcache.
+  - Then, it will add telnet command to the existing telnet interface for external server to get data from it.
+
+* python
+
+- download 5gb file https://www.upwork.com/jobs/~021880370163422876537
+- decompile exe https://www.upwork.com/jobs/~021879889387308502738
+- modify files date based on timestamp on filename https://www.upwork.com/jobs/~021879858216315819365
+- generate qrbadges https://www.upwork.com/jobs/~021879816785292766578
+
+* webscrapping
+
+- https://www.upwork.com/jobs/~021880730342805018799
+  - scrape all the images, from js site
+
+** Automate (Linkedin) Data Export: Web Script to Download Data
+https://www.upwork.com/jobs/~021873053810924000542
+** Migration of a Selenium Script to Puppeteer-Stealth with puppeteer-extra-plugin-stealth
+https://www.upwork.com/jobs/~021875099602262029955
+
+The objective of this project is to migrate an existing script, currently written in Selenium, to Puppeteer by integrating the stealth plugin puppeteer-extra-plugin-stealth. This migration aims to enhance the script's stealth capabilities, making it undetectable by the target website, while retaining its current functionalities.
+We are targeting a site who have a high level of security. We are looking for a real specialist.
+
+- Enable the puppeteer-extra-plugin-stealth plugin to hide common fingerprints (navigator.webdriver, WebGL, CanvasFingerprint, AudioContext, etc.).
+- Ensure the script is functional and undetectable on the target website.
+
 * Write a Zeek script to fetch data in real time
 https://www.upwork.com/jobs/~021874810321594410894
 
