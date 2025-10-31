@@ -4,13 +4,13 @@
 
 [Link](https://cmdchallenge.com/)
 
-![main challenge end](main.png)
+![main challenge end](main.jpeg)
 
 ## oops
 
 [Link](https://oops.cmdchallenge.com/)
 
-![oops challenge end](oops.png)
+![oops challenge end](oops.jpeg)
 
 ### Learned
 
@@ -18,3 +18,9 @@
 $ echo  $(< foo.txt)  # a single line
 $ echo "$(< foo.txt)" # respects multiple lines
 ```
+
+## 12 days
+
+[Link](https://12days.cmdchallenge.com/)
+
+[12 days challenge end](12days.jpeg)
