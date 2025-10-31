@@ -1,26 +1,26 @@
 # cmdchallenge
 
-## main challenge
+## End Screenshots
 
-[Link](https://cmdchallenge.com/)
+<p float="left" align="middle">
+  <a href="main.jpeg">   <img src="main.jpeg"   width="33%" /></a>
+  <a href="oops.jpeg">   <img src="oops.jpeg"   width="33%" /></a>
+  <a href="12days.jpeg"> <img src="12days.jpeg" width="33%" /></a>
+</p>
 
-![main challenge end](main.jpeg)
+##  Challenges
 
-## oops
+- [Command Challenge](https://cmdchallenge.com/)
+- [Oops I deleted my bin/ dir :/](https://oops.cmdchallenge.com/)
+- [Twelve Days of Shell](https://12days.cmdchallenge.com/)
 
-[Link](https://oops.cmdchallenge.com/)
+## Lessons Learned
 
-![oops challenge end](oops.jpeg)
+- cat'ing a file with shell built-ins
+  ``` shellsession
+  $ echo  $(< foo.txt)  # a single line
+  $ echo "$(< foo.txt)" # respects multiple lines
+  ```
 
-### Learned
 
-``` shellsession
-$ echo  $(< foo.txt)  # a single line
-$ echo "$(< foo.txt)" # respects multiple lines
-```
 
-## 12 days
-
-[Link](https://12days.cmdchallenge.com/)
-
-[12 days challenge end](12days.jpeg)
