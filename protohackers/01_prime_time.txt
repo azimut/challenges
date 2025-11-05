@@ -1,6 +1,5 @@
 1: Prime Time
 
-View leaderboard
 Thu, 25 Aug 2022 14:00:00
 
 To keep costs down, a hot new government department is contracting out its mission-critical primality testing to the lowest bidder. (That's you).
