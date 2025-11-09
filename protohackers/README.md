@@ -27,7 +27,7 @@ Value: |  'Q'  |        mintime        |        maxtime        |
 ```
 
 Factor lessons learned
-- You can only `print` byte-arrays. Nothing else or it will fail.
+- You can only `print` byte-arrays on a binary encoded `threaded-server`. Nothing else or it will silently fail.
 - Read the [docs](https://docs.factorcode.org/content/article-stream-binary.html).
 
 ## Dev

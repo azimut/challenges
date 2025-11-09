@@ -48,14 +48,16 @@ The second int32 is the price, in pennies, of this client's asset, at the given 
 
 Note that:
 
-    Insertions may occur out-of-order.
-    While rare, prices can go negative.
-    Behaviour is undefined if there are multiple prices with the same timestamp from the same client.
+- Insertions may occur out-of-order.
+- While rare, prices can go negative.
+- Behaviour is undefined if there are multiple prices with the same timestamp from the same client.
 
 For example, to insert a price of 101 pence at timestamp 12345, a client would send:
 
+```
 Hexadecimal: 49    00 00 30 39    00 00 00 65
 Decoded:      I          12345            101
+```
 
 (Remember that you'll receive 9 raw bytes, rather than ASCII text representing hex-encoded data).
 
