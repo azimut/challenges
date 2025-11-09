@@ -26,6 +26,10 @@ Value: |  'I'  |       timestamp       |         price         |
 Value: |  'Q'  |        mintime        |        maxtime        |
 ```
 
+Factor lessons learned
+- You can only `print` byte-arrays. Nothing else or it will fail.
+- Read the [docs](https://docs.factorcode.org/content/article-stream-binary.html).
+
 ## Dev
 
 External access tunnels setup using [pinggy.io](https://pinggy.io/).
