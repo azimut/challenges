@@ -14,10 +14,9 @@ IN: meansend
 : assoc-mean ( assoc -- n ) values mean round ;
 : write-int32 ( seq n -- seq ) log-response 4 >be write ;
 : cmd-query ( state min max -- state' ) dupdd filter-state assoc-mean write-int32 ;
-: cmd-insert ( state timestamp price -- state' ) 2array 1array append ;
+: cmd-insert ( state timestamp price -- state' ) 2array 1array append! ;
 : packet-switch ( state f1 f2 type -- state' )
-    log-request
-    {
+    log-request {
         { 73 [ cmd-insert ] } ! I
         { 81 [ cmd-query  ] } ! Q
     } case ;
@@ -29,7 +28,7 @@ IN: meansend
 : <meansend-server> ( port -- threaded-server )
     binary <threaded-server>
     swap >>insecure
-    [ { } handler-loop ] >>handler ;
+    [ V{ } clone handler-loop ] >>handler ;
 
 : main ( -- )
     1234 <meansend-server> start-server wait-for-server ;
