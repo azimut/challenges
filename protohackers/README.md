@@ -26,9 +26,10 @@ Value: |  'I'  |       timestamp       |         price         |
 Value: |  'Q'  |        mintime        |        maxtime        |
 ```
 
-Factor lessons learned
+Lessons learned
 - You can only `print` byte-arrays on a binary encoded `threaded-server`. Nothing else or it will silently fail.
 - Read the [docs](https://docs.factorcode.org/content/article-stream-binary.html).
+- You can capture tcp traffic data with [Wireshark](https://www.wireshark.org/) to later replay it for a way to test your code offline.
 
 ## Dev
 
