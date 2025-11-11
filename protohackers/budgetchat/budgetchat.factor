@@ -18,7 +18,10 @@ users-mailboxes [ H{ } clone ] initialize
 : msg-new ( user raw-msg -- msg ) "[%s] %s" sprintf ;
 : msg-enter ( user -- msg ) "* %s has entered the room" sprintf ;
 : msg-invalid ( -- msg ) "* Illegal username :( ... bye!" ;
-: msg-list ( -- msg ) mailboxes keys ", " join "* The room contains: %s" sprintf ;
+: msg-list ( user -- msg )
+    '[ _ = not ] mailboxes keys swap filter
+    ", " join
+    "* The room contains: %s" sprintf ;
 : msg-leave ( user -- msg ) "* %s has left the room" sprintf ;
 
 : greet ( -- )
@@ -51,6 +54,7 @@ users-mailboxes [ H{ } clone ] initialize
             dup user-register
             dup dup msg-enter mailbox-deliver
             dup watch-mailbox
+            dup msg-list print flush
             room-loop
         ] [ user-cleanup ] finally
     ] [ msg-invalid print flush ] if* ;
