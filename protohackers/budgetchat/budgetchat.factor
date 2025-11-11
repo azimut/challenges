@@ -27,8 +27,7 @@ users-mailboxes [ H{ } clone ] initialize
 : msg-enter ( user -- msg ) "* %s has entered the room" sprintf ;
 : room-loop ( user -- user )
     readln [
-        ! dupd msg-new mailbox-deliver
-        drop
+        dupd dupd msg-new mailbox-deliver
         room-loop
     ] when* ;
 
