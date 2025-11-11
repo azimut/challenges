@@ -14,7 +14,6 @@ users-mailboxes [ H{ } clone ] initialize
     swap mailboxes-not-of
     swap each ;
 
-
 : msg-new ( user raw-msg -- msg ) "[%s] %s" sprintf ;
 : msg-enter ( user -- msg ) "* %s has entered the room" sprintf ;
 : msg-invalid ( -- msg ) "* Illegal username :( ... bye!" ;
@@ -23,9 +22,7 @@ users-mailboxes [ H{ } clone ] initialize
     ", " join
     "* The room contains: %s" sprintf ;
 : msg-leave ( user -- msg ) "* %s has left the room" sprintf ;
-
-: greet ( -- )
-    "Welcome to budgetchat! What shall I call you?" print flush ;
+: msg-greet ( -- ) "Welcome to budgetchat! What shall I call you?" ;
 
 : user-validate ( user -- user/f )
     dup { [ string? ] [ length 0 > ] [ [ alpha? ] all? ] } 1&&
@@ -49,13 +46,12 @@ users-mailboxes [ H{ } clone ] initialize
 : user-cleanup ( user -- ) [ mailbox-ctrlaltdel ] [ mailbox-delete ] [ user-leave ] tri ;
 
 : handle-requests ( -- )
-    greet user-read [
-        [
-            dup user-register
-            dup dup msg-enter mailbox-deliver
-            dup watch-mailbox
-            dup msg-list print flush
-            room-loop
+    greet print flush user-read [
+        [ dup user-register
+          dup dup msg-enter mailbox-deliver
+          dup watch-mailbox
+          dup msg-list print flush
+          room-loop
         ] [ user-cleanup ] finally
     ] [ msg-invalid print flush ] if* ;
 
