@@ -68,20 +68,20 @@ External access setup using [pinggy.io](https://pinggy.io/).
 - For UDP: I found `nmap` or `nping` useful to craft custom packets and see it's output.
   - nping: in particular, can show the data sent and received back in one command.
   ```shellsession
-$ sudo nping -v3 --bpf-filter='udp and dst port 53' -c 1 --data-string="foo" --udp -p 1234 127.0.0.1
+  $ sudo nping -v3 --bpf-filter='udp and dst port 53' -c 1 --data-string="foo" --udp -p 1234 127.0.0.1
 
-Starting Nping 0.7.80 ( https://nmap.org/nping ) at 2025-11-13 14:12 -03
-SENT (0.0107s) UDP [127.0.0.1:53 > 127.0.0.1:1234 len=11 csum=0x275F] IP [ver=4 ihl=5 tos=0x00 iplen=31 id=21414 foff=0 ttl=64 proto=17 csum=0x2926]
-0000   45 00 00 1f 53 a6 00 00  40 11 29 26 7f 00 00 01  E...S...@.)&....
-0010   7f 00 00 01 00 35 04 d2  00 0b 27 5f 66 6f 6f     .....5....'_foo
-RCVD (0.0111s) UDP [127.0.0.1:1234 > 127.0.0.1:53 len=15 csum=0xFE22] IP [ver=4 ihl=5 tos=0x00 iplen=35 id=48370 flg=D foff=0 ttl=64 proto=17 csum=0x7fd5]
-0000   45 00 00 23 bc f2 40 00  40 11 7f d5 7f 00 00 01  E..#..@.@.......
-0010   7f 00 00 01 04 d2 00 35  00 0f fe 22 66 6f 6f 3d  .......5..."foo=
-0020   62 61 72                                          bar
+  Starting Nping 0.7.80 ( https://nmap.org/nping ) at 2025-11-13 14:12 -03
+  SENT (0.0107s) UDP [127.0.0.1:53 > 127.0.0.1:1234 len=11 csum=0x275F] IP [ver=4 ihl=5 tos=0x00 iplen=31 id=21414 foff=0 ttl=64 proto=17 csum=0x2926]
+  0000   45 00 00 1f 53 a6 00 00  40 11 29 26 7f 00 00 01  E...S...@.)&....
+  0010   7f 00 00 01 00 35 04 d2  00 0b 27 5f 66 6f 6f     .....5....'_foo
+  RCVD (0.0111s) UDP [127.0.0.1:1234 > 127.0.0.1:53 len=15 csum=0xFE22] IP [ver=4 ihl=5 tos=0x00 iplen=35 id=48370 flg=D foff=0 ttl=64 proto=17 csum=0x7fd5]
+  0000   45 00 00 23 bc f2 40 00  40 11 7f d5 7f 00 00 01  E..#..@.@.......
+  0010   7f 00 00 01 04 d2 00 35  00 0f fe 22 66 6f 6f 3d  .......5..."foo=
+  0020   62 61 72                                          bar
 
-Max rtt: N/A | Min rtt: N/A | Avg rtt: N/A
-Raw packets sent: 1 (31B) | Rcvd: 1 (35B) | Lost: 0 (0.00%)
-Tx time: 0.00115s | Tx bytes/s: 26979.98 | Tx pkts/s: 870.32
-Rx time: 1.00159s | Rx bytes/s: 34.94 | Rx pkts/s: 1.00
-Nping done: 1 IP address pinged in 1.02 seconds
+  Max rtt: N/A | Min rtt: N/A | Avg rtt: N/A
+  Raw packets sent: 1 (31B) | Rcvd: 1 (35B) | Lost: 0 (0.00%)
+  Tx time: 0.00115s | Tx bytes/s: 26979.98 | Tx pkts/s: 870.32
+  Rx time: 1.00159s | Rx bytes/s: 34.94 | Rx pkts/s: 1.00
+  Nping done: 1 IP address pinged in 1.02 seconds
   ```
