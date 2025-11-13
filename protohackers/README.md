@@ -50,5 +50,5 @@ Can't use `<threaded-server>` with UDP. But found an [article](https://re.factor
 External access setup using [pinggy.io](https://pinggy.io/).
 
 For TCP: `ssh -p 443 -R0:127.0.0.1:1234 qr+tcp@free.pinggy.io`
-For [UDP](https://pinggy.io/blog/ngrok_udp_alternative/): `pinggy -p 443 -R0:localhost:1234 udp@free.pinggy.io`
+For [UDP](https://pinggy.io/blog/ngrok_udp_alternative/): `pinggy -p 443 -R0:127.0.0.1:1234 udp@free.pinggy.io`
 

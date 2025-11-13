@@ -20,15 +20,15 @@ TUPLE: retrieve key ;
     [ has-equal? ] keep
     swap [ <insert> ] [ <retrieve> ] if ;
 
-: request-response ( request -- response/f )
-    { { [ dup insert?   ] [ [ value>> ] [ key>> ] bi db-set f ] }
-      { [ dup retrieve? ] [ key>> [ dup dup db-get "%s=%s\n" printf flush ] with-global db-get ascii encode ] }
+: request-response ( request -- response )
+    { { [ dup insert?   ] [ [ value>> ] [ key>> ] bi db-set B{ } ] }
+      { [ dup retrieve? ] [ key>> db-get ascii encode ] }
     } cond ;
 
 : serve ( datagram -- )
     [ receive ] keep !  bytes addrspec datagram
     [ request-decode request-response ] 2dip
-    pick [ send ] [ 3drop ] if ;
+    send ;
 
 : main ( -- )
     f 1234 <inet4> <datagram> [
