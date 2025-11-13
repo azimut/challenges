@@ -1,4 +1,4 @@
-USING: kernel io io.sockets io.encodings.ascii destructors namespaces assocs splitting sequences io.encodings.string combinators accessors namespaces ascii ;
+USING: kernel io io.sockets io.encodings.ascii destructors namespaces assocs splitting sequences io.encodings.string combinators accessors namespaces ascii formatting ;
 IN: unusualdb
 
 SYMBOL: the-database
@@ -22,7 +22,7 @@ TUPLE: retrieve key ;
 
 : request-response ( request -- response )
     { { [ dup insert?   ] [ [ value>> ] [ key>> ] bi db-set B{ } ] }
-      { [ dup retrieve? ] [ key>> db-get ascii encode ] }
+      { [ dup retrieve? ] [ key>> dup db-get "%s=%s" sprintf ascii encode ] }
     } cond ;
 
 : serve ( datagram -- )
