@@ -51,6 +51,8 @@ Unfortunately Factor seems unable to `receive` empty UDP packets/datagrams. Whic
 
 An evil tcp proxy for the chat protocol made on exercise #3. It rewrites some very specific text content.
 
+Found a wacky [solution](https://gist.github.com/jan-g/11047aaf50d0ac3b4e40bb76dedbf2e6) in `.sh`.
+
 ## Dev
 
 ### Tunnel

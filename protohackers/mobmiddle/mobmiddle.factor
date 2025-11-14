@@ -1,4 +1,4 @@
-USING: kernel accessors io io.sockets io.servers math.order io.encodings.ascii combinators.short-circuit sequences ascii splitting prettyprint continuations ;
+USING: kernel accessors io io.streams.duplex io.sockets io.servers math.order io.encodings.ascii combinators.short-circuit sequences ascii splitting prettyprint continuations concurrency.messaging threads ;
 IN: mobmiddle
 
 CONSTANT: tonys-address "7YWHMfk9JZe0LM0g1ZauHuiSxhI"
@@ -16,10 +16,16 @@ CONSTANT: tonys-address "7YWHMfk9JZe0LM0g1ZauHuiSxhI"
 : proxy-rewrite ( str -- str' )
     words [ boguscoin-replace ] map unwords ;
 
-: handle-requests ( stream -- stream )
+: handle-readln ( stream -- stream )
     readln [
         proxy-rewrite over stream-print
-        handle-requests
+        handle-readln
+    ] when* ;
+
+: handle-print ( stream -- stream )
+    dup stream-readln [
+        proxy-rewrite print
+        handle-print
     ] when* ;
 
 : connect-remote ( -- stream )
@@ -29,7 +35,12 @@ CONSTANT: tonys-address "7YWHMfk9JZe0LM0g1ZauHuiSxhI"
 : <mobmiddle-server> ( port -- threaded-server )
     ascii <threaded-server>
     swap >>insecure
-    [ connect-remote handle-requests ] >>handler ;
+    [ connect-remote >duplex-stream< ! in out
+      [ [ handle-readln drop ] curry "req" spawn drop ]
+      [ [ handle-print  drop ] curry "res" spawn drop ]
+      bi*
+      yield
+    ] >>handler ;
 
 : main ( -- )
     1234 <mobmiddle-server> start-server wait-for-server ;
