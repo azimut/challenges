@@ -1,0 +1,10 @@
+Keyboard: box "victim" above "keyboard" below
+line from Keyboard.s down invis
+Monitor: box "victim" above "monitor" below
+Proxy: diamond "proxy" at 1/2 between Monitor and Keyboard + 3,0
+arrow -> "readln" aligned above from Keyboard.e to Proxy.nw color blue
+arrow <- "print"  aligned below from Monitor.e  to Proxy.sw color green
+Input: box "server" above "input" below at 3,Keyboard.y
+Output: box "server" above "output" below at 3,Monitor.y
+arrow -> "print"  aligned above from Proxy.ne to Input.w color blue
+arrow <- "readln" aligned below from Proxy.se to Output.w color green

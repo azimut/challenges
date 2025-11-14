@@ -47,6 +47,10 @@ Can't use `<threaded-server>` with UDP. But found an [article](https://re.factor
 
 Unfortunately Factor seems unable to `receive` empty UDP packets/datagrams. Which are a requirement for this challenge.
 
+### 05 Mob in the middle
+
+An evil tcp proxy for the chat protocol made on exercise #3. It rewrites some very specific text content.
+
 ## Dev
 
 ### Tunnel
