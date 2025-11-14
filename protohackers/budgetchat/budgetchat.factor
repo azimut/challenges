@@ -22,7 +22,7 @@ users-mailboxes [ H{ } clone ] initialize
     ", " join
     "* The room contains: %s" sprintf ;
 : msg-leave ( user -- msg ) "* %s has left the room" sprintf ;
-: msg-greet ( -- ) "Welcome to budgetchat! What shall I call you?" ;
+: msg-greet ( -- str ) "Welcome to budgetchat! What shall I call you?" ;
 
 : user-validate ( user -- user/f )
     dup { [ string? ] [ length 0 > ] [ [ alpha? ] all? ] } 1&&
@@ -46,7 +46,7 @@ users-mailboxes [ H{ } clone ] initialize
 : user-cleanup ( user -- ) [ mailbox-ctrlaltdel ] [ mailbox-delete ] [ user-leave ] tri ;
 
 : handle-requests ( -- )
-    greet print flush user-read [
+    msg-greet print flush user-read [
         [ dup user-register
           dup dup msg-enter mailbox-deliver
           dup watch-mailbox
