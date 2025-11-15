@@ -55,7 +55,7 @@ Hit a couple of "fun" challenges.
 
 - Ensuring both sides of the connection get closed correctly. For that I learned about Factor's [destructors](https://docs.factorcode.org/content/article-destructors-using.html).
 - **TODO** Ensuring messages are separated by a newline. This is a more strict requirement than on exercise #3. Seems like is not possible by `readln`.
-  - Golang's `bufio.ReadString('\n')` handles this a bit more correctly as it threats EOF without `\n` as an error.
+  - Golang's `bufio` [ReadString('\n')](https://pkg.go.dev/bufio#Reader.ReadString) handles this a bit more correctly as it threats EOF without `\n` as an error.
   - See `$ echo -n foobarbaz | socat  - TCP:127.0.0.1:4321`.
 - My code still pollutes process stdout with exceptions for closed sockets exceptions not handled...but YOLO.
 
