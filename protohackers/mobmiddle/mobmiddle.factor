@@ -1,4 +1,4 @@
-USING: kernel accessors io io.streams.duplex io.sockets io.servers math.order io.encodings.ascii combinators.short-circuit sequences ascii splitting prettyprint continuations concurrency.messaging threads ;
+USING: kernel accessors io io.streams.duplex io.sockets io.servers math.order io.encodings.ascii combinators.short-circuit sequences ascii splitting prettyprint continuations concurrency.messaging threads namespaces ;
 IN: mobmiddle
 
 CONSTANT: tonys-address "7YWHMfk9JZe0LM0g1ZauHuiSxhI"
@@ -18,31 +18,32 @@ CONSTANT: tonys-address "7YWHMfk9JZe0LM0g1ZauHuiSxhI"
 
 : handle-readln ( stream -- stream )
     readln [
-        proxy-rewrite over stream-print
+        proxy-rewrite
+        over [ stream-print ] [ stream-flush ] bi
         handle-readln
     ] when* ;
 
 : handle-print ( stream -- stream )
     dup stream-readln [
-        proxy-rewrite print
+        proxy-rewrite print flush
         handle-print
     ] when* ;
 
-: connect-remote ( -- stream )
-    "chat.protohackers.com" 16963 <inet>
+: connect-remote ( -- duplex-stream )
+    "127.0.0.1" 1234 <inet>
+    ! "chat.protohackers.com" 16963 <inet>
     ascii <client> drop ;
 
 : <mobmiddle-server> ( port -- threaded-server )
     ascii <threaded-server>
     swap >>insecure
-    [ connect-remote >duplex-stream< ! in out
-      [ [ handle-readln drop ] curry "req" spawn drop ]
-      [ [ handle-print  drop ] curry "res" spawn drop ]
-      bi*
-      yield
+    [ [ connect-remote
+      [ '[ _ handle-readln drop ] "handle-readln-thread" spawn-linked ]
+      [ handle-print drop ]
+      bi ] [ [ "?" print flush ] with-global ] finally
     ] >>handler ;
 
 : main ( -- )
-    1234 <mobmiddle-server> start-server wait-for-server ;
+    4321 <mobmiddle-server> start-server wait-for-server ;
 
 MAIN: main
