@@ -1,4 +1,4 @@
-USING: kernel accessors io io.streams.duplex io.sockets io.servers math.order io.encodings.ascii combinators.short-circuit sequences ascii splitting prettyprint continuations concurrency.messaging threads namespaces ;
+USING: kernel accessors io io.streams.duplex io.sockets io.servers math.order io.encodings.ascii combinators.short-circuit sequences ascii splitting prettyprint continuations concurrency.messaging threads namespaces destructors ;
 IN: mobmiddle
 
 CONSTANT: tonys-address "7YWHMfk9JZe0LM0g1ZauHuiSxhI"
