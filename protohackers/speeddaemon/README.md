@@ -38,16 +38,16 @@ These types represent unsigned integers of 8-bit, 16-bit, and 32-bit size, respe
 
 Examples:
 
-|Type | Hex data    | Value     |
-|-------------------------------|
-|u8   |          20 |         32|
-|u8   |          e3 |        227|
-|u16  |       00 20 |         32|
-|u16  |       12 45 |       4677|
-|u16  |       a8 23 |      43043|
-|u32  | 00 00 00 20 |         32|
-|u32  | 00 00 12 45 |       4677|
-|u32  | a6 a9 b5 67 | 2796139879|
+| Type | Hex data    | Value      |
+|------|-------------|------------|
+| u8   | 20          | 32         |
+| u8   | e3          | 227        |
+| u16  | 00 20       | 32         |
+| u16  | 12 45       | 4677       |
+| u16  | a8 23       | 43043      |
+| u32  | 00 00 00 20 | 32         |
+| u32  | 00 00 12 45 | 4677       |
+| u32  | a6 a9 b5 67 | 2796139879 |
 
 ### `str`
 
@@ -55,11 +55,11 @@ A string of characters in a [length-prefixed](https://en.wikipedia.org/wiki/Stri
 
 Examples:
 
-|Type | Hex data                   | Value     |
-|----------------------------------------------|
-|str  | 00                         | ""        |
-|str  | 03 66 6f 6f                | "foo"     |
-|str  | 08 45 6C 62 65 72 65 74 68 | "Elbereth"|
+| Type | Hex data                   | Value      |
+|------|----------------------------|------------|
+| str  | 00                         | ""         |
+| str  | 03 66 6f 6f                | "foo"      |
+| str  | 08 45 6C 62 65 72 65 74 68 | "Elbereth" |
 
 ## Message types
 
