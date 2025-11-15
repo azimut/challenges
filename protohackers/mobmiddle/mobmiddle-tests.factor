@@ -19,3 +19,7 @@ IN: mobmiddle.tests
 { "[Alice] Send me plzzz 7YWHMfk9JZe0LM0g1ZauHuiSxhI" }
 [ "[Alice] Send me plzzz 7F1u3wSD5RbOHQmupo9nx4TnhQ"
   proxy-rewrite ] unit-test
+{ "[PinkHacker720] This is too long: 7M5CblJHn6aR1FrjBKHLNtbsOOUIUAKqKdAf" }
+[ "[PinkHacker720] This is too long: 7M5CblJHn6aR1FrjBKHLNtbsOOUIUAKqKdAf"
+  proxy-rewrite ] unit-test
+

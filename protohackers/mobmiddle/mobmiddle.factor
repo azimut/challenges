@@ -4,7 +4,7 @@ IN: mobmiddle
 CONSTANT: tonys-address "7YWHMfk9JZe0LM0g1ZauHuiSxhI"
 
 : boguscoin? ( str -- ? )
-    { [ length 25 36 between? ]
+    { [ length 26 35 between? ]
       [ first CHAR: 7 = ]
       [ [ alpha? ] all? ]
     } 1&& ;
@@ -25,22 +25,24 @@ CONSTANT: tonys-address "7YWHMfk9JZe0LM0g1ZauHuiSxhI"
 
 : handle-print ( stream -- stream )
     dup stream-readln [
-        proxy-rewrite print flush
+        proxy-rewrite
+        print flush
         handle-print
     ] when* ;
 
 : connect-remote ( -- duplex-stream )
-    "127.0.0.1" 1234 <inet>
-    ! "chat.protohackers.com" 16963 <inet>
+    ! "127.0.0.1" 1234 <inet>
+    "chat.protohackers.com" 16963 <inet>
     ascii <client> drop ;
 
 : <mobmiddle-server> ( port -- threaded-server )
     ascii <threaded-server>
     swap >>insecure
-    [ [ connect-remote
-      [ '[ _ handle-readln drop ] "handle-readln-thread" spawn-linked ]
-      [ handle-print drop ]
-      bi ] [ [ "?" print flush ] with-global ] finally
+    [ connect-remote [
+          [ '[ _ handle-print ] in-thread ]
+          [ handle-readln ]
+          bi
+      ] with-disposal
     ] >>handler ;
 
 : main ( -- )
