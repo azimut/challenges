@@ -13,7 +13,7 @@ TUPLE: retrieve key ;
 : <insert> ( str -- insert ) "=" split1 "" or insert boa ;
 : <retrieve> ( str -- retrieve ) retrieve boa ;
 
-: has-equal? ( str -- ? ) 61 swap member? ;
+: has-equal? ( str -- ? ) CHAR: = swap member? ;
 : request-decode ( bytes -- request )
     ascii decode
     [ blank? ] trim
