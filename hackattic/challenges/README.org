@@ -1,5 +1,7 @@
 * hackttic
 
+https://hackattic.com/challenges
+
 ** challenges
 
 All seem to require some *json* decoding to read inputs and encoding to submit answers.
