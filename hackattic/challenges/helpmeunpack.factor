@@ -28,10 +28,9 @@ IN: helpmeunpack
 
 : main ( -- )
     command-line get [
-        first
-        request
-        response
-        token send-response print
+        [ request response ] keep
+        send-response
+        print
     ] unless-empty ;
 
 MAIN: main
