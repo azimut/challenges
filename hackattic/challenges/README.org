@@ -1,0 +1,15 @@
+* hackttic
+
+** challenges
+
+All seem to require some *json* decoding to read inputs and encoding to submit answers.
+
+Answers must be given withing a small (?) timeframe.
+
+*** Help me unpack - 5 points
+
+Involves decoding different types of numbers from some given bytes in *base64*.
+
+Took the chance to use Factor's facilities to [[https://docs.factorcode.org/content/article-pack.html][pack]] and unpack binary data.
+
+Struggled a bit due not taking the time to manually count how many bytes were given and how many I was parsing. Unfortunely *unpack* does not tell me if I parse less than the given bytes given.
