@@ -2,7 +2,7 @@
 
 https://cryptopals.com/
 
-** Set 1
+** Problem Set 1
 
 - Convert hex string to base64.
   - What?
@@ -17,3 +17,11 @@ https://cryptopals.com/
     - decode hex strings to bytes
     - [[https://en.wikipedia.org/wiki/Bitwise_operations_in_C][XOR]] bytes
     - encode back to hex string
+
+- Single-byte XOR cipher
+  - What?
+    - decode hex string to bytes
+    - XOR bytes with a single byte
+    - measure result for likelyhood of a real msg
+    - repeat with a different byte
+    - return the result with highest score
