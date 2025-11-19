@@ -5,6 +5,15 @@ https://cryptopals.com/
 ** Set 1
 
 - Convert hex string to base64.
-  - Basicaly learning how to do base64 encoding.
-  - I used C, reading 6 bits at the time, with bitwise operations.
-  - With the help of [bitwisecmd](https://bitwisecmd.com/).
+  - What?
+    - decode hex string to bytes
+    - encode bytes to base64
+  - How?
+    - I used C, reading 6 bits at the time, with bitwise operations.
+    - With the help of [[https://bitwisecmd.com/][bitwisecmd]].
+
+- XOR hex strings
+  - What?
+    - decode hex strings to bytes
+    - [[https://en.wikipedia.org/wiki/Bitwise_operations_in_C][XOR]] bytes
+    - encode back to hex string
