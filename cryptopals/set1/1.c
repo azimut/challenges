@@ -17,6 +17,9 @@ void test(void) {
   }
   free(encoded);
   free(decoded.content);
+  // encode_ascii
+  puts(encode_ascii(decode_hex(
+      test_hex_input))); // I'm killing your brain like a poisonous mushroom
 }
 
 int main(int argc, char *argv[]) {

@@ -6,6 +6,7 @@
 #include <string.h>
 
 int main(void) {
+  // Now that the party is jumping
   int max_score = 0;
   FILE *f = fopen("4.txt", "r");
   char buf[256];

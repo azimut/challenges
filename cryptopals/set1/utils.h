@@ -1,6 +1,7 @@
 #ifndef UTILS_H
 #define UTILS_H
 
+#include <stdbool.h>
 #include <stdint.h>
 #include <stdlib.h>
 
@@ -10,6 +11,7 @@ typedef struct Buffer {
 } Buffer;
 
 Buffer new_buffer(size_t size);
+bool equal_buffer(const Buffer a, const Buffer b);
 Buffer xor_buffers(Buffer a, Buffer b);
 Buffer xor_buffer(const Buffer src_buffer, uint8_t by);
 

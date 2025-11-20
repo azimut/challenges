@@ -11,6 +11,15 @@ Buffer new_buffer(size_t size) {
   return (Buffer){.size = size, .content = calloc(size, sizeof(uint8_t))};
 }
 
+bool equal_buffer(const Buffer a, const Buffer b) {
+  if (a.size != b.size)
+    return false;
+  for (size_t i = 0; i < a.size; ++i)
+    if (a.content[i] != b.content[i])
+      return false;
+  return true;
+}
+
 Buffer decode_hex(const char *hex) {
   Buffer result = (Buffer){
       .content = calloc(strlen(hex) / 2, sizeof(uint8_t)),

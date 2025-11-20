@@ -43,6 +43,7 @@ uint score_buffer(const Buffer buffer) {
 }
 
 int main() {
+  // Cooking MC's like a pound of bacon
   Buffer input = decode_hex(TEST_INPUT);
   for (size_t i = 0; i < 256; ++i) {
     Buffer tmp = xor_buffer(input, i);
