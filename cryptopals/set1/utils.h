@@ -13,6 +13,7 @@ Buffer new_buffer(size_t size);
 Buffer xor_buffers(Buffer a, Buffer b);
 
 char *encode_base64(Buffer buffer);
+char *encode_ascii(const Buffer buffer);
 
 Buffer decode_hex(const char *hex);
 char *encode_hex(Buffer buffer);

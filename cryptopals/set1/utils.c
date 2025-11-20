@@ -40,6 +40,13 @@ char *encode_hex(Buffer buffer) {
   return result;
 }
 
+char *encode_ascii(const Buffer buffer) {
+  char *result = calloc(buffer.size + 1, sizeof(char));
+  for (size_t i = 0; i < buffer.size; ++i)
+    result[i] = buffer.content[i];
+  return result;
+}
+
 Buffer xor_buffers(Buffer a, Buffer b) {
   assert(a.size == b.size);
   Buffer result = (Buffer){

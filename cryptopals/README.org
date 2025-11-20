@@ -25,3 +25,16 @@ https://cryptopals.com/
     - measure result for likelyhood of a real msg
     - repeat with a different byte
     - return the result with highest score
+  - How?
+    - use [[https://en.wikipedia.org/wiki/Letter_frequency][letter frequency]] analysis to determine a score for each result
+    - use one for english language
+
+- ???
+  - What?
+    - We are given a list of strings
+    - Only 1 is XOR'd
+    - Figure out which one
+  - How?
+    - I can't just guess. I need to improve my scoring algorithm.
+    - Found this algorithm/guide https://inventwithpython.com/cracking/chapter19.html
+      - Gets a score by counting matches between the 6 most common and 6 most uncommon letters in english.
