@@ -15,8 +15,14 @@ Buffer xor_buffer(const Buffer src_buffer, uint8_t by);
 
 char *encode_base64(Buffer buffer);
 char *encode_ascii(const Buffer buffer);
-
-Buffer decode_hex(const char *hex);
 char *encode_hex(Buffer buffer);
+Buffer decode_hex(const char *hex);
+
+typedef struct BruteforceResult {
+  int score;
+  Buffer buffer;
+} BruteforceResult;
+
+BruteforceResult bruteforce_xor(Buffer phrase);
 
 #endif /* UTILS_H */

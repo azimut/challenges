@@ -1,9 +1,10 @@
 #include "./utils.h"
 #include <assert.h>
+#include <ctype.h>
 #include <stdio.h>
 #include <string.h>
 
-const char base64_alphabet[64] =
+static const char base64_alphabet[64] =
     "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/";
 
 Buffer new_buffer(size_t size) {
@@ -99,6 +100,49 @@ char *encode_base64(Buffer buffer) {
     }
     }
     prev_hex = current_hex;
+  }
+  return result;
+}
+
+static const int english_scores[] = {
+    ['U'] = 2,  ['u'] = 2,  ['L'] = 3,  ['l'] = 3,  ['D'] = 4,  ['d'] = 4,
+    ['R'] = 5,  ['r'] = 5,  ['H'] = 6,  ['h'] = 6,  ['S'] = 7,  ['s'] = 7,
+    [' '] = 8,  ['N'] = 9,  ['n'] = 9,  ['I'] = 10, ['i'] = 10, ['O'] = 11,
+    ['o'] = 11, ['A'] = 12, ['a'] = 12, ['T'] = 13, ['t'] = 13, ['E'] = 14,
+    ['e'] = 14, [255] = 0,
+};
+
+static int letter_score(const char letter) {
+  if (letter == ' ')
+    return 8;
+  if (!isalpha(letter))
+    return -1;
+  return english_scores[letter];
+}
+
+static int english_score(const Buffer phrase) {
+  int score = 0;
+  for (size_t i = 0; i < phrase.size; ++i) {
+    score += letter_score(phrase.content[i]);
+  }
+  return score;
+}
+
+BruteforceResult bruteforce_xor(Buffer phrase) {
+  BruteforceResult result = (BruteforceResult){
+      .buffer = new_buffer(phrase.size),
+  };
+  for (uint8_t i = 0; i < 127; ++i) {
+    Buffer tmp = xor_buffer(phrase, i);
+    int tmp_score = english_score(tmp);
+    /* printf("%3d %3d - %s\n", tmp_score, result.score, encode_ascii(tmp)); */
+    if (tmp_score > result.score) {
+      result.score = tmp_score;
+      for (size_t j = 0; j < phrase.size; ++j) {
+        result.buffer.content[j] = tmp.content[j];
+      };
+    }
+    free(tmp.content);
   }
   return result;
 }
