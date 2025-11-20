@@ -2,4 +2,4 @@
 CFLAGS := -Wall -Wextra -pedantic -O0 -ggdb
 3:; $(CC) $(CFLAGS) utils.c $@.c -o out
 4:; $(CC) $(CFLAGS) utils.c $@.c -o out
-
+5:; $(CC) $(CFLAGS) utils.c $@.c -o out

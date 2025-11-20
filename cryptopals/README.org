@@ -4,7 +4,10 @@ https://cryptopals.com/
 
 ** Problem Set 1
 
-- Convert hex string to base64.
+https://cryptopals.com/sets/1
+
+*** Convert hex string to base64.
+
   - What?
     - decode hex string to bytes
     - encode bytes to base64
@@ -12,13 +15,15 @@ https://cryptopals.com/
     - I used C, reading 6 bits at the time, with bitwise operations.
     - With the help of [[https://bitwisecmd.com/][bitwisecmd]].
 
-- XOR hex strings
+*** XOR hex strings
+
   - What?
     - decode hex strings to bytes
     - [[https://en.wikipedia.org/wiki/Bitwise_operations_in_C][XOR]] bytes
     - encode back to hex string
 
-- Single-byte XOR cipher
+*** Single-byte XOR cipher
+
   - What?
     - decode hex string to bytes
     - XOR bytes with a single byte
@@ -29,7 +34,8 @@ https://cryptopals.com/
     - use [[https://en.wikipedia.org/wiki/Letter_frequency][letter frequency]] analysis to determine a score for each result
     - use one for english language
 
-- Detect single-character XOR
+*** Detect single-character XOR
+
   - What?
     - We are given a list of strings
     - Only 1 is XOR'd
@@ -41,3 +47,12 @@ https://cryptopals.com/
       - But it didn't give me great results.
     - Found this other one https://wgallagher86.medium.com/single-byte-xor-decryption-and-detection-in-go-451e1c9c52ec
       - Specificaly targetting this exercise.
+
+***  Implement repeating-key XORImplement repeating-key XOR
+
+  - What?
+    - apply a XOR key of multiple bytes
+    - it's one pass
+    - and the bytes of the key cycle
+  - How?
+    - This turned out pretty easy in comparison now that I have the Buffer class ironed out.
