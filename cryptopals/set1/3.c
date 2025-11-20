@@ -49,14 +49,6 @@ char *encode_ascii(const Buffer buffer) {
   return result;
 }
 
-Buffer xor_buffer(const Buffer src_buffer, uint8_t byte) {
-  Buffer result = new_buffer(src_buffer.size);
-  for (size_t i = 0; i < src_buffer.size; ++i) {
-    result.content[i] = src_buffer.content[i] ^ byte;
-  }
-  return result;
-}
-
 int main() {
   Buffer input = decode_hex(TEST_INPUT);
   for (size_t i = 0; i < 256; ++i) {

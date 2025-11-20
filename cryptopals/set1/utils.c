@@ -59,6 +59,14 @@ Buffer xor_buffers(Buffer a, Buffer b) {
   return result;
 }
 
+Buffer xor_buffer(const Buffer src_buffer, uint8_t by) {
+  Buffer result = new_buffer(src_buffer.size);
+  for (size_t i = 0; i < src_buffer.size; ++i) {
+    result.content[i] = src_buffer.content[i] ^ by;
+  }
+  return result;
+}
+
 char *encode_base64(Buffer buffer) {
   char *result = calloc((buffer.size * 8 / 6) + 3, sizeof(char));
   char step = 0;

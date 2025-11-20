@@ -9,24 +9,28 @@
 const char english_common[26] = "ETAOINSRHLDCUMFPGWYBVKXJQZ";
 
 // Returns a 26 elements array, with each letter frequency in PHRASE.
-int8_t *letter_frequencies(const char *phrase) {
+int8_t *letter_frequencies(const Buffer phrase) {
   int8_t *result = calloc(26, sizeof(int8_t));
-  for (size_t i = 0; i < strlen(phrase); ++i)
-    if (isalpha(phrase[i]))
-      result[toupper(phrase[i]) - 'A']++;
+  for (size_t i = 0; i < phrase.size; ++i)
+    if (isalpha(phrase.content[i]))
+      result[toupper(phrase.content[i]) - 'A']++;
   return result;
 }
 
 // Returns the index of the max value in ARR, or -1
 int max_index(int8_t *arr) {
   int result = -1;
-  for (size_t i = 0; i < 26; ++i)
-    if (arr[i] > result)
+  for (size_t i = 0; i < 26; ++i) {
+    if (result == -1)
       result = i;
+    if (arr[i] > arr[result]) {
+      result = i;
+    }
+  }
   return result;
 }
 
-char *sort_by_frequencies(const char *phrase) {
+char *sort_by_frequencies(const Buffer phrase) {
   char *result = calloc(28, sizeof(char));
   int8_t *frequencies = letter_frequencies(phrase);
   for (size_t i = 0; i < 26; ++i) {
@@ -48,21 +52,20 @@ bool is_top6(const char letter) {
 
 bool is_bottom6(const char letter) {
   char c = toupper(letter);
-  return (c == 'V' || c == 'K' || c == 'X' || c == 'J' || c == 'Q' || c == 'Z');
+  return (c == 'V' || c == 'K' || c == 'J' || c == 'X' || c == 'Q' || c == 'Z');
 }
 
-bool is_printable(const char *phrase) {
-  for (size_t i = 0; i < strlen(phrase); ++i)
-    if (!(isgraph(phrase[i]) || isspace(phrase[i])))
+bool is_printable(const Buffer phrase) {
+  for (size_t i = 0; i < phrase.size; ++i)
+    if (!(phrase.content[i] >= 32 && phrase.content[i] <= 126))
       return false;
   return true;
 }
 
-short english_score(const char *phrase) {
+short english_score(const Buffer phrase) {
   short score = 0;
   if (!is_printable(phrase))
     return score;
-
   char *phrase_common = sort_by_frequencies(phrase);
   for (size_t i = 0; i < 6; ++i)
     if (is_top6(phrase_common[i]))
@@ -71,8 +74,35 @@ short english_score(const char *phrase) {
     if (is_bottom6(phrase_common[i]))
       score++;
   free(phrase_common);
-
   return score;
+}
+
+typedef struct BruteforceResult {
+  uint score;
+  Buffer buffer;
+} BruteforceResult;
+
+BruteforceResult bruteforce_xor(Buffer phrase) {
+  BruteforceResult result = (BruteforceResult){
+      .buffer = new_buffer(phrase.size),
+  };
+  puts("----");
+  for (uint8_t i = 0; i < 127; ++i) {
+    Buffer tmp = xor_buffer(phrase, i);
+    uint tmp_score = english_score(tmp);
+    if (is_printable(tmp)) {
+      printf("%2d - %s - %s\n", tmp_score, sort_by_frequencies(tmp),
+             encode_ascii(tmp));
+    }
+    if (tmp_score > result.score) {
+      result.score = tmp_score;
+      for (size_t j = 0; j < phrase.size; ++j) {
+        result.buffer.content[j] = tmp.content[j];
+      };
+    }
+    free(tmp.content);
+  }
+  return result;
 }
 
 int main(void) {
@@ -88,13 +118,12 @@ int main(void) {
     /*          sort_by_frequencies(encode_ascii(decode_hex(buf))), */
     /*          encode_ascii(decode_hex(buf))); */
     /* } */
-    printf("%s - %2d - %s - %s\n", buf,
-           english_score(encode_ascii(decode_hex(buf))),
-           sort_by_frequencies(encode_ascii(decode_hex(buf))),
-           encode_ascii(decode_hex(buf)));
+    BruteforceResult br = bruteforce_xor(decode_hex(buf));
+    if (br.score > 0) {
+      printf("%s - %2d - %s - %s\n", buf, br.score,
+             sort_by_frequencies(br.buffer), encode_ascii(br.buffer));
+    }
   }
   fclose(f);
-  printf("%s - %d\n", "what is love? baby don't hurt me, no more",
-         english_score("what is love?"));
   return 0;
 }

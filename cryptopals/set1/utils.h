@@ -11,6 +11,7 @@ typedef struct Buffer {
 
 Buffer new_buffer(size_t size);
 Buffer xor_buffers(Buffer a, Buffer b);
+Buffer xor_buffer(const Buffer src_buffer, uint8_t by);
 
 char *encode_base64(Buffer buffer);
 char *encode_ascii(const Buffer buffer);
