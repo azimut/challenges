@@ -42,13 +42,6 @@ uint score_buffer(const Buffer buffer) {
   return n_vowels;
 }
 
-char *encode_ascii(const Buffer buffer) {
-  char *result = calloc(buffer.size + 1, sizeof(char));
-  for (size_t i = 0; i < buffer.size; ++i)
-    result[i] = buffer.content[i];
-  return result;
-}
-
 int main() {
   Buffer input = decode_hex(TEST_INPUT);
   for (size_t i = 0; i < 256; ++i) {

@@ -6,79 +6,32 @@
 #include <stdio.h>
 #include <string.h>
 
-const char english_common[26] = "ETAOINSRHLDCUMFPGWYBVKXJQZ";
+static const int english_scores[] = {
+    ['U'] = 2,  ['u'] = 2,  ['L'] = 3,  ['l'] = 3,  ['D'] = 4,  ['d'] = 4,
+    ['R'] = 5,  ['r'] = 5,  ['H'] = 6,  ['h'] = 6,  ['S'] = 7,  ['s'] = 7,
+    [' '] = 8,  ['N'] = 9,  ['n'] = 9,  ['I'] = 10, ['i'] = 10, ['O'] = 11,
+    ['o'] = 11, ['A'] = 12, ['a'] = 12, ['T'] = 13, ['t'] = 13, ['E'] = 14,
+    ['e'] = 14, [255] = 0,
+};
 
-// Returns a 26 elements array, with each letter frequency in PHRASE.
-int8_t *letter_frequencies(const Buffer phrase) {
-  int8_t *result = calloc(26, sizeof(int8_t));
-  for (size_t i = 0; i < phrase.size; ++i)
-    if (isalpha(phrase.content[i]))
-      result[toupper(phrase.content[i]) - 'A']++;
-  return result;
+int letter_score(const char letter) {
+  if (letter == ' ')
+    return 8;
+  if (!isalpha(letter))
+    return -1;
+  return english_scores[letter];
 }
 
-// Returns the index of the max value in ARR, or -1
-int max_index(int8_t *arr) {
-  int result = -1;
-  for (size_t i = 0; i < 26; ++i) {
-    if (result == -1)
-      result = i;
-    if (arr[i] > arr[result]) {
-      result = i;
-    }
+int english_score(const Buffer phrase) {
+  int score = 0;
+  for (size_t i = 0; i < phrase.size; ++i) {
+    score += letter_score(phrase.content[i]);
   }
-  return result;
-}
-
-char *sort_by_frequencies(const Buffer phrase) {
-  char *result = calloc(28, sizeof(char));
-  int8_t *frequencies = letter_frequencies(phrase);
-  for (size_t i = 0; i < 26; ++i) {
-    int tidx = max_index(frequencies);
-    if (tidx < 0) {
-      break;
-    }
-    result[i] = (char)(tidx + 'A');
-    frequencies[tidx] = -1;
-  }
-  free(frequencies);
-  return result;
-}
-
-bool is_top6(const char letter) {
-  char c = toupper(letter);
-  return (c == 'E' || c == 'T' || c == 'A' || c == 'O' || c == 'I' || c == 'N');
-}
-
-bool is_bottom6(const char letter) {
-  char c = toupper(letter);
-  return (c == 'V' || c == 'K' || c == 'J' || c == 'X' || c == 'Q' || c == 'Z');
-}
-
-bool is_printable(const Buffer phrase) {
-  for (size_t i = 0; i < phrase.size; ++i)
-    if (!(phrase.content[i] >= 32 && phrase.content[i] <= 126))
-      return false;
-  return true;
-}
-
-short english_score(const Buffer phrase) {
-  short score = 0;
-  if (!is_printable(phrase))
-    return score;
-  char *phrase_common = sort_by_frequencies(phrase);
-  for (size_t i = 0; i < 6; ++i)
-    if (is_top6(phrase_common[i]))
-      score++;
-  for (size_t i = 25; i >= 20; i--)
-    if (is_bottom6(phrase_common[i]))
-      score++;
-  free(phrase_common);
   return score;
 }
 
 typedef struct BruteforceResult {
-  uint score;
+  int score;
   Buffer buffer;
 } BruteforceResult;
 
@@ -86,14 +39,10 @@ BruteforceResult bruteforce_xor(Buffer phrase) {
   BruteforceResult result = (BruteforceResult){
       .buffer = new_buffer(phrase.size),
   };
-  puts("----");
   for (uint8_t i = 0; i < 127; ++i) {
     Buffer tmp = xor_buffer(phrase, i);
-    uint tmp_score = english_score(tmp);
-    if (is_printable(tmp)) {
-      printf("%2d - %s - %s\n", tmp_score, sort_by_frequencies(tmp),
-             encode_ascii(tmp));
-    }
+    int tmp_score = english_score(tmp);
+    /* printf("%3d %3d - %s\n", tmp_score, result.score, encode_ascii(tmp)); */
     if (tmp_score > result.score) {
       result.score = tmp_score;
       for (size_t j = 0; j < phrase.size; ++j) {
@@ -106,22 +55,17 @@ BruteforceResult bruteforce_xor(Buffer phrase) {
 }
 
 int main(void) {
+  int max_score = 0;
   FILE *f = fopen("4.txt", "r");
   char buf[256];
   while (fgets(buf, 255, f)) {
     if (buf[strlen(buf) - 1] == '\n') {
       buf[strlen(buf) - 1] = '\0';
     }
-    /* if (english_score(encode_ascii(decode_hex(buf))) > 0) { */
-    /*   printf("%s - %2d - %s - %s\n", buf, */
-    /*          english_score(encode_ascii(decode_hex(buf))), */
-    /*          sort_by_frequencies(encode_ascii(decode_hex(buf))), */
-    /*          encode_ascii(decode_hex(buf))); */
-    /* } */
     BruteforceResult br = bruteforce_xor(decode_hex(buf));
-    if (br.score > 0) {
-      printf("%s - %2d - %s - %s\n", buf, br.score,
-             sort_by_frequencies(br.buffer), encode_ascii(br.buffer));
+    if (br.score > max_score) {
+      max_score = br.score;
+      printf("%s - %2d - %s\n", buf, br.score, encode_ascii(br.buffer));
     }
   }
   fclose(f);

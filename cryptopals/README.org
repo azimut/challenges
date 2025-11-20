@@ -29,12 +29,15 @@ https://cryptopals.com/
     - use [[https://en.wikipedia.org/wiki/Letter_frequency][letter frequency]] analysis to determine a score for each result
     - use one for english language
 
-- ???
+- Detect single-character XOR
   - What?
     - We are given a list of strings
     - Only 1 is XOR'd
     - Figure out which one
   - How?
-    - I can't just guess. I need to improve my scoring algorithm.
+    - I can't just guess. I needed to improve my scoring algorithm.
     - Found this algorithm/guide https://inventwithpython.com/cracking/chapter19.html
       - Gets a score by counting matches between the 6 most common and 6 most uncommon letters in english.
+      - But it didn't give me great results.
+    - Found this other one https://wgallagher86.medium.com/single-byte-xor-decryption-and-detection-in-go-451e1c9c52ec
+      - Specificaly targetting this exercise.
