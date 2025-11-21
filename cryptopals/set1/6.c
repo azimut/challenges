@@ -63,7 +63,12 @@ char *read_file_as_oneline(const char *filename) {
 }
 
 int main(void) {
-  puts(read_file_as_oneline("6.txt"));
+  char *contents = read_file_as_oneline("6.txt");
+  puts(contents);
+  puts("---");
+  puts(encode_base64(decode_base64(contents)));
+  assert(!strcmp(contents, encode_base64(decode_base64(contents))));
+  puts("---");
   puts(encode_hex(decode_base64(
       "SSdtIGtpbGxpbmcgeW91ciBicmFpbiBsaWtlIGEgcG9pc29ub3VzIG11c2hyb29t")));
   assert(equal_buffer(
