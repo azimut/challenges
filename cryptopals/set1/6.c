@@ -22,29 +22,6 @@ int hamming_distance(const char *a, const char *b) {
   return hamming_distance_buffer(buffer_from_string(a), buffer_from_string(b));
 }
 
-Buffer decode_base64(const char *encoded) {
-  Buffer result = buffer_new((strlen(encoded) * 8 - (strlen(encoded) * 2)) / 8);
-  size_t ridx = 0;
-  for (size_t i = 0; i < strlen(encoded); i += 4) {
-    uint32_t tmp = 0;
-    for (size_t j = i; j < i + 4; ++j) {
-      tmp = (tmp << 6) | decode_base64_char(encoded[j]);
-    }
-    result.content[ridx++] = (tmp >> (2 * 8)) & 0xFF;
-    if (encoded[i + 2] == '=') {
-      result.size -= 2;
-      break;
-    }
-    result.content[ridx++] = (tmp >> (1 * 8)) & 0xFF;
-    if (encoded[i + 3] == '=') {
-      result.size -= 1;
-      break;
-    }
-    result.content[ridx++] = (tmp >> (0 * 8)) & 0xFF;
-  }
-  return result;
-}
-
 long get_filesize(const char *filename) {
   FILE *fp = fopen(filename, "rb");
   fseek(fp, 0, SEEK_END);
@@ -84,18 +61,39 @@ float keysize_score(const Buffer buffer, const int keysize) {
   return (float)distance / (float)keysize;
 }
 
-int find_keysize(const Buffer buffer) {
-  float min_score = 99999;
-  int keysize = 2;
-  for (size_t i = keysize; i <= 40; ++i) {
+typedef struct KeysizeScore {
+  float score;
+  int keysize;
+} KeysizeScore;
+
+typedef struct KeysizeScores {
+  KeysizeScore *scores;
+  size_t size;
+} KeysizeScores;
+
+KeysizeScores new_scores(size_t size) {
+  return (KeysizeScores){
+      .scores = calloc(size, sizeof(KeysizeScore)),
+      .size = size,
+  };
+}
+
+int compare_keyscore(const void *a, const void *b) {
+  const KeysizeScore *ascore = a;
+  const KeysizeScore *bscore = b;
+  return ascore->score - bscore->score;
+}
+
+KeysizeScores find_keysizes(const Buffer buffer) {
+  KeysizeScores result = new_scores(39);
+  for (size_t i = 2; i <= 40; ++i) {
     float score = keysize_score(buffer, i);
     // printf("Keysize/Score - %2d - %f - %d\n", i, score, buffer.size);
-    if (score < min_score) {
-      min_score = score;
-      keysize = i;
-    }
+    result.scores[i - 2].keysize = i;
+    result.scores[i - 2].score = score;
   }
-  return keysize;
+  qsort(result.scores, result.size, sizeof(KeysizeScore), compare_keyscore);
+  return result;
 }
 
 int main(void) {
@@ -125,7 +123,11 @@ int main(void) {
                  "06f69736f6e6f7573206d757368726f6f6d")));
   // decode file
   char *contents = read_file_as_oneline("6.txt");
-  printf("Keysize: %d\n", find_keysize(decode_base64(contents)));
+  // printf("Keysize: %d\n", find_keysize(decode_base64(contents)));
+  KeysizeScores sc = find_keysizes(decode_base64(contents));
+  for (size_t i = 0; i < sc.size; ++i) {
+    printf("%d - %f\n", sc.scores[i].keysize, sc.scores[i].score);
+  }
   assert(!strcmp(contents, encode_base64(decode_base64(contents))));
   FILE *f = fopen("6.txt", "r");
   fclose(f);

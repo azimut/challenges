@@ -94,6 +94,29 @@ int decode_base64_char(const char letter) {
   return -1;
 }
 
+Buffer decode_base64(const char *encoded) {
+  Buffer result = buffer_new((strlen(encoded) * 8 - (strlen(encoded) * 2)) / 8);
+  size_t ridx = 0;
+  for (size_t i = 0; i < strlen(encoded); i += 4) {
+    uint32_t tmp = 0;
+    for (size_t j = i; j < i + 4; ++j) {
+      tmp = (tmp << 6) | decode_base64_char(encoded[j]);
+    }
+    result.content[ridx++] = (tmp >> (2 * 8)) & 0xFF;
+    if (encoded[i + 2] == '=') {
+      result.size -= 2;
+      break;
+    }
+    result.content[ridx++] = (tmp >> (1 * 8)) & 0xFF;
+    if (encoded[i + 3] == '=') {
+      result.size -= 1;
+      break;
+    }
+    result.content[ridx++] = (tmp >> (0 * 8)) & 0xFF;
+  }
+  return result;
+}
+
 char *encode_base64(Buffer buffer) {
   char *result = calloc((buffer.size * 8 / 6) + 3, sizeof(char));
   char step = 0;
