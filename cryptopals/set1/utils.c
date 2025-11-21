@@ -77,6 +77,13 @@ Buffer xor_buffer(const Buffer src_buffer, uint8_t by) {
   return result;
 }
 
+int decode_base64_char(const char letter) {
+  for (size_t i = 0; i < strlen(base64_alphabet); ++i)
+    if (letter == base64_alphabet[i])
+      return i;
+  return -1;
+}
+
 char *encode_base64(Buffer buffer) {
   char *result = calloc((buffer.size * 8 / 6) + 3, sizeof(char));
   char step = 0;

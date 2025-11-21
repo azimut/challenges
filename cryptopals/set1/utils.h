@@ -15,6 +15,7 @@ bool equal_buffer(const Buffer a, const Buffer b);
 Buffer xor_buffers(Buffer a, Buffer b);
 Buffer xor_buffer(const Buffer src_buffer, uint8_t by);
 
+int decode_base64_char(const char letter);
 char *encode_base64(Buffer buffer);
 char *encode_ascii(const Buffer buffer);
 char *encode_hex(Buffer buffer);
