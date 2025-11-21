@@ -10,7 +10,8 @@ typedef struct Buffer {
   size_t size;
 } Buffer;
 
-Buffer new_buffer(size_t size);
+Buffer buffer_from_string(const char *phrase);
+Buffer buffer_new(size_t size);
 bool equal_buffer(const Buffer a, const Buffer b);
 Buffer xor_buffers(Buffer a, Buffer b);
 Buffer xor_buffer(const Buffer src_buffer, uint8_t by);

@@ -24,7 +24,7 @@ int hamming_distance(const char *a, const char *b) {
 
 // TODO: account for == padding
 Buffer decode_base64(const char *encoded) {
-  Buffer result = new_buffer((strlen(encoded) * 8 - (strlen(encoded) * 2)) / 8);
+  Buffer result = buffer_new((strlen(encoded) * 8 - (strlen(encoded) * 2)) / 8);
   size_t ridx = 0;
   for (size_t i = 0; i < strlen(encoded); i += 4) {
     uint32_t tmp = 0;

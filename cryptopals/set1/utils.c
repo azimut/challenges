@@ -7,8 +7,15 @@
 static const char base64_alphabet[64] =
     "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/";
 
-Buffer new_buffer(size_t size) {
+Buffer buffer_new(size_t size) {
   return (Buffer){.size = size, .content = calloc(size, sizeof(uint8_t))};
+}
+
+Buffer buffer_from_string(const char *phrase) {
+  Buffer result = buffer_new(strlen(phrase));
+  for (size_t i = 0; i < strlen(phrase); ++i)
+    result.content[i] = phrase[i];
+  return result;
 }
 
 bool equal_buffer(const Buffer a, const Buffer b) {
@@ -70,7 +77,7 @@ Buffer xor_buffers(Buffer a, Buffer b) {
 }
 
 Buffer xor_buffer(const Buffer src_buffer, uint8_t by) {
-  Buffer result = new_buffer(src_buffer.size);
+  Buffer result = buffer_new(src_buffer.size);
   for (size_t i = 0; i < src_buffer.size; ++i) {
     result.content[i] = src_buffer.content[i] ^ by;
   }
@@ -78,6 +85,9 @@ Buffer xor_buffer(const Buffer src_buffer, uint8_t by) {
 }
 
 int decode_base64_char(const char letter) {
+  if (letter == '=') {
+    return 0;
+  }
   for (size_t i = 0; i < strlen(base64_alphabet); ++i)
     if (letter == base64_alphabet[i])
       return i;
@@ -146,7 +156,7 @@ static int english_score(const Buffer phrase) {
 
 BruteforceResult bruteforce_xor(Buffer phrase) {
   BruteforceResult result = (BruteforceResult){
-      .buffer = new_buffer(phrase.size),
+      .buffer = buffer_new(phrase.size),
   };
   for (uint8_t i = 0; i < 127; ++i) {
     Buffer tmp = xor_buffer(phrase, i);
