@@ -4,7 +4,7 @@
 #include <stdio.h>
 #include <string.h>
 
-static const char base64_alphabet[64] =
+static const char *base64_alphabet =
     "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/";
 
 Buffer buffer_new(size_t size) {
@@ -97,35 +97,49 @@ int decode_base64_char(const char letter) {
 char *encode_base64(Buffer buffer) {
   char *result = calloc((buffer.size * 8 / 6) + 3, sizeof(char));
   char step = 0;
-  uint8_t prev_hex = 0;
+  uint8_t previous_char = 0;
   size_t result_idx = 0;
   for (size_t i = 0; i < buffer.size; ++i) {
-    uint8_t current_hex = buffer.content[i];
+    uint8_t current_char = buffer.content[i];
+    bool is_last_byte = i == (buffer.size - 1);
     switch (step) {
     case 0: {
-      uint8_t bidx = (current_hex & 0xFC) >> 2; // 0b11111100
+      uint8_t bidx = (current_char & 0xFC) >> 2; // 0b11111100
       result[result_idx++] = base64_alphabet[bidx];
+      if (is_last_byte) {
+        bidx = (current_char & 0x03) << 4; // 0b00000011
+        result[result_idx++] = base64_alphabet[bidx];
+        result[result_idx++] = '=';
+        result[result_idx++] = '=';
+      }
       step++;
       break;
     }
     case 1: {
-      uint8_t bidx = (current_hex & 0xF0) >> 4; // 0b11110000
-      bidx |= (prev_hex & 0x03) << 4;           // 0b00000011
+      uint8_t bidx = (current_char & 0xF0) >> 4; // 0b11110000
+      bidx |= (previous_char & 0x03) << 4;       // 0b00000011
       result[result_idx++] = base64_alphabet[bidx];
+      if (is_last_byte) {
+        bidx = (current_char & 0x0F) << 2; // 0b00001111
+        result[result_idx++] = base64_alphabet[bidx];
+        result[result_idx++] = '=';
+      }
       step++;
       break;
     }
     case 2: {
-      uint8_t bidx = (current_hex & 0xC0) >> 6; // 0b11000000
-      bidx |= (prev_hex & 0x0F) << 2;           // 0b00001111
+      uint8_t bidx = (current_char & 0xC0) >> 6; // 0b11000000
+      bidx |= (previous_char & 0x0F) << 2;       // 0b00001111
       result[result_idx++] = base64_alphabet[bidx];
-      bidx = current_hex & 0x3F; // 0b00111111
+      bidx = current_char & 0x3F; // 0b00111111
       result[result_idx++] = base64_alphabet[bidx];
       step = 0;
       break;
     }
+    default:
+      assert(false);
     }
-    prev_hex = current_hex;
+    previous_char = current_char;
   }
   return result;
 }

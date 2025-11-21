@@ -12,13 +12,10 @@ int count_bits(const char letter) {
 
 // TODO: account for missmatched lengths
 int hamming_distance(const char *a, const char *b) {
-  if (strlen(a) > strlen(b)) {
-    return hamming_distance(b, a);
-  }
+  assert(strlen(a) == strlen(b));
   int distance = 0;
-  for (size_t i = 0; i < strlen(a); ++i) {
+  for (size_t i = 0; i < strlen(a); ++i)
     distance += count_bits(a[i] ^ b[i]);
-  }
   return distance;
 }
 
@@ -63,6 +60,11 @@ char *read_file_as_oneline(const char *filename) {
 }
 
 int main(void) {
+  assert(!strcmp("YWJj", encode_base64(buffer_from_string("abc"))));
+  assert(!strcmp("YWJjZA==", encode_base64(buffer_from_string("abcd"))));
+  assert(!strcmp("YWJjZGU=", encode_base64(buffer_from_string("abcde"))));
+  assert(!strcmp("YWJjZGVm", encode_base64(buffer_from_string("abcdef"))));
+  assert(!strcmp("YWJjZGVmZw==", encode_base64(buffer_from_string("abcdefg"))));
   char *contents = read_file_as_oneline("6.txt");
   puts(contents);
   puts("---");
