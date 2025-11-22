@@ -1,5 +1,5 @@
 # gcc -Wall -Wextra -pedantic -O0 -ggdb util.c /home/sendai/projects/challenges/cryptopals/set1/2.c -o out && ./out
-CFLAGS := -Wall -Wextra -pedantic -O0 -ggdb
+CFLAGS := -Wall -Wextra -pedantic -O0 -ggdb3
 1:; $(CC) $(CFLAGS) utils.c $@.c -o out
 2:; $(CC) $(CFLAGS) utils.c $@.c -o out
 3:; $(CC) $(CFLAGS) utils.c $@.c -o out

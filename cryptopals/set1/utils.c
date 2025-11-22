@@ -18,7 +18,7 @@ Buffer buffer_from_string(const char *phrase) {
   return result;
 }
 
-bool equal_buffer(const Buffer a, const Buffer b) {
+bool buffer_equal(const Buffer a, const Buffer b) {
   if (a.size != b.size)
     return false;
   for (size_t i = 0; i < a.size; ++i)
@@ -195,17 +195,26 @@ BruteforceResult bruteforce_xor(Buffer phrase) {
   BruteforceResult result = (BruteforceResult){
       .buffer = buffer_new(phrase.size),
   };
-  for (uint8_t i = 0; i < 127; ++i) {
-    Buffer tmp = xor_buffer(phrase, i);
+  for (uint8_t key = 0; key < 127; ++key) {
+    Buffer tmp = xor_buffer(phrase, key);
     int tmp_score = english_score(tmp);
     /* printf("%3d %3d - %s\n", tmp_score, result.score, encode_ascii(tmp)); */
     if (tmp_score > result.score) {
       result.score = tmp_score;
+      result.key = key;
       for (size_t j = 0; j < phrase.size; ++j) {
         result.buffer.content[j] = tmp.content[j];
       };
     }
     free(tmp.content);
+  }
+  return result;
+}
+
+Buffer repeating_xor(Buffer in, Buffer by) {
+  Buffer result = buffer_new(in.size);
+  for (size_t i = 0; i < in.size; ++i) {
+    result.content[i] = in.content[i] ^ by.content[i % by.size];
   }
   return result;
 }

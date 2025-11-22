@@ -96,6 +96,33 @@ KeysizeScores find_keysizes(const Buffer buffer) {
   return result;
 }
 
+void crack_with(const Buffer input, const int key_size) {
+  Buffer tmp_buffer = buffer_new(input.size / key_size);
+  char *found_key = calloc(key_size + 2, sizeof(char));
+  for (size_t kidx = 0; kidx < key_size; kidx++) {
+    size_t a = 0;
+    for (size_t jidx = kidx; jidx < input.size; jidx += key_size) {
+      tmp_buffer.content[a++] = input.content[jidx];
+    }
+    BruteforceResult br = bruteforce_xor(tmp_buffer);
+    /* puts(encode_ascii(tmp_buffer)); */
+    /* printf("%d\n", tmp_buffer.size); */
+    found_key[kidx] = br.key;
+    free(br.buffer.content);
+  }
+  printf("[%2d] %s\n", key_size, found_key);
+  free(found_key);
+  free(tmp_buffer.content);
+}
+
+void crack(const Buffer input) {
+  KeysizeScores prob_keys = find_keysizes(input);
+  for (size_t i = 0; i < prob_keys.size; ++i) {
+    crack_with(input, prob_keys.scores[i].keysize);
+  }
+  free(prob_keys.scores);
+}
+
 int main(void) {
   // count bits test
   assert(5 == count_bits('O'));
@@ -116,7 +143,7 @@ int main(void) {
   assert(!strcmp("YWJjZGU=", encode_base64(decode_base64("YWJjZGU="))));
   assert(!strcmp("YWJjZGVm", encode_base64(decode_base64("YWJjZGVm"))));
   assert(!strcmp("YWJjZGVmZw==", encode_base64(decode_base64("YWJjZGVmZw=="))));
-  assert(equal_buffer(
+  assert(buffer_equal(
       decode_base64(
           "SSdtIGtpbGxpbmcgeW91ciBicmFpbiBsaWtlIGEgcG9pc29ub3VzIG11c2hyb29t"),
       decode_hex("49276d206b696c6c696e6720796f757220627261696e206c696b652061207"
@@ -129,8 +156,10 @@ int main(void) {
     printf("%d - %f\n", sc.scores[i].keysize, sc.scores[i].score);
   }
   assert(!strcmp(contents, encode_base64(decode_base64(contents))));
-  FILE *f = fopen("6.txt", "r");
-  fclose(f);
-  // free(contents);
+  Buffer decoded = decode_base64(contents);
+  crack(decoded);
+  puts(encode_ascii(
+      repeating_xor(decode_base64(contents),
+                    buffer_from_string("Terminator X: Bring the noise"))));
   return 0;
 }
