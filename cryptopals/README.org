@@ -48,7 +48,7 @@ https://cryptopals.com/sets/1
     - Found this other one https://wgallagher86.medium.com/single-byte-xor-decryption-and-detection-in-go-451e1c9c52ec
       - Specificaly targetting this exercise.
 
-***  Implement repeating-key XORImplement repeating-key XOR
+*** Implement repeating-key XORImplement repeating-key XOR
 
   - What?
     - apply a XOR key of multiple bytes
@@ -56,3 +56,14 @@ https://cryptopals.com/sets/1
     - and the bytes of the key cycle
   - How?
     - This turned out pretty easy in comparison now that I have the Buffer class ironed out.
+
+*** Break repeating-key XOR
+
+  - What?
+    - I am a given a file with a 80-width max formatted *base64* string.
+    - That represents *repeating-key* XOR english message.
+    - I need to figure out the more likely length of the key using *hamming distance*
+    - And bruteforce the key, by bruteforcing each XOR digit one at the time.
+  - How?
+    - Read the whole file as a single string.
+    - Improve my previous *base64* code to decode and encode to support padding.
