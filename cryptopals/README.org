@@ -1,6 +1,7 @@
 * cryptopals
 
-https://cryptopals.com/
+- Home https://cryptopals.com/
+- Tour Videos https://www.youtube.com/playlist?list=PLWvDpnCcem1P6i8pZm2x7KHp5iaxwrK_P
 
 ** Problem Set 1
 
@@ -61,9 +62,24 @@ https://cryptopals.com/sets/1
 
   - What?
     - I am a given a file with a 80-width max formatted *base64* string.
-    - That represents *repeating-key* XOR english message.
-    - I need to figure out the more likely length of the key using *hamming distance*
-    - And bruteforce the key, by bruteforcing each XOR digit one at the time.
+    - It represents a *repeating-key* XOR'd english message.
+    - I need to figure out the more likely *keylength* using *hamming distance*
+    - Then bruteforce the key, by bruteforcing each XOR digit one at the time.
   - How?
     - Read the whole file as a single string.
     - Improve my previous *base64* code to decode and encode to support padding.
+
+*** AES in ECB mode
+
+- What?
+  - You are given
+    - a base64 encoded message
+    - the key to decode it
+    - the cipher used (AES-128-ECB)
+  - You need to decode it.
+- How?
+  - I first assumed that it would be just a quick look at the [[https://en.wikipedia.org/wiki/Advanced_Encryption_Standard][AES]] wikipedia. But after seeing the many implementation [[https://en.wikipedia.org/wiki/Block_cipher_mode_of_operation][details]] that will involve it. I decided to look elsewhere.
+  - I found this [[https://www.scottbrady.io/cryptopals/implementing-and-breaking-aes-ecb][article]] that mentions someone trying to write AES but eventually took the library route.
+  - Also the official [[https://www.youtube.com/watch?v=HKQ-Vjb4MX8][tour video]] only calls a python library. But also mentioning a [[https://cryptohack.org/][resource]] to learn how to implement it.
+  - I ended up just using this C [[https://gist.github.com/dvtalk/edca1d9753503cd03f04b495b040f0e3][snippet]] that calls OpenSSL
+
