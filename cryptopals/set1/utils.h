@@ -32,4 +32,6 @@ typedef struct BruteforceResult {
 
 BruteforceResult bruteforce_xor(Buffer phrase);
 
+char *read_file_as_oneline(const char *filename);
+
 #endif /* UTILS_H */

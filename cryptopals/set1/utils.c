@@ -218,3 +218,27 @@ Buffer repeating_xor(Buffer in, Buffer by) {
   }
   return result;
 }
+
+static long get_filesize(const char *filename) {
+  FILE *fp = fopen(filename, "rb");
+  fseek(fp, 0, SEEK_END);
+  long filesize = ftell(fp);
+  fclose(fp);
+  return filesize;
+}
+
+char *read_file_as_oneline(const char *filename) {
+  char *result = calloc(get_filesize(filename), sizeof(char));
+  size_t ridx = 0;
+  FILE *fp = fopen(filename, "r");
+  char buf[255] = {0}; // !
+  while (fgets(buf, 255, fp)) {
+    if (buf[strlen(buf) - 1] == '\n') {
+      buf[strlen(buf) - 1] = '\0';
+    }
+    strcpy(&result[ridx], buf);
+    ridx += strlen(buf);
+  };
+  fclose(fp);
+  return result;
+}
