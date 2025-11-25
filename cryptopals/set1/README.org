@@ -134,3 +134,14 @@ Easiest way: use *OpenSSL::Cipher* and give it *AES-128-ECB* as the cipher.
 *** Do this with code.
 
 You can obviously decrypt this using the OpenSSL command-line tool, but we're having you get ECB working in code for a reason. You'll need it a lot later on, and not just for attacking ECB.
+
+** Challenge 8 - Detect AES in ECB mode
+
+[[https://cryptopals.com/static/challenge-data/8.txt][In this file]] are a bunch of hex-encoded ciphertexts.
+
+One of them has been encrypted with ECB.
+
+Detect it.
+
+Remember that the problem with ECB is that it is stateless and deterministic; the same 16 byte plaintext block will always produce the same 16 byte ciphertext.
+

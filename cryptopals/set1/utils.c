@@ -1,6 +1,7 @@
 #include "./utils.h"
 #include <assert.h>
 #include <ctype.h>
+#include <openssl/evp.h>
 #include <stdio.h>
 #include <string.h>
 
@@ -10,6 +11,8 @@ static const char *base64_alphabet =
 Buffer buffer_new(size_t size) {
   return (Buffer){.size = size, .content = calloc(size, sizeof(uint8_t))};
 }
+
+void buffer_free(Buffer buffer) { free(buffer.content); }
 
 Buffer buffer_from_string(const char *phrase) {
   Buffer result = buffer_new(strlen(phrase));
@@ -183,11 +186,10 @@ static int letter_score(const char letter) {
   return english_scores[letter];
 }
 
-static int english_score(const Buffer phrase) {
+int buffer_english_score(const Buffer phrase) {
   int score = 0;
-  for (size_t i = 0; i < phrase.size; ++i) {
+  for (size_t i = 0; i < phrase.size; ++i)
     score += letter_score(phrase.content[i]);
-  }
   return score;
 }
 
@@ -197,7 +199,7 @@ BruteforceResult bruteforce_xor(Buffer phrase) {
   };
   for (uint8_t key = 0; key < 127; ++key) {
     Buffer tmp = xor_buffer(phrase, key);
-    int tmp_score = english_score(tmp);
+    int tmp_score = buffer_english_score(tmp);
     /* printf("%3d %3d - %s\n", tmp_score, result.score, encode_ascii(tmp)); */
     if (tmp_score > result.score) {
       result.score = tmp_score;
@@ -241,4 +243,24 @@ char *read_file_as_oneline(const char *filename) {
   };
   fclose(fp);
   return result;
+}
+
+unsigned char *aes_decrypt(Buffer cipherbuffer, char *key) {
+  assert(16 == strlen(key));
+
+  EVP_CIPHER_CTX *ctx = EVP_CIPHER_CTX_new();
+  EVP_DecryptInit_ex(ctx, EVP_aes_128_ecb(), NULL, (unsigned char *)key, NULL);
+  EVP_CIPHER_CTX_set_padding(ctx, 0);
+
+  unsigned char *decrypted = calloc(cipherbuffer.size, sizeof(unsigned char));
+  int decrypt_len1, decrypt_len2;
+  EVP_DecryptUpdate(ctx, decrypted, &decrypt_len1, cipherbuffer.content,
+                    cipherbuffer.size);
+  EVP_DecryptFinal_ex(ctx, decrypted + decrypt_len1, &decrypt_len2);
+  printf("%d + %d = %d\n", decrypt_len1, decrypt_len2,
+         decrypt_len1 + decrypt_len2);
+  decrypted[decrypt_len1 + decrypt_len2] = '\0';
+  EVP_CIPHER_CTX_free(ctx);
+
+  return decrypted;
 }

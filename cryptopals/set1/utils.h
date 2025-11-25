@@ -12,7 +12,9 @@ typedef struct Buffer {
 
 Buffer buffer_from_string(const char *phrase);
 Buffer buffer_new(size_t size);
+void buffer_free(Buffer);
 bool buffer_equal(const Buffer a, const Buffer b);
+int buffer_english_score(const Buffer);
 Buffer xor_buffers(Buffer a, Buffer b);
 Buffer xor_buffer(const Buffer src_buffer, uint8_t by);
 Buffer repeating_xor(Buffer in, Buffer by);
@@ -23,6 +25,8 @@ char *encode_ascii(const Buffer buffer);
 char *encode_hex(Buffer buffer);
 Buffer decode_hex(const char *hex);
 Buffer decode_base64(const char *encoded);
+
+unsigned char *aes_decrypt(Buffer cipherbuffer, char *key);
 
 typedef struct BruteforceResult {
   int score;
