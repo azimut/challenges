@@ -8,3 +8,4 @@ LDFLAGS := -lssl -lcrypto
 5:; $(CC) $(CFLAGS) utils.c $@.c -o out
 6:; $(CC) $(CFLAGS) utils.c $@.c -o out
 7:; $(CC) $(CFLAGS) utils.c $@.c -o out $(LDFLAGS)
+8:; $(CC) $(CFLAGS) utils.c $@.c -o out

@@ -82,4 +82,15 @@ https://cryptopals.com/sets/1
   - I found this [[https://www.scottbrady.io/cryptopals/implementing-and-breaking-aes-ecb][article]] that mentions someone trying to write AES but eventually took the library route.
   - Also the official [[https://www.youtube.com/watch?v=HKQ-Vjb4MX8][tour video]] only calls a python library. But also mentioning a [[https://cryptohack.org/][resource]] to learn how to implement it.
   - I ended up just using this C [[https://gist.github.com/dvtalk/edca1d9753503cd03f04b495b040f0e3][snippet]] that calls OpenSSL
+  - Alternative: From the CLI:
+    #+begin_src
+      $ base64 -d 7.txt | openssl aes-128-ecb -d -nosalt -K $(echo -n YELLOW SUBMARINE | xxd -p)
+      I'm back and I'm ringin' the bell
+      A rockin' on the mike while the fly girls yell
+      In ecstasy in the back of me
+      Well that's my DJ Deshay cuttin' all them Z's
+      Hittin' hard and the girlies goin' crazy
+      Vanilla's on the mike, man I'm not lazy.
+      ...
+    #+end_src
 
