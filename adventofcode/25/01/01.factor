@@ -2,32 +2,18 @@ USING: kernel io io.files io.encodings.ascii peg.ebnf math.parser strings sequen
 IN: 01
 
 EBNF: parse [=[
-    num  = [0-9]+ => [[ dec> ]]
-    dir  = [LR]   => [[ 1string ]]
-    main = dir num
+    left  = "L"~ [0-9]+ => [[ dec> neg ]]
+    right = "R"~ [0-9]+ => [[ dec>     ]]
+    main = left | right
 ]=]
-
-: turn-dial ( prev pair -- next )
-    [ second ] [ first ] bi {
-        { "L" [ - 100 rem ] }
-        { "R" [ + 100 rem ] }
-    } case ;
 
 : part1 ( filename -- n )
     ascii file-lines [ parse ] map
-    50 [ turn-dial ] accumulate*
+    50 [ + 100 rem ] accumulate*
     [ zero? ] count ;
-
-: turns ( pair -- val )
-    [ second ] [ first ] bi {
-        { "L" [ neg ] }
-        { "R" [     ] }
-    } case ;
 
 : part2 ( filename -- n )
     ascii file-lines [ parse ] map
-    [ turns ] map
     [ dup abs swap '[ _ signum ] replicate ] map-concat
     50 [ + 100 rem ] accumulate*
-    [ zero? ] count
-    ;
+    [ zero? ] count ;
