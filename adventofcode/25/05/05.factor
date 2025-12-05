@@ -14,10 +14,9 @@ EBNF: parse-range [=[
 
 : in-range? ( ranges n -- ? )
     '[ _ swap in? ] any? ;
-: count-fresh-products ( ranges count n -- count )
-    swapd in-range? [ 1 + ] when ;
+
 : part1 ( ranges numbers -- n )
-    0 [ dupdd count-fresh-products ] reduce nip ;
+    [ dupd in-range? ] count nip ;
 
 : merge-ranges ( range range -- seq-ranges )
     { { [ 2dup set=        ] [ drop 1array ] }
