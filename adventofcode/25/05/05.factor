@@ -1,9 +1,9 @@
-USING: kernel io.files io.encodings.ascii splitting peg.ebnf multiline math.parser ranges sequences sets shuffle math ;
+USING: kernel io.files io.encodings.ascii splitting peg.ebnf multiline math.parser ranges sequences sets shuffle math accessors hash-sets namespaces ;
 IN: 05
 
 EBNF: parse-range [=[
-    num  = [0-9]+           => [[ dec> ]]
-    main = num:a "-"~ num:b => [[ a b [a..b] ]]
+    id    = [0-9]+         => [[ dec> ]]
+    range = id:a "-"~ id:b => [[ a b [a..b] ]]
 ]=]
 
 : parse ( filename -- ranges numbers )
@@ -17,3 +17,13 @@ EBNF: parse-range [=[
 : part1 ( ranges numbers -- n )
     0 [ dupdd add-when-in-range ] reduce nip ;
 
+SYMBOL: fresh-ids
+fresh-ids [ HS{ } clone ] initialize
+
+: part2 ( ranges numbers -- n )
+    drop [
+        members [
+            fresh-ids get-global adjoin
+        ] each
+    ] each
+    fresh-ids get-global cardinality ;
