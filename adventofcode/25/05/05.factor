@@ -1,4 +1,4 @@
-USING: kernel io.files io.encodings.ascii splitting peg.ebnf multiline math.parser ranges sequences sets shuffle math accessors hash-sets namespaces sequences.extras sequences.deep arrays sorting ;
+USING: kernel io.files io.encodings.ascii splitting peg.ebnf multiline math.parser ranges sequences sets shuffle math arrays sorting combinators math.order ;
 IN: 05
 
 EBNF: parse-range [=[
@@ -12,20 +12,29 @@ EBNF: parse-range [=[
     [ [ dec>        ] map ]
     bi* ;
 
-: in-ranges? ( ranges n -- ? ) '[ _ swap in? ] any? ;
-: add-when-in-range ( ranges count n -- count ) swapd in-ranges? [ 1 + ] when ;
+: in-range? ( ranges n -- ? )
+    '[ _ swap in? ] any? ;
+: count-fresh-products ( ranges count n -- count )
+    swapd in-range? [ 1 + ] when ;
 : part1 ( ranges numbers -- n )
-    0 [ dupdd add-when-in-range ] reduce nip ;
+    0 [ dupdd count-fresh-products ] reduce nip ;
 
-! : merge-ranges ( a b -- c-or-seq )
-!     [ intersects? ] 2keep
-!     rot
-!     [ union ] [ 2array ] if ;
+: merge-ranges ( range range -- seq-ranges )
+    { { [ 2dup set=        ] [ drop 1array ] }
+      { [ 2dup intersects? ] [
+            [ [ minimum ] bi@ min ] [ [ maximum ] bi@ max ] 2bi
+            [a..b] 1array
+        ] }
+      [ 2array ] } cond ;
 
 : part2 ( ranges numbers -- n )
-    drop union-all length
-    ! drop [ from>> ] sort-by
-    ! [ [ merge-ranges ] when* ] map-with-previous
-    ! [ cardinality ] map-sum
-    ;
-
+    drop [ minimum ] sort-by
+    { } [ over empty? [
+              prefix
+          ] [
+              [ unclip-last ] dip
+              merge-ranges
+              append
+          ] if
+    ] reduce
+    [ cardinality ] map-sum ;
