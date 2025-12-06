@@ -12,4 +12,10 @@ Hit an unexpected issue with Part 2 when trying to rely on *regular expressions*
 
 ** Day 3
 ** Day 4
+
+I took the naive approach of iterating across each cell and around it. But since this was really procedural (at least in my head) I just used [[https://www.gnu.org/software/gawk/][AWK]]. It has 2D arrays and is all I needed.
+
 ** Day 5
+
+Part 1 ended up being really idiomatic (i think). Parsing doing most of the work. Is nice having a [[https://docs.factorcode.org/content/article-ranges.html][range]] tuple class.
+Part 2 took me a while. Something I didn't expected was that the *union* of two *range* types ends up in a expanded sequence even when they overlap. So I did the shuffling manually. (bi,2bi,bi*,bi@,2bi,or,not,2bi)
