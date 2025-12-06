@@ -19,3 +19,10 @@ I took the naive approach of iterating across each cell and around it. But since
 
 Part 1 ended up being really idiomatic (i think). Parsing doing most of the work. Is nice having a [[https://docs.factorcode.org/content/article-ranges.html][range]] tuple class.
 Part 2 took me a while. Something I didn't expected was that the *union* of two *range* types ends up in a expanded sequence even when they overlap. So I did the shuffling manually. (bi,2bi,bi*,bi@,2bi,or,not,2bi)
+
+** Day 6
+
+*** Part 1
+
+I could visualize the parsing in AWK. Unfortunately, there is no *eval()* equivalent in it. And I didn't want to spawn a process for it.
+I though EBNF would not work for Factor since this needed process columns, but I was wrong as I just needed to *transpose*. No major issues other than when I tried to be extra clever and parse the operations to quotation. Factor didn't like evaluating run-time quotations.
