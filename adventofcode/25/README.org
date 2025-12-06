@@ -1,0 +1,15 @@
+* Advent of Code 2025
+
+This year I intend to solve what I can with [[https://factorcode.org/][Factor]]. I will post here some notes I have about the problems and the language.
+
+** Day 1
+
+Really enjoying [[https://docs.factorcode.org/content/vocab-peg.ebnf.html][peg.ebnf]]. Having as proper parser on what is sometimes called *Advent of Parse* is freeing in a way.
+
+** Day 2
+
+Hit an unexpected issue with Part 2 when trying to rely on *regular expressions*. Seems like the [[https://docs.factorcode.org/content/vocab-regexp.html][regex]] vocabulary [[https://docs.factorcode.org/content/article-regexp-syntax.html][doesn't have group capture support]]. Luckly there is [[https://docs.factorcode.org/content/vocab-pcre.html][pcre]] support.
+
+** Day 3
+** Day 4
+** Day 5
