@@ -1,5 +1,5 @@
 USING: kernel io.files io.encodings.ascii sequences peg.ebnf multiline math.parser math math.matrices ;
-IN: 06
+IN: 06.1
 
 EBNF: parse-line [=[
     n    = [0-9]+ => [[  dec> ]]

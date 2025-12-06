@@ -22,7 +22,5 @@ Part 2 took me a while. Something I didn't expected was that the *union* of two 
 
 ** Day 6
 
-*** Part 1
-
 I could visualize the parsing in AWK. Unfortunately, there is no *eval()* equivalent in it. And I didn't want to spawn a process for it.
 I though EBNF would not work for Factor since this needed process columns, but I was wrong as I just needed to *transpose*. No major issues other than when I tried to be extra clever and parse the operations to quotation. Factor didn't like evaluating run-time quotations.
