@@ -21,17 +21,13 @@ END {
         # print x,y
         while((++x <= NR) && (y > 0) && (y <= NF)) {
             # print "> ", x, y, diagram[x][y]
-            switch (diagram[x][y]) {
-            case "." :
-                break
-            case "^" :
+            if (diagram[x][y] == "^") {
                 if (!((x","y) in visited_splitters)) {
                     push(x","y+1)
                     push(x","y-1)
                     visited_splitters[x","y] = 1
                 }
-                y = -10 # stop beam
-                break
+                y = -10
             }
         }
     }
