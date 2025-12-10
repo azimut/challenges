@@ -6,11 +6,10 @@ EBNF: parse-line [=[
     main = n ","~ n
 ]=]
 
-: area ( p1 p2 -- area ) v- vabs { 1 1 } v+ product ;
 : parse ( filename -- xs )
     ascii file-lines [ parse-line ] map ;
 
+: area ( p1 p2 -- area ) v- vabs { 1 1 } v+ product ;
 : part1 ( xs -- n )
-    2 [ dup first2 area 2array ] map-combinations
-    [ second ] sort-by
-    last second ;
+    2 [ first2 area ] map-combinations
+    sort last ;
